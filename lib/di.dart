@@ -1,0 +1,70 @@
+import 'package:lorry_dispatcher/core/api/dio_client.dart';
+import 'package:lorry_dispatcher/features/common/bloc/main_tab/main_tab_cubit.dart';
+import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
+import 'package:lorry_dispatcher/features/common/data/repository/settings.dart';
+import 'package:lorry_dispatcher/features/common/domain/repository/settings.dart';
+import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_lang.dart';
+import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_onboard.dart';
+import 'package:lorry_dispatcher/features/common/domain/uscase/settings/save_app_onboard.dart';
+import 'package:lorry_dispatcher/features/common/domain/uscase/settings/set_app_lang.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:get_it/get_it.dart';
+
+
+final inject = GetIt.instance;
+
+Future<void> initDi() async {
+  // 1. SharedPreferences
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  inject.registerSingleton<SharedPreferences>(pref);
+
+  inject.registerSingleton<DioClient>(DioClient(pref));
+
+
+  _dataSources();
+  _repositories();
+  _useCase();
+  _cubit();
+}
+
+
+void _dataSources(){
+
+}
+
+
+void _repositories() {
+  // AUTH
+  // inject.registerLazySingleton<AuthRepository>(
+  //   () => AuthRepositoryImpl(inject<GrpcAuthService>(), inject()),
+  // );
+
+  inject.registerLazySingleton<ISettingRepository>(
+    () => SettingRepository(inject()),
+  );
+
+
+}
+
+
+void _useCase() {
+  // Language
+  inject.registerLazySingleton(() => GetAppLangUseCase(inject()));
+  inject.registerLazySingleton(() => SetAppLangUseCase(inject()));
+  inject.registerLazySingleton(() => SetAppOnboardUseCase(inject()));
+  inject.registerLazySingleton(() => GetAppOnboardUseCase(inject()));
+}
+
+void _cubit() {
+  // AUTH
+  inject.registerFactory(() => MainTabCubit());
+
+  // Language
+  inject.registerLazySingleton(() => SettingsCubit(
+        inject(),
+        inject(),
+        inject(),
+        inject(),
+        inject(),
+      ));
+}
