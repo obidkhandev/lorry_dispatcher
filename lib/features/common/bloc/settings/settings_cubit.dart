@@ -12,7 +12,6 @@ import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_onboard.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/save_app_onboard.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/set_app_lang.dart';
-import 'package:lorry_dispatcher/features/common/domain/uscase/settings/save_app_onboard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'settings_state.dart';

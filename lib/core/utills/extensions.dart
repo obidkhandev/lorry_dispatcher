@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+
+extension ForContext on BuildContext {
+  MediaQueryData get mq => MediaQuery.of(this);
+  double get w => mq.size.width;
+  double get h => mq.size.height;
+
+  ThemeData get theme => Theme.of(this);
+  bool get isDarkMode => theme.brightness == Brightness.dark;
+}
+
 extension HexColor on Color {
   static Color fromHex(String hexString) {
     final buffer = StringBuffer();

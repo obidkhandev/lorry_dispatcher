@@ -4,22 +4,14 @@ import 'package:lorry_dispatcher/core/resources/global_variables.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
-import 'package:lorry_dispatcher/features/onboarding/splash/splash_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
 
 class AppPages {
   static GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.splashScreen,
+    initialLocation: AppRoutes.home,
     routes: <RouteBase>[
-      GoRoute(
-        path: AppRoutes.splashScreen,
-        name: AppRoutes.splashScreen,
-        builder: (BuildContext context, GoRouterState state) {
-          return SplashScreen();
-        },
-      ),
 
       StatefulShellRoute.indexedStack(
         builder:

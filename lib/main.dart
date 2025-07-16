@@ -8,7 +8,6 @@ import 'package:lorry_dispatcher/features/common/bloc/main_tab/main_tab_cubit.da
 import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lorry_dispatcher/generated/l10n.dart';
-
 import 'core/utills/app_update_version.dart';
 import 'di.dart';
 
@@ -39,8 +38,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => inject<MainTabCubit>()),
-        BlocProvider(create: (context) => inject<SettingsCubit>()),
-
+        BlocProvider(create: (context) => inject<SettingsCubit>()..loadAppLang()),
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
