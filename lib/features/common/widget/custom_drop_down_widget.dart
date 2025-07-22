@@ -35,7 +35,7 @@ class CustomSearchableDropDownWidget extends StatefulWidget {
     this.validator,
     this.label,
     this.visibleClose = true,
-    this.searchHintText = 'Search...',
+    this.searchHintText = '',
     this.enableSearch = true,
   });
 
@@ -274,7 +274,7 @@ class _CustomSearchableDropDownWidgetState extends State<CustomSearchableDropDow
               children: [
                 TextSpan(
                   text: widget.label!,
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
+                  style: context.theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),

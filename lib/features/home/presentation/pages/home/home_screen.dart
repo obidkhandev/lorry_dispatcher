@@ -5,6 +5,7 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/or
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/status_inprogress_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/part/add_order_bottom_sheet.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,20 +42,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           child: CustomButton(
             height: 40.h,
-            onTap: (){
+            onTap: () {
               showAddOrderBottomSheet(context);
             },
             paddingV: 0,
             icon: AppIcons.add,
             radius: BorderRadius.circular(30.r),
-            text: "Buyurtma yaratish",
+            text: S.of(context).createOrder, // Replaced "Buyurtma yaratish"
           ),
         ),
       ),
       appBar: CustomAppBar(
         hasAutoLeading: false,
         toolbarHeight: 100.h,
-        title: "Buyurtmalar",
+        title: S.of(context).orders, // Replaced "Buyurtmalar"
         bottom: CustomTabBar(
           tabController: tabController,
           selectedTabIndex: selectedTabIndex,
@@ -63,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               selectedTabIndex = v;
             });
           },
-          tabTitles: ["Buyurtmalar", "Jarayonda", "Bajarilgan"],
+          tabTitles: [
+            S.of(context).orders, // Replaced "Buyurtmalar"
+            S.of(context).inProgress, // Replaced "Jarayonda"
+            S.of(context).completed, // Replaced "Bajarilgan"
+          ],
         ).paddingSymmetric(horizontal: 16.w),
       ),
       body: TabBarView(

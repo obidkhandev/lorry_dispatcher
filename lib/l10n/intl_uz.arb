@@ -1,3 +1,36 @@
 {
-  "@@locale": "uz"
+  "@@locale": "uz",
+
+  "edit": "Tahrirlash",
+  "balanceAndRating": "Balans va Reyting",
+  "settings": "Sozlamalar",
+  "notification": "Bildirishnoma",
+  "theme": "Mavzu",
+  "language": "Til",
+  "additional": "Qo'shimcha",
+  "privacyPolicy": "Maxfiylik Siyosati",
+  "licenseAgreement": "Litsenziya Shartnomasi",
+  "version": "Versiya",
+  "deleteAndLogout": "O'chirish va Chiqish",
+  "logout": "Chiqish",
+  "deleteAllProfiles": "Barcha Profillarni O'chirish",
+  "poweredBy": "©️ IMB Tech tomonidan ishlab chiqilgan",
+  "confirmLogout": "Chiqishni Tasdiqlash",
+
+  "night_mode": "Tungi Rejim",
+  "auto": "Avtomatik",
+  "light": "Yorug'",
+  "dark": "Qorong'i",
+  "selectLanguage": "Tilni tanlang",
+  "createOrder": "Buyurtma Yaratish",
+  "orders": "Buyurtmalar",
+  "inProgress": "Jarayonda",
+  "completed": "Tugallangan",
+  "arrived": "Yetib Keldi",
+  "loaded": "Yuklangan",
+  "arrivedForUnloading": "Tushirish Uchun Yetib Keldi",
+  "unloaded": "Tushirilgan",
+  "confirm": "Tasdiqlash",
+  "comments": "Izohlar",
+  "offers": "Takliflar"
 }

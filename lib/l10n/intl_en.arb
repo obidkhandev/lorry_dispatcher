@@ -1,13 +1,5 @@
 {
   "@@locale": "en",
-
-  "frontSide": "Front Side",
-  "rearSide": "Rear Side",
-  "driverLicense": "Driver's License",
-  "techPassport": "Technical Passport",
-  "trailer": "Trailer",
-
-
   "edit": "Edit",
   "balanceAndRating": "Balance and Rating",
   "settings": "Settings",
@@ -22,5 +14,21 @@
   "logout": "Logout",
   "deleteAllProfiles": "Delete All Profiles",
   "poweredBy": "©️ Powered by IMB Tech",
-  "confirmLogout": "Confirm Logout"
+  "confirmLogout": "Confirm Logout",
+  "night_mode": "Night Mode",
+  "auto": "Auto",
+  "light": "Light",
+  "dark": "Dark",
+  "selectLanguage": "Select language",
+  "createOrder": "Create Order",
+  "orders": "Orders",
+  "inProgress": "In Progress",
+  "completed": "Completed",
+  "arrived": "Arrived",
+  "loaded": "Loaded",
+  "arrivedForUnloading": "Arrived for Unloading",
+  "unloaded": "Unloaded",
+  "confirm": "Confirm",
+  "comments": "Comments",
+  "offers": "Offers"
 }

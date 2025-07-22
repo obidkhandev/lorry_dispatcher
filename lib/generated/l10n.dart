@@ -54,41 +54,6 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Front Side`
-  String get frontSide {
-    return Intl.message('Front Side', name: 'frontSide', desc: '', args: []);
-  }
-
-  /// `Rear Side`
-  String get rearSide {
-    return Intl.message('Rear Side', name: 'rearSide', desc: '', args: []);
-  }
-
-  /// `Driver's License`
-  String get driverLicense {
-    return Intl.message(
-      'Driver\'s License',
-      name: 'driverLicense',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Technical Passport`
-  String get techPassport {
-    return Intl.message(
-      'Technical Passport',
-      name: 'techPassport',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Trailer`
-  String get trailer {
-    return Intl.message('Trailer', name: 'trailer', desc: '', args: []);
-  }
-
   /// `Edit`
   String get edit {
     return Intl.message('Edit', name: 'edit', desc: '', args: []);
@@ -202,6 +167,101 @@ class S {
       desc: '',
       args: [],
     );
+  }
+
+  /// `Night Mode`
+  String get night_mode {
+    return Intl.message('Night Mode', name: 'night_mode', desc: '', args: []);
+  }
+
+  /// `Auto`
+  String get auto {
+    return Intl.message('Auto', name: 'auto', desc: '', args: []);
+  }
+
+  /// `Light`
+  String get light {
+    return Intl.message('Light', name: 'light', desc: '', args: []);
+  }
+
+  /// `Dark`
+  String get dark {
+    return Intl.message('Dark', name: 'dark', desc: '', args: []);
+  }
+
+  /// `Select language`
+  String get selectLanguage {
+    return Intl.message(
+      'Select language',
+      name: 'selectLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Order`
+  String get createOrder {
+    return Intl.message(
+      'Create Order',
+      name: 'createOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message('Orders', name: 'orders', desc: '', args: []);
+  }
+
+  /// `In Progress`
+  String get inProgress {
+    return Intl.message('In Progress', name: 'inProgress', desc: '', args: []);
+  }
+
+  /// `Completed`
+  String get completed {
+    return Intl.message('Completed', name: 'completed', desc: '', args: []);
+  }
+
+  /// `Arrived`
+  String get arrived {
+    return Intl.message('Arrived', name: 'arrived', desc: '', args: []);
+  }
+
+  /// `Loaded`
+  String get loaded {
+    return Intl.message('Loaded', name: 'loaded', desc: '', args: []);
+  }
+
+  /// `Arrived for Unloading`
+  String get arrivedForUnloading {
+    return Intl.message(
+      'Arrived for Unloading',
+      name: 'arrivedForUnloading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unloaded`
+  String get unloaded {
+    return Intl.message('Unloaded', name: 'unloaded', desc: '', args: []);
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message('Confirm', name: 'confirm', desc: '', args: []);
+  }
+
+  /// `Comments`
+  String get comments {
+    return Intl.message('Comments', name: 'comments', desc: '', args: []);
+  }
+
+  /// `Offers`
+  String get offers {
+    return Intl.message('Offers', name: 'offers', desc: '', args: []);
   }
 }
 

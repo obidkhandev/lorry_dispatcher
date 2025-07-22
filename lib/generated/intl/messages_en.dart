@@ -23,32 +23,45 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "additional": MessageLookupByLibrary.simpleMessage("Additional"),
+    "arrived": MessageLookupByLibrary.simpleMessage("Arrived"),
+    "arrivedForUnloading": MessageLookupByLibrary.simpleMessage(
+      "Arrived for Unloading",
+    ),
+    "auto": MessageLookupByLibrary.simpleMessage("Auto"),
     "balanceAndRating": MessageLookupByLibrary.simpleMessage(
       "Balance and Rating",
     ),
+    "comments": MessageLookupByLibrary.simpleMessage("Comments"),
+    "completed": MessageLookupByLibrary.simpleMessage("Completed"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
     "confirmLogout": MessageLookupByLibrary.simpleMessage("Confirm Logout"),
+    "createOrder": MessageLookupByLibrary.simpleMessage("Create Order"),
+    "dark": MessageLookupByLibrary.simpleMessage("Dark"),
     "deleteAllProfiles": MessageLookupByLibrary.simpleMessage(
       "Delete All Profiles",
     ),
     "deleteAndLogout": MessageLookupByLibrary.simpleMessage(
       "Delete and Logout",
     ),
-    "driverLicense": MessageLookupByLibrary.simpleMessage("Driver\'s License"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
-    "frontSide": MessageLookupByLibrary.simpleMessage("Front Side"),
+    "inProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "licenseAgreement": MessageLookupByLibrary.simpleMessage(
       "License Agreement",
     ),
+    "light": MessageLookupByLibrary.simpleMessage("Light"),
+    "loaded": MessageLookupByLibrary.simpleMessage("Loaded"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "night_mode": MessageLookupByLibrary.simpleMessage("Night Mode"),
     "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "offers": MessageLookupByLibrary.simpleMessage("Offers"),
+    "orders": MessageLookupByLibrary.simpleMessage("Orders"),
     "poweredBy": MessageLookupByLibrary.simpleMessage("©️ Powered by IMB Tech"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
-    "rearSide": MessageLookupByLibrary.simpleMessage("Rear Side"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("Select language"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
-    "techPassport": MessageLookupByLibrary.simpleMessage("Technical Passport"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
-    "trailer": MessageLookupByLibrary.simpleMessage("Trailer"),
+    "unloaded": MessageLookupByLibrary.simpleMessage("Unloaded"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
   };
 }

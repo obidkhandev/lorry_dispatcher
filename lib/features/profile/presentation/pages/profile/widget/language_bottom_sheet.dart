@@ -4,6 +4,7 @@ import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_modal_bottom_sheet.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class LanguageSelectionBottomSheet extends StatelessWidget {
   final String selectedLanguage;
@@ -18,7 +19,7 @@ class LanguageSelectionBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomModalBottomSheet(
-      title: "Выбор языка",
+      title: S.of(context).selectLanguage,
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [

@@ -1,6 +1,7 @@
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/widget/comment_item_card.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class AboutDriverScreen extends StatelessWidget {
   const AboutDriverScreen({super.key});
@@ -8,7 +9,7 @@ class AboutDriverScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomButton(text: "Tasdiqlash")
+      bottomNavigationBar: CustomButton(text: S.of(context).confirm) // Replaced "Tasdiqlash"
           .paddingSymmetric(horizontal: 16.w)
           .paddingOnly(bottom: customButtonPadding),
       body: Column(
@@ -40,12 +41,12 @@ class AboutDriverScreen extends StatelessWidget {
           10.verticalSpace,
           Center(
             child: Text(
-              "Po‘latov Jasurbek",
+              "Po‘latov Jasurbek", // Dynamic, not replaced
               style: context.theme.textTheme.titleLarge,
             ),
           ),
           30.verticalSpace,
-          Text("Fikrlar", style: context.theme.textTheme.titleMedium),
+          Text(S.of(context).comments, style: context.theme.textTheme.titleMedium), // Replaced "Fikrlar"
           16.verticalSpace,
           CommentItemCard(),
         ],

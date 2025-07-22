@@ -3,6 +3,7 @@ import 'package:lorry_dispatcher/core/utills/enums.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_modal_bottom_sheet.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 import '../../../../../../export.dart';
 
@@ -14,7 +15,7 @@ class ThemeBottomSheet extends StatelessWidget {
     final cubit = context.read<SettingsCubit>();
 
     return CustomModalBottomSheet(
-      title: "S.of(context).night_mode",
+      title: S.of(context).night_mode, // Already localized
       content: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           ThemeModeState selectedMode = state.themeMode;
@@ -34,7 +35,7 @@ class ThemeBottomSheet extends StatelessWidget {
                 },
                 activeColor: AppColors.primaryColor,
                 title: Text(
-                  "S.of(context).auto",
+                  S.of(context).auto, // Already localized
                   style: context.theme.textTheme.titleMedium,
                 ),
               ),
@@ -52,7 +53,7 @@ class ThemeBottomSheet extends StatelessWidget {
                 },
                 activeColor: AppColors.primaryColor,
                 title: Text(
-                  "S.of(context).light",
+                  S.of(context).light, // Already localized
                   style: context.theme.textTheme.titleMedium,
                 ),
               ),
@@ -71,7 +72,7 @@ class ThemeBottomSheet extends StatelessWidget {
                 },
                 activeColor: AppColors.primaryColor,
                 title: Text(
-                  "S.of(context).dark",
+                  S.of(context).dark, // Already localized
                   style: context.theme.textTheme.titleMedium,
                 ),
               ),

@@ -3,6 +3,7 @@
 import 'package:lorry_dispatcher/core/utills/date_extension.dart';
 import 'package:lorry_dispatcher/core/utills/resources.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/title_with_icon.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 import '../../../../../../export.dart';
 
@@ -51,12 +52,12 @@ class OrderInprogressCard extends StatelessWidget {
             bgColor: AppColors.primaryOpacity,
             textColor: AppColors.primaryColor,
             text: status == 1
-                ? "Yetib keldim"
+                ? S.of(context).arrived
                 : status == 2
-                ? "Yuklab chiqdim"
+                ? S.of(context).loaded
                 : status == 3
-                ? "Yuk tushurish uchun yetib keldim"
-                : "Yuk tushurib chiqdim",
+                ? S.of(context).arrivedForUnloading
+                : S.of(context).unloaded,
           ),
           16.verticalSpace,
           // 6.verticalSpace,
