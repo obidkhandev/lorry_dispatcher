@@ -25,6 +25,7 @@ Future<void> initDi() async {
   _repositories();
   _useCase();
   _cubit();
+  print('Registered: ${inject.isRegistered<SettingsCubit>()}');
 }
 
 

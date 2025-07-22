@@ -16,7 +16,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppUpdateService.getCloudVersion();
 
-  initDi();
+  await initDi();
 
   // await dotenv.load(fileName: "assets/.env");
 
@@ -24,7 +24,6 @@ Future<void> main() async {
   // await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
-
 
   runApp(const MyApp());
 }

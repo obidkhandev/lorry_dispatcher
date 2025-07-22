@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const primaryColor = Color(0xFF76DE24);
+  static const primaryColor = Color(0xFFFD4D00);
   static const polygonColor = Color(0xFF04CFD9);
-  static const primaryOpacity = Color.fromRGBO(1, 50, 131, 0.05);
+  static const scaffoldBackground = Color(0xFFF5F6F8);
+  static const primaryOpacity = Color(0xffFFEBD3);
   static const textSecondary = Color(0xFF8C919E);
   static const tertiary = Color(0xFFF3F3F3);
   static const darkCardColor = Color(0xFF242424);
@@ -27,17 +28,20 @@ class AppColors {
   static const grey5 = Color(0xFF374957);
   static const grey2 = Color(0xFFCCCDCE);
   static const grey200 = Color(0xFFF1F1F1);
+  static const grey808080 = Color(0xFF808080);
   static const grey1 = Color(0xFFE7E9EC);
   static const c343434 = Color(0xFF343434);
   static const grey100 = Color(0xFFF4F4F4);
+  static const grey500 = Color(0xFFB7B7B7);
   static const grey400 = Color(0xFFF1F5F7);
   static const gray = Color(0xffA6ADB9);
   static const cEEEE = Color(0xffEEEEEE);
-  static const green = Color(0xff36D488);
+  static const green = Color(0xff2AD43B);
   static const c185935 = Color(0xff185935);
   static const c096A34 = Color(0xff096A34);
   static const orange = Color(0xffFFA600);
   static const shimmerColor = Color(0xffF0F0F0);
+  static const  hintColor = Color(0xff888888);
 
   static const c30215A = Color(0xff30215A);
   static const grey4 = Color(0xFF393F48);
@@ -53,10 +57,11 @@ class AppColors {
   static const cF4F4F4 = Color(0xFFF4F4F4);
   static const deepYellow = Color(0xFFE8B200);
   static const secondRed = Color(0xFFE06363);
+  static const red = Color(0xFFFD4D00);
   static const violet = Color(0xFF8F00FF);
 
   static ColorFilter colorFilter(Color? color) => ColorFilter.mode(
-        color ?? AppColors.white,
-        BlendMode.srcIn,
-      );
+    color ?? AppColors.white,
+    BlendMode.srcIn,
+  );
 }

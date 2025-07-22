@@ -75,6 +75,7 @@ dependencies:
   intl_utils: ^2.8.11
   flutter_localization: ^0.3.2
   flutter_native_splash: ^2.4.6
+  scale_button: ^2.1.2
 
 
 

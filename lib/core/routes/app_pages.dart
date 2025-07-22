@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lorry_dispatcher/core/resources/global_variables.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
+import 'package:lorry_dispatcher/features/auth/presentation/pages/login/login_screen.dart';
+import 'package:lorry_dispatcher/features/auth/presentation/pages/otp/otp_screen.dart';
+import 'package:lorry_dispatcher/features/auth/presentation/pages/register/register_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
@@ -10,8 +13,30 @@ class AppPages {
   static GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.loginScreen,
     routes: <RouteBase>[
+
+      GoRoute(
+        name: AppRoutes.registerScreen,
+        path: AppRoutes.registerScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const RegisterScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.otpScreen,
+        path: AppRoutes.otpScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const OtpScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.loginScreen,
+        path: AppRoutes.loginScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const LoginScreen();
+        },
+      ),
 
       StatefulShellRoute.indexedStack(
         builder:
