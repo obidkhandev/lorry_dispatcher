@@ -30,5 +30,8 @@
   "unloaded": "Unloaded",
   "confirm": "Confirm",
   "comments": "Comments",
-  "offers": "Offers"
+  "offers": "Offers",
+
+  "home": "Home",
+  "profile": "Profile"
 }

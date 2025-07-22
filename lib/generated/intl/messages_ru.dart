@@ -21,5 +21,49 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "additional": MessageLookupByLibrary.simpleMessage("Дополнительно"),
+    "arrived": MessageLookupByLibrary.simpleMessage("Прибыл"),
+    "arrivedForUnloading": MessageLookupByLibrary.simpleMessage(
+      "Прибыл для Разгрузки",
+    ),
+    "auto": MessageLookupByLibrary.simpleMessage("Авто"),
+    "balanceAndRating": MessageLookupByLibrary.simpleMessage(
+      "Баланс и Рейтинг",
+    ),
+    "comments": MessageLookupByLibrary.simpleMessage("Комментарии"),
+    "completed": MessageLookupByLibrary.simpleMessage("Завершено"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+    "confirmLogout": MessageLookupByLibrary.simpleMessage("Подтвердить Выход"),
+    "createOrder": MessageLookupByLibrary.simpleMessage("Создать Заказ"),
+    "dark": MessageLookupByLibrary.simpleMessage("Темная"),
+    "deleteAllProfiles": MessageLookupByLibrary.simpleMessage(
+      "Удалить Все Профили",
+    ),
+    "deleteAndLogout": MessageLookupByLibrary.simpleMessage("Удалить и Выйти"),
+    "edit": MessageLookupByLibrary.simpleMessage("Редактировать"),
+    "inProgress": MessageLookupByLibrary.simpleMessage("В Процессе"),
+    "language": MessageLookupByLibrary.simpleMessage("Язык"),
+    "licenseAgreement": MessageLookupByLibrary.simpleMessage(
+      "Лицензионное Соглашение",
+    ),
+    "light": MessageLookupByLibrary.simpleMessage("Светлая"),
+    "loaded": MessageLookupByLibrary.simpleMessage("Загружено"),
+    "logout": MessageLookupByLibrary.simpleMessage("Выйти"),
+    "night_mode": MessageLookupByLibrary.simpleMessage("Ночной Режим"),
+    "notification": MessageLookupByLibrary.simpleMessage("Уведомление"),
+    "offers": MessageLookupByLibrary.simpleMessage("Предложения"),
+    "orders": MessageLookupByLibrary.simpleMessage("Заказы"),
+    "poweredBy": MessageLookupByLibrary.simpleMessage(
+      "©️ Разработано IMB Tech",
+    ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage(
+      "Политика Конфиденциальности",
+    ),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("Выберите язык"),
+    "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "theme": MessageLookupByLibrary.simpleMessage("Тема"),
+    "unloaded": MessageLookupByLibrary.simpleMessage("Разгружено"),
+    "version": MessageLookupByLibrary.simpleMessage("Версия"),
+  };
 }

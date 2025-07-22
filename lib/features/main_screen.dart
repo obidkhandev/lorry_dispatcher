@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/core/values/app_icons.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class MainScreen extends StatefulWidget {
   final StatefulNavigationShell child;
@@ -31,9 +32,9 @@ class _MainScreenState extends State<MainScreen> {
     ];
 
     List<String> labels = [
-     "home",
+     S.of(context).home,
       // "yuk_qidirish",
-      "profile",
+      S.of(context).profile,
     ];
 
     return RepaintBoundary(

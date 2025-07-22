@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Delete and Logout",
     ),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
     "inProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "licenseAgreement": MessageLookupByLibrary.simpleMessage(
@@ -58,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "orders": MessageLookupByLibrary.simpleMessage("Orders"),
     "poweredBy": MessageLookupByLibrary.simpleMessage("©️ Powered by IMB Tech"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage("Select language"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),

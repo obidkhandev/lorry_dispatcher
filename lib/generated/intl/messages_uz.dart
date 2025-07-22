@@ -21,5 +21,51 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'uz';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "additional": MessageLookupByLibrary.simpleMessage("Qo\'shimcha"),
+    "arrived": MessageLookupByLibrary.simpleMessage("Yetib Keldi"),
+    "arrivedForUnloading": MessageLookupByLibrary.simpleMessage(
+      "Tushirish Uchun Yetib Keldi",
+    ),
+    "auto": MessageLookupByLibrary.simpleMessage("Avtomatik"),
+    "balanceAndRating": MessageLookupByLibrary.simpleMessage(
+      "Balans va Reyting",
+    ),
+    "comments": MessageLookupByLibrary.simpleMessage("Izohlar"),
+    "completed": MessageLookupByLibrary.simpleMessage("Tugallangan"),
+    "confirm": MessageLookupByLibrary.simpleMessage("Tasdiqlash"),
+    "confirmLogout": MessageLookupByLibrary.simpleMessage(
+      "Chiqishni Tasdiqlash",
+    ),
+    "createOrder": MessageLookupByLibrary.simpleMessage("Buyurtma Yaratish"),
+    "dark": MessageLookupByLibrary.simpleMessage("Qorong\'i"),
+    "deleteAllProfiles": MessageLookupByLibrary.simpleMessage(
+      "Barcha Profillarni O\'chirish",
+    ),
+    "deleteAndLogout": MessageLookupByLibrary.simpleMessage(
+      "O\'chirish va Chiqish",
+    ),
+    "edit": MessageLookupByLibrary.simpleMessage("Tahrirlash"),
+    "inProgress": MessageLookupByLibrary.simpleMessage("Jarayonda"),
+    "language": MessageLookupByLibrary.simpleMessage("Til"),
+    "licenseAgreement": MessageLookupByLibrary.simpleMessage(
+      "Litsenziya Shartnomasi",
+    ),
+    "light": MessageLookupByLibrary.simpleMessage("Yorug\'"),
+    "loaded": MessageLookupByLibrary.simpleMessage("Yuklangan"),
+    "logout": MessageLookupByLibrary.simpleMessage("Chiqish"),
+    "night_mode": MessageLookupByLibrary.simpleMessage("Tungi Rejim"),
+    "notification": MessageLookupByLibrary.simpleMessage("Bildirishnoma"),
+    "offers": MessageLookupByLibrary.simpleMessage("Takliflar"),
+    "orders": MessageLookupByLibrary.simpleMessage("Buyurtmalar"),
+    "poweredBy": MessageLookupByLibrary.simpleMessage(
+      "©️ IMB Tech tomonidan ishlab chiqilgan",
+    ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Maxfiylik Siyosati"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("Tilni tanlang"),
+    "settings": MessageLookupByLibrary.simpleMessage("Sozlamalar"),
+    "theme": MessageLookupByLibrary.simpleMessage("Mavzu"),
+    "unloaded": MessageLookupByLibrary.simpleMessage("Tushirilgan"),
+    "version": MessageLookupByLibrary.simpleMessage("Versiya"),
+  };
 }

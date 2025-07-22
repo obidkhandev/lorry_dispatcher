@@ -263,6 +263,16 @@ class S {
   String get offers {
     return Intl.message('Offers', name: 'offers', desc: '', args: []);
   }
+
+  /// `Home`
+  String get home {
+    return Intl.message('Home', name: 'home', desc: '', args: []);
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
