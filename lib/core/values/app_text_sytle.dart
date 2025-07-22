@@ -25,7 +25,7 @@ double getFontSize(num size) {
 }
 
 class AppTextStyles {
-  static const String fontFamily = 'SF Pro Display';
+  static const String fontFamily = 'Inter';
 
   TextStyle body18w4 = TextStyle(
     fontFamily: fontFamily,

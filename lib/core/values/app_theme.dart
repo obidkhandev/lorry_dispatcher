@@ -6,18 +6,24 @@ import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 /// Light Theme
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  cardColor: AppColors.tertiary,
+  cardColor: AppColors.white,
 
   colorScheme: ColorScheme.fromSwatch().copyWith(
     secondary: AppColors.primaryColor,
     brightness: Brightness.light,
   ),
-  fontFamily: "SF Pro Display",
+  fontFamily: "Inter",
   iconButtonTheme: IconButtonThemeData(
     style: IconButton.styleFrom(
-      backgroundColor: AppColors.grey200,
+      // backgroundColor: AppColors.grey200,
       shape: const CircleBorder(),
     ),
+  ),
+  tabBarTheme: TabBarThemeData(
+    dividerColor: AppColors.transparent,
+  ),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    backgroundColor: AppColors.white,
   ),
   checkboxTheme: CheckboxThemeData(
     side: BorderSide(color: AppColors.borderSecondary),
@@ -42,25 +48,25 @@ final ThemeData lightTheme = ThemeData(
   textTheme: TextTheme(
     displayLarge: AppTextStyles().body24wB.copyWith(color: AppColors.black),
     displayMedium:
-        AppTextStyles().body14w5.copyWith(color: AppColors.textBrand),
+    AppTextStyles().body14w5.copyWith(color: AppColors.textBrand),
     displaySmall:
-        AppTextStyles().body10w5.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body10w5.copyWith(color: AppColors.textSecondary),
     headlineMedium: AppTextStyles().body24w5.copyWith(color: AppColors.black),
     headlineLarge: AppTextStyles().body18w6.copyWith(color: AppColors.black),
     headlineSmall: AppTextStyles().body16w4.copyWith(color: AppColors.black),
     titleLarge: AppTextStyles().body20w6.copyWith(color: AppColors.black),
-    titleMedium: AppTextStyles().body16w6.copyWith(color: AppColors.black),
+    titleMedium: AppTextStyles().body16w5.copyWith(color: AppColors.black),
     titleSmall:
-        AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
     bodyLarge: AppTextStyles().body16w6.copyWith(color: AppColors.black),
     bodyMedium: AppTextStyles().body16w6,
     bodySmall:
-        AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
   ),
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: AppColors.white,
   ),
-  scaffoldBackgroundColor: AppColors.white,
+  scaffoldBackgroundColor: AppColors.scaffoldBackground,
   visualDensity: VisualDensity.adaptivePlatformDensity,
   primarySwatch: Colors.red,
   canvasColor: AppColors.white,
@@ -75,7 +81,7 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   iconButtonTheme: IconButtonThemeData(
     style: IconButton.styleFrom(
-      backgroundColor: AppColors.tertiary,
+      // backgroundColor: AppColors.tertiary,
       shape: const CircleBorder(),
     ),
   ),
@@ -88,7 +94,7 @@ final ThemeData darkTheme = ThemeData(
     side: BorderSide(color: AppColors.borderSecondary),
   ),
   canvasColor: AppColors.c404040,
-  fontFamily: "SF Pro Display",
+  fontFamily: "Inter",
   appBarTheme: const AppBarTheme(
     elevation: 0,
     backgroundColor: AppColors.black,
@@ -111,20 +117,20 @@ final ThemeData darkTheme = ThemeData(
   textTheme: TextTheme(
     displayLarge: AppTextStyles().body24wB.copyWith(color: AppColors.white),
     displayMedium:
-        AppTextStyles().body14w5.copyWith(color: AppColors.textPrimaryLight),
+    AppTextStyles().body14w5.copyWith(color: AppColors.textPrimaryLight),
     displaySmall:
-        AppTextStyles().body10w5.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body10w5.copyWith(color: AppColors.textSecondary),
     headlineMedium: AppTextStyles().body24w5.copyWith(color: AppColors.white),
     headlineLarge: AppTextStyles().body18w6.copyWith(color: AppColors.white),
     headlineSmall: AppTextStyles().body16w4.copyWith(color: AppColors.white),
     titleLarge: AppTextStyles().body20w6.copyWith(color: AppColors.white),
-    titleMedium: AppTextStyles().body16w6.copyWith(color: AppColors.white),
+    titleMedium: AppTextStyles().body16w5.copyWith(color: AppColors.white),
     titleSmall:
-        AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
     bodyLarge: AppTextStyles().body16w6.copyWith(color: AppColors.white),
     bodyMedium: AppTextStyles().body16w6,
     bodySmall:
-        AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
+    AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
   ),
   cardColor: AppColors.darkCardColor,
   scaffoldBackgroundColor: AppColors.black,

@@ -130,27 +130,6 @@ class AppIcons {
   static const String icComingSoon = '$_basePath/coming_soon.svg';
   static const String documentUpload = '$_basePath/document-upload.svg';
 
-  // Technical Condition Icons
-  static const String maintSchedule = '$_techConditionPath/maint_schedule.svg';
-  static const String airConditionerFilter = '$_techConditionPath/air_conditioner_filter.svg';
-  static const String antifreeze = '$_techConditionPath/antifreeze.svg';
-  static const String balonReplacement = '$_techConditionPath/balon_replacement.svg';
-  static const String battery = '$_techConditionPath/battery.svg';
-  static const String brakeFluid = '$_techConditionPath/brake_fluid.svg';
-  static const String brakePads = '$_techConditionPath/brake_pads.svg';
-  static const String carWash = '$_techConditionPath/car_wash.svg';
-  static const String discs = '$_techConditionPath/discs.svg';
-  static const String engine = '$_techConditionPath/engine.svg';
-  static const String engineAirFilter = '$_techConditionPath/engine_air_filter.svg';
-  static const String fuelFilter = '$_techConditionPath/fuel_filter.svg';
-  static const String gearbox = '$_techConditionPath/gearbox.svg';
-  static const String oilAndFilter = '$_techConditionPath/oil_and_filter.svg';
-  static const String otherServices = '$_techConditionPath/other_services.svg';
-  static const String painting = '$_techConditionPath/painting.svg';
-  static const String sparkPlug = '$_techConditionPath/spark_plug.svg';
-  static const String suspension = '$_techConditionPath/suspension.svg';
-  static const String tireRepair = '$_techConditionPath/tire_repair.svg';
-  static const String wiper = '$_techConditionPath/wiper.svg';
 
   // Map Icons
   static const String icKitchenMap = '$_mapPath/kitchen.png';
@@ -161,8 +140,11 @@ class AppIcons {
   static const String icBrain = '$_mapPath/brain.svg';
   static const String icWrench = '$_mapPath/wrench.svg';
 
-  // Marketplace Icons
-  static const String catalog = '$_marketplacePath/catalog.svg';
-  static const String products = '$_marketplacePath/products.svg';
-  static const String shoppingCart = '$_marketplacePath/shopping-cart.svg';
+  static const String chervonRight = '$_basePath/chervon_right.svg';
+  static const String arrowTop = '$_basePath/arrow_top.svg';
+  static const String editSquare = '$_basePath/edit_square.svg';
+
+
+
+
 }

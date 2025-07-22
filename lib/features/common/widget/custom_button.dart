@@ -66,7 +66,7 @@ class _CustomButtonState extends State<CustomButton> {
         highlightColor: AppColors.transparent,
         borderRadius: widget.radius ?? BorderRadius.circular(10),
         child: Ink(
-          height: widget.height ?? 50.h,
+          height: widget.height ?? 45.h,
           padding: EdgeInsets.symmetric(
             vertical: widget.isLoading ? 8.h : widget.paddingV ?? 8.h,
             horizontal: 8.w,

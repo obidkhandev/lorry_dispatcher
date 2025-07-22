@@ -9,7 +9,6 @@ import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
@@ -18,18 +17,18 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: SafeArea(
         top: false,
-        child: CustomButton(text: "Ro'yxatdan o'tish", onTap: () {
-          context.pushNamed(AppRoutes.home);
-        })
-            .paddingOnly(
+        child:
+            CustomButton(
+              text: "Ro'yxatdan o'tish",
+              onTap: () {
+                context.go(AppRoutes.home);
+              },
+            ).paddingOnly(
               left: 16.w,
               right: 16.w,
               bottom: MediaQuery.of(context).viewInsets.bottom + 20,
@@ -65,9 +64,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ).paddingOnly(left: 10.w, top: 14.h),
             formatter: [Formatters.phoneFormatter],
           ),
-
-
-
         ],
       ).paddingSymmetric(horizontal: 16.w),
     );
