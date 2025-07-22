@@ -1,11 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_constrained_scroll.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_drop_down_widget.dart';
-import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 
 class AddOrderBottomSheet extends StatefulWidget {

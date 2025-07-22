@@ -1,9 +1,5 @@
 
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
-import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/export.dart';
 
 

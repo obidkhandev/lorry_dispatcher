@@ -1,4 +1,4 @@
-package com.example.lorry_dispatcher
+package imbtech.lorrydispatcher.uz
 
 import io.flutter.embedding.android.FlutterActivity
 

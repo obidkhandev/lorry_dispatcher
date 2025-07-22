@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:lorry_dispatcher/core/api/dio_client.dart';
 import 'package:lorry_dispatcher/core/utills/enums.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'dart:math';
 
 class MyFunctions {

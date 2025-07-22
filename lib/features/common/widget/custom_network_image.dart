@@ -1,8 +1,4 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lorry_dispatcher/core/values/app_colors.dart';
-import 'package:lorry_dispatcher/core/values/app_icons.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:shimmer/shimmer.dart';
 

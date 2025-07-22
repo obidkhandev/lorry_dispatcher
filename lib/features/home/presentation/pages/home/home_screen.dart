@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_tab_bar.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_card.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_completed_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/status_inprogress_page.dart';

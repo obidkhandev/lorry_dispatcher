@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/widget/comment_item_card.dart';
 
 class AboutDriverScreen extends StatelessWidget {

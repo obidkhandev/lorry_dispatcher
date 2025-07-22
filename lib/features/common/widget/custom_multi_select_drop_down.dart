@@ -1,6 +1,4 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 
 import '../../../export.dart';

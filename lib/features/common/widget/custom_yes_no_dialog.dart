@@ -1,13 +1,6 @@
 
-import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lorry_dispatcher/core/utills/extensions.dart';
-import 'package:lorry_dispatcher/core/utills/widget_extantion.dart';
-import 'package:lorry_dispatcher/core/values/app_colors.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_button.dart';
 
 import '../../../export.dart';
 

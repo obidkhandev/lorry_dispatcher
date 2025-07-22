@@ -1,10 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/features/common/widget/loading_widget.dart';
 
-import 'package:scale_button/scale_button.dart';
 
 import '../../../export.dart';
 
