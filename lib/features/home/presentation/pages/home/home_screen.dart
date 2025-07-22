@@ -51,10 +51,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
       ),
       appBar: CustomAppBar(
+        hasAutoLeading: false,
         toolbarHeight: 100.h,
         title: "Buyurtmalar",
         bottom: CustomTabBar(
-
           tabController: tabController,
           selectedTabIndex: selectedTabIndex,
           onTabChanged: (v) {

@@ -53,6 +53,156 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Front Side`
+  String get frontSide {
+    return Intl.message('Front Side', name: 'frontSide', desc: '', args: []);
+  }
+
+  /// `Rear Side`
+  String get rearSide {
+    return Intl.message('Rear Side', name: 'rearSide', desc: '', args: []);
+  }
+
+  /// `Driver's License`
+  String get driverLicense {
+    return Intl.message(
+      'Driver\'s License',
+      name: 'driverLicense',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Technical Passport`
+  String get techPassport {
+    return Intl.message(
+      'Technical Passport',
+      name: 'techPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trailer`
+  String get trailer {
+    return Intl.message('Trailer', name: 'trailer', desc: '', args: []);
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message('Edit', name: 'edit', desc: '', args: []);
+  }
+
+  /// `Balance and Rating`
+  String get balanceAndRating {
+    return Intl.message(
+      'Balance and Rating',
+      name: 'balanceAndRating',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message('Settings', name: 'settings', desc: '', args: []);
+  }
+
+  /// `Notification`
+  String get notification {
+    return Intl.message(
+      'Notification',
+      name: 'notification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get theme {
+    return Intl.message('Theme', name: 'theme', desc: '', args: []);
+  }
+
+  /// `Language`
+  String get language {
+    return Intl.message('Language', name: 'language', desc: '', args: []);
+  }
+
+  /// `Additional`
+  String get additional {
+    return Intl.message('Additional', name: 'additional', desc: '', args: []);
+  }
+
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `License Agreement`
+  String get licenseAgreement {
+    return Intl.message(
+      'License Agreement',
+      name: 'licenseAgreement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Version`
+  String get version {
+    return Intl.message('Version', name: 'version', desc: '', args: []);
+  }
+
+  /// `Delete and Logout`
+  String get deleteAndLogout {
+    return Intl.message(
+      'Delete and Logout',
+      name: 'deleteAndLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Delete All Profiles`
+  String get deleteAllProfiles {
+    return Intl.message(
+      'Delete All Profiles',
+      name: 'deleteAllProfiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `©️ Powered by IMB Tech`
+  String get poweredBy {
+    return Intl.message(
+      '©️ Powered by IMB Tech',
+      name: 'poweredBy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Logout`
+  String get confirmLogout {
+    return Intl.message(
+      'Confirm Logout',
+      name: 'confirmLogout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -58,7 +58,7 @@ class _OrderCardState extends State<OrderCard>
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.theme.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -131,7 +131,7 @@ class _OrderCardState extends State<OrderCard>
                         ),
                         Spacer(),
                         AnimatedRotation(
-                          turns: _isExpanded ? 0.5 : 0,
+                          turns: _isExpanded ? 0 : 0.5,
                           duration: const Duration(milliseconds: 300),
                           child: SvgPicture.asset(
                             AppIcons.arrowTop,

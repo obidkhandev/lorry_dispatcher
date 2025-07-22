@@ -21,5 +21,34 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "additional": MessageLookupByLibrary.simpleMessage("Additional"),
+    "balanceAndRating": MessageLookupByLibrary.simpleMessage(
+      "Balance and Rating",
+    ),
+    "confirmLogout": MessageLookupByLibrary.simpleMessage("Confirm Logout"),
+    "deleteAllProfiles": MessageLookupByLibrary.simpleMessage(
+      "Delete All Profiles",
+    ),
+    "deleteAndLogout": MessageLookupByLibrary.simpleMessage(
+      "Delete and Logout",
+    ),
+    "driverLicense": MessageLookupByLibrary.simpleMessage("Driver\'s License"),
+    "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "frontSide": MessageLookupByLibrary.simpleMessage("Front Side"),
+    "language": MessageLookupByLibrary.simpleMessage("Language"),
+    "licenseAgreement": MessageLookupByLibrary.simpleMessage(
+      "License Agreement",
+    ),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "notification": MessageLookupByLibrary.simpleMessage("Notification"),
+    "poweredBy": MessageLookupByLibrary.simpleMessage("©️ Powered by IMB Tech"),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "rearSide": MessageLookupByLibrary.simpleMessage("Rear Side"),
+    "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "techPassport": MessageLookupByLibrary.simpleMessage("Technical Passport"),
+    "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "trailer": MessageLookupByLibrary.simpleMessage("Trailer"),
+    "version": MessageLookupByLibrary.simpleMessage("Version"),
+  };
 }

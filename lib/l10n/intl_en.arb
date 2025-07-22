@@ -1,3 +1,26 @@
 {
-  "@@locale": "en"
+  "@@locale": "en",
+
+  "frontSide": "Front Side",
+  "rearSide": "Rear Side",
+  "driverLicense": "Driver's License",
+  "techPassport": "Technical Passport",
+  "trailer": "Trailer",
+
+
+  "edit": "Edit",
+  "balanceAndRating": "Balance and Rating",
+  "settings": "Settings",
+  "notification": "Notification",
+  "theme": "Theme",
+  "language": "Language",
+  "additional": "Additional",
+  "privacyPolicy": "Privacy Policy",
+  "licenseAgreement": "License Agreement",
+  "version": "Version",
+  "deleteAndLogout": "Delete and Logout",
+  "logout": "Logout",
+  "deleteAllProfiles": "Delete All Profiles",
+  "poweredBy": "©️ Powered by IMB Tech",
+  "confirmLogout": "Confirm Logout"
 }
