@@ -142,7 +142,9 @@ class AppIcons {
 
   static const String chervonRight = '$_basePath/chervon_right.svg';
   static const String arrowTop = '$_basePath/arrow_top.svg';
+  static const String arrowDown = '$_basePath/arrow_down.svg';
   static const String editSquare = '$_basePath/edit_square.svg';
+  static const String cancel = '$_basePath/cancel (1).svg';
 
 
 

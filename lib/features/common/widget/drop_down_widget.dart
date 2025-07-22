@@ -7,7 +7,6 @@ import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/core/values/app_icons.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 
-
 class CustomDropDownWidget extends StatefulWidget {
   final List<String> items;
   final String hintText;
@@ -20,6 +19,8 @@ class CustomDropDownWidget extends StatefulWidget {
   final String? label;
   final String? validator;
   final bool visibleClose;
+  final String searchHintText;
+  final bool enableSearch;
 
   const CustomDropDownWidget({
     super.key,
@@ -37,6 +38,8 @@ class CustomDropDownWidget extends StatefulWidget {
     this.label,
     this.leadingIcon,
     this.visibleClose = true,
+    this.searchHintText = 'Search...',
+    this.enableSearch = true,
   });
 
   @override
@@ -45,11 +48,39 @@ class CustomDropDownWidget extends StatefulWidget {
 
 class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
   String? selectedValue;
+  final TextEditingController searchController = TextEditingController();
+  final FocusNode searchFocusNode = FocusNode();
+  List<String> filteredItems = [];
 
   @override
   void initState() {
     super.initState();
     selectedValue = widget.initValue;
+    filteredItems = List.from(widget.items);
+  }
+
+  @override
+  void dispose() {
+    searchController.dispose();
+    searchFocusNode.dispose();
+    super.dispose();
+  }
+
+  void _filterItems(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        filteredItems = List.from(widget.items);
+      } else {
+        filteredItems = widget.items
+            .where((item) => item.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
+  }
+
+  void _clearSearch() {
+    searchController.clear();
+    _filterItems('');
   }
 
   @override
@@ -65,7 +96,6 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                 TextSpan(
                   text: widget.label!,
                   style: context.theme.textTheme.bodyMedium?.copyWith(
-                    // fontSize: 13.sp,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -84,7 +114,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
           child: DropdownButton2<String>(
             isExpanded: true,
             buttonStyleData: ButtonStyleData(
-              height: 40.h,
+              height: 46.h,
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? context.theme.cardColor,
                 border: widget.borderColor == null
@@ -95,7 +125,6 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
               padding: EdgeInsets.symmetric(horizontal: 12.w),
             ),
             dropdownStyleData: DropdownStyleData(
-
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? context.theme.cardColor,
                 borderRadius: BorderRadius.circular(8.r),
@@ -103,6 +132,58 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
               width: widget.width ?? MediaQuery.of(context).size.width * 0.78,
               maxHeight: MediaQuery.of(context).size.height * 0.5,
             ),
+            dropdownSearchData: widget.enableSearch ? DropdownSearchData(
+              searchController: searchController,
+              searchInnerWidgetHeight: 50,
+              searchInnerWidget: Container(
+                height: 50,
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
+                child: TextField(
+                  controller: searchController,
+                  focusNode: searchFocusNode,
+                  style: context.theme.textTheme.bodyMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                  decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
+                    hintText: widget.searchHintText,
+                    hintStyle: AppTextStyles().body16w4.copyWith(
+                      color: AppColors.borderSecondary,
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: BorderSide(
+                        color: widget.borderColor ?? AppColors.borderSecondary,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.r),
+                      borderSide: BorderSide(
+                        color: context.theme.primaryColor,
+                        width: 2,
+                      ),
+                    ),
+                    suffixIcon: searchController.text.isNotEmpty
+                        ? IconButton(
+                      icon: SvgPicture.asset(
+                        AppIcons.cancel,
+                        height: 12,
+                        width: 12,
+                      ),
+                      onPressed: _clearSearch,
+                    )
+                        : null,
+                  ),
+                  onChanged: (value) {
+                    _filterItems(value);
+                  },
+                ),
+              ),
+              searchMatchFn: (item, searchValue) {
+                return item.value?.toLowerCase().contains(searchValue.toLowerCase()) ?? false;
+              },
+            ) : null,
             iconStyleData: IconStyleData(
               icon: Row(
                 children: [
@@ -114,19 +195,16 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                         widget.onChanged!(selectedValue);
                       },
                       child: SvgPicture.asset(
-                        AppIcons.arrowLeft,
-                        colorFilter: AppColors.colorFilter(AppColors.red),
+                        AppIcons.cancel,
                         height: 12,
                         width: 12,
                       ),
                     ),
                   8.horizontalSpace,
                   SvgPicture.asset(
-                    AppIcons.arrowLeft,
+                    AppIcons.arrowDown,
                     width: 18,
-                    color:
-                        widget.iconColor ??
-                        context.theme.textTheme.bodyMedium?.color,
+                    color: widget.iconColor ?? context.theme.textTheme.bodyMedium?.color,
                   ),
                 ],
               ),
@@ -134,33 +212,24 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
             value: selectedValue,
             hint: Text(
               widget.hintText,
-              style:
-                  widget.hintStyle ??
+              style: widget.hintStyle ??
                   AppTextStyles().body16w4.copyWith(
                     color: AppColors.borderSecondary,
                   ),
             ),
-            style:
-                widget.textStyle ??
+            style: widget.textStyle ??
                 context.theme.textTheme.bodyMedium?.copyWith(
-                  // fontSize: 13.sp,
                   fontWeight: FontWeight.w500,
                 ),
-            // dropdownColor: AppColors().white,
             items: widget.items.map((String item) {
               return DropdownMenuItem<String>(
                 value: item,
-
                 child: Row(
                   children: [
-                    // if (widget.leadingIcon != null) ...?widget.leadingIcon[item.],
-                    // 10.horizontalSpace,
                     Text(
                       item,
-                      style:
-                          widget.textStyle ??
+                      style: widget.textStyle ??
                           context.theme.textTheme.bodyMedium?.copyWith(
-                            // fontSize: 13.sp,
                             fontWeight: FontWeight.w500,
                           ),
                     ),
@@ -168,14 +237,20 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                 ),
               );
             }).toList(),
-
-            // customButton: p,
             onChanged: (String? newValue) {
               setState(() {
                 selectedValue = newValue;
               });
+              // Clear search when item is selected
+              _clearSearch();
               if (widget.onChanged != null) {
                 widget.onChanged!(newValue);
+              }
+            },
+            onMenuStateChange: (isOpen) {
+              if (!isOpen) {
+                // Clear search when dropdown closes
+                _clearSearch();
               }
             },
           ),

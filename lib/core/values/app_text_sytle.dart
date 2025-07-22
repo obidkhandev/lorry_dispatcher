@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'app_colors.dart';
 
-int fontSize = 1;
+int fontSize = 2;
 
 double getFontSize(num size) {
   switch (fontSize) {

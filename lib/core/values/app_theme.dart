@@ -55,7 +55,7 @@ final ThemeData lightTheme = ThemeData(
     headlineLarge: AppTextStyles().body18w6.copyWith(color: AppColors.black),
     headlineSmall: AppTextStyles().body16w4.copyWith(color: AppColors.black),
     titleLarge: AppTextStyles().body20w6.copyWith(color: AppColors.black),
-    titleMedium: AppTextStyles().body16w5.copyWith(color: AppColors.black),
+    titleMedium: AppTextStyles().body16w6.copyWith(color: AppColors.black),
     titleSmall:
     AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
     bodyLarge: AppTextStyles().body16w6.copyWith(color: AppColors.black),
@@ -124,7 +124,7 @@ final ThemeData darkTheme = ThemeData(
     headlineLarge: AppTextStyles().body18w6.copyWith(color: AppColors.white),
     headlineSmall: AppTextStyles().body16w4.copyWith(color: AppColors.white),
     titleLarge: AppTextStyles().body20w6.copyWith(color: AppColors.white),
-    titleMedium: AppTextStyles().body16w5.copyWith(color: AppColors.white),
+    titleMedium: AppTextStyles().body16w6.copyWith(color: AppColors.white),
     titleSmall:
     AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
     bodyLarge: AppTextStyles().body16w6.copyWith(color: AppColors.white),
@@ -132,6 +132,7 @@ final ThemeData darkTheme = ThemeData(
     bodySmall:
     AppTextStyles().body12w4.copyWith(color: AppColors.textSecondary),
   ),
+
   cardColor: AppColors.darkCardColor,
   scaffoldBackgroundColor: AppColors.black,
   visualDensity: VisualDensity.adaptivePlatformDensity,

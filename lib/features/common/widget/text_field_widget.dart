@@ -85,6 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.labelText != null) ...[
@@ -116,6 +117,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               maxLength: widget.maxLength,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
+              contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
                 hintText: widget.hintText,
                 hintStyle: context.theme.textTheme.displayMedium?.copyWith(
                   fontSize: 14.sp,

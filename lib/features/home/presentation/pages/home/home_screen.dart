@@ -8,6 +8,7 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/or
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_completed_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/status_inprogress_page.dart';
+import 'package:lorry_dispatcher/features/home/presentation/part/add_order_bottom_sheet.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       floatingActionButton: SizedBox(
         width: context.w * 0.5,
         child: DecoratedBox(
@@ -43,6 +45,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           child: CustomButton(
             height: 40.h,
+            onTap: (){
+              showAddOrderBottomSheet(context);
+            },
             paddingV: 0,
             icon: AppIcons.add,
             radius: BorderRadius.circular(30.r),
