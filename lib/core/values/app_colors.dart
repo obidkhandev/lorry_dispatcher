@@ -55,7 +55,7 @@ class AppColors {
   static const c0F1A07 = Color(0xFF0F1A07);
   static const cE4FFCE = Color(0xFFE4FFCE);
   static const cF4F4F4 = Color(0xFFF4F4F4);
-  static const deepYellow = Color(0xFFE8B200);
+  static const yellow = Color(0xFFFADB14);
   static const secondRed = Color(0xFFE06363);
   static const red = Color(0xFFFD4D00);
   static const violet = Color(0xFF8F00FF);

@@ -5,6 +5,7 @@ import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/login/login_screen.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/otp/otp_screen.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/register/register_screen.dart';
+import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/about_driver_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
@@ -35,6 +36,13 @@ class AppPages {
         path: AppRoutes.loginScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const LoginScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.aboutDriver,
+        path: AppRoutes.aboutDriver,
+        builder: (BuildContext context, GoRouterState state) {
+          return const AboutDriverScreen();
         },
       ),
 

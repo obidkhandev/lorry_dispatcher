@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_icon_widget.dart';
@@ -176,35 +177,40 @@ class _OrderCardState extends State<OrderCard>
                 shrinkWrap: true,
                 itemBuilder: (_, index) {
                   final suggestion = suggestions[index];
-                  return Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          suggestion['name'],
-                          style: context.theme.textTheme.titleMedium,
+                  return InkWell(
+                    onTap: (){
+                      context.push(AppRoutes.aboutDriver);
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            suggestion['name'],
+                            style: context.theme.textTheme.titleMedium,
+                          ),
                         ),
-                      ),
-                      const Spacer(),
-                      Expanded(
-                        flex: 1,
-                        child: TitleWithIcon(title: "4.5", icon: AppIcons.star,icColor: AppColors.orange,),
-                      ),
-                      Spacer(),
-                      Expanded(
-                        flex: 2,
-                        child: TitleWithIcon(
-                          title: "2 000 000",
-                          icon: AppIcons.creditCard,
+                        const Spacer(),
+                        Expanded(
+                          flex: 1,
+                          child: TitleWithIcon(title: "4.5", icon: AppIcons.star,icColor: AppColors.orange,),
                         ),
-                      ),
-                      const SizedBox(width: 8),
-                      CustomIconWidget(
-                        color: AppColors.primaryOpacity,
-                        icon: AppIcons.chervonRight,
-                        onTap: () {},
-                      ),
-                    ],
+                        Spacer(),
+                        Expanded(
+                          flex: 2,
+                          child: TitleWithIcon(
+                            title: "2 000 000",
+                            icon: AppIcons.creditCard,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        CustomIconWidget(
+                          color: AppColors.primaryOpacity,
+                          icon: AppIcons.chervonRight,
+                          onTap: () {},
+                        ),
+                      ],
+                    ),
                   );
                 },
                 separatorBuilder: (_, index) {

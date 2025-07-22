@@ -11,5 +11,6 @@ class AppRoutes{
   static const String loginScreen = "/loginScreen";
   static const String otpScreen = "/otpScreen";
   static const String registerScreen = "/registerScreen";
+  static const String aboutDriver = "/aboutDriverScreen";
 
 }

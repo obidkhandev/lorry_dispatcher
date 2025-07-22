@@ -76,6 +76,7 @@ dependencies:
   flutter_localization: ^0.3.2
   flutter_native_splash: ^2.4.6
   scale_button: ^2.1.2
+  flutter_rating_stars: ^1.1.0
 
 
 
