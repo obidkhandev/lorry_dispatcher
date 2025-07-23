@@ -1,9 +1,13 @@
-
-
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
 import 'package:lorry_dispatcher/core/utills/date_extension.dart';
 import 'package:lorry_dispatcher/core/utills/resources.dart';
+import 'package:lorry_dispatcher/features/common/widget/custom_icon_widget.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/title_with_icon.dart';
+import 'package:lorry_dispatcher/features/map/presentation/pages/driver_tracking/driver_tracking_screen.dart';
+import 'package:lorry_dispatcher/features/map/presentation/pages/map_scree.dart';
 import 'package:lorry_dispatcher/generated/l10n.dart';
+// import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 import '../../../../../../export.dart';
 
@@ -47,17 +51,40 @@ class OrderInprogressCard extends StatelessWidget {
           6.verticalSpace,
           TitleWithIcon(title: '2 000 000', icon: AppIcons.creditCard),
           12.verticalSpace,
-          CustomButton(
-            onTap: () {},
-            bgColor: AppColors.primaryOpacity,
-            textColor: AppColors.primaryColor,
-            text: status == 1
-                ? S.of(context).arrived
-                : status == 2
-                ? S.of(context).loaded
-                : status == 3
-                ? S.of(context).arrivedForUnloading
-                : S.of(context).unloaded,
+          Row(
+            children: [
+              Expanded(
+                child: CustomButton(
+                  onTap: () {},
+                  bgColor: AppColors.primaryOpacity,
+                  textColor: AppColors.primaryColor,
+                  text: status == 1
+                      ? S.of(context).arrived
+                      : status == 2
+                      ? S.of(context).loaded
+                      : status == 3
+                      ? S.of(context).arrivedForUnloading
+                      : S.of(context).unloaded,
+                ),
+              ),
+              CustomIconWidget(
+                icon: AppIcons.location,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => DriverTrackingScreen(
+                        startPoint: google.LatLng(41.3000, 69.3100),
+
+                        // Toshkent markazi
+                        endPoint: google.LatLng(41.2995, 69.2401), // 6-8 km sharqda
+                      ),
+                      // builder: (_)=>GoogleMapScreen(),
+                    ),
+                  );
+                },
+              ),
+            ],
           ),
           16.verticalSpace,
           // 6.verticalSpace,

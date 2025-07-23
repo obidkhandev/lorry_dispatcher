@@ -31,23 +31,26 @@ class CustomIconWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  DecoratedBox(
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(radius ?? 8),
+    return InkWell(
+      onTap: onTap,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(radius ?? 8),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(10.sp),
+          child: SvgPicture.asset(
+            icon,
+            colorFilter: ColorFilter.mode(
+              iconColor ?? AppColors.primaryColor,
+              BlendMode.srcIn,
             ),
-            child: Padding(
-              padding: EdgeInsets.all(10.sp),
-              child: SvgPicture.asset(
-                icon,
-                colorFilter: ColorFilter.mode(
-                  iconColor ?? AppColors.primaryColor,
-                  BlendMode.srcIn,
-                ),
-                width: width ?? 22.w,
-                height: height ?? 22.h,
-              ),
-            ),
-          );
+            width: width ?? 22.w,
+            height: height ?? 22.h,
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -17,6 +17,10 @@ class ListAPI {
   static const String verify = 'auth/verify-registration';
   static const String login = 'users/login/employee/';
   static const String getMe = 'users/getme/';
+  static const yandexApiKey = 'add463f9-4251-48c0-bc81-b50118e14589';
+  static const googleDirectionApi = 'AIzaSyBkKTsCUTP3biLpL8FeHv__IsQK_nGgIyo';
+
+
 
 
 
