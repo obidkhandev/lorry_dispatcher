@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
+// import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:intl/intl.dart';
 import 'package:lorry_dispatcher/core/api/dio_client.dart';
 import 'package:lorry_dispatcher/core/utills/enums.dart';
@@ -16,41 +16,41 @@ class MyFunctions {
     return DateFormat(format).format(date);
   }
 
-  static Future<XFile?> compressImage(File image) async {
-    final tempDir = await Directory.systemTemp.createTemp();
-    final compressedPath =
-        '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.jpg';
-
-    return await FlutterImageCompress.compressAndGetFile(
-      image.path,
-      compressedPath,
-      quality: 70,
-      minWidth: 512,
-      minHeight: 512,
-    );
-  }
-
-  static Future<bool> uploadToPresignedUrl(
-      String url,
-      XFile file,
-      DioClient dioClient,
-      ) async {
-    final bytes = await file.readAsBytes();
-    final response = await dioClient.put(url,
-        data: bytes,
-        options: Options(
-          headers: {
-            'Content-Type': 'image/jpeg',
-          },
-          responseType: ResponseType.plain,
-          contentType: "image/jpeg",
-        ));
-
-    print(
-        "Upload to presigned URL response status code: ${response.statusCode}");
-
-    return response.statusCode == 200;
-  }
+  // static Future<XFile?> compressImage(File image) async {
+  //   final tempDir = await Directory.systemTemp.createTemp();
+  //   final compressedPath =
+  //       '${tempDir.path}/${DateTime.now().millisecondsSinceEpoch}.jpg';
+  //
+  //   return await FlutterImageCompress.compressAndGetFile(
+  //     image.path,
+  //     compressedPath,
+  //     quality: 70,
+  //     minWidth: 512,
+  //     minHeight: 512,
+  //   );
+  // }
+  //
+  // static Future<bool> uploadToPresignedUrl(
+  //     String url,
+  //     XFile file,
+  //     DioClient dioClient,
+  //     ) async {
+  //   final bytes = await file.readAsBytes();
+  //   final response = await dioClient.put(url,
+  //       data: bytes,
+  //       options: Options(
+  //         headers: {
+  //           'Content-Type': 'image/jpeg',
+  //         },
+  //         responseType: ResponseType.plain,
+  //         contentType: "image/jpeg",
+  //       ));
+  //
+  //   print(
+  //       "Upload to presigned URL response status code: ${response.statusCode}");
+  //
+  //   return response.statusCode == 200;
+  // }
 
   static String getVolumeText(double volume) {
     const thresholds = {
