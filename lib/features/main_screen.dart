@@ -27,13 +27,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     List<String> icons = [
       AppIcons.home,
-      // AppIcons.document,
+      AppIcons.truckFast,
       AppIcons.profile,
     ];
 
     List<String> labels = [
      S.of(context).home,
-      // "yuk_qidirish",
+      "status",
       S.of(context).profile,
     ];
 

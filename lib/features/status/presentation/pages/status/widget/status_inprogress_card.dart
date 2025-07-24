@@ -1,14 +1,4 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as google;
-import 'package:lorry_dispatcher/core/utills/date_extension.dart';
-import 'package:lorry_dispatcher/core/utills/resources.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_icon_widget.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/title_with_icon.dart';
-import 'package:lorry_dispatcher/features/map/presentation/pages/driver_tracking/driver_tracking_screen.dart';
-import 'package:lorry_dispatcher/features/map/presentation/pages/map_scree.dart';
-import 'package:lorry_dispatcher/generated/l10n.dart';
-// import 'package:yandex_mapkit/yandex_mapkit.dart';
-
 import '../../../../../../export.dart';
 
 class OrderInprogressCard extends StatelessWidget {

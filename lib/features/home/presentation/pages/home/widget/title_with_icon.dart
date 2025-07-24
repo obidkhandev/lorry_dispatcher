@@ -4,13 +4,16 @@ class TitleWithIcon extends StatelessWidget {
   final String title;
   final String icon;
   final Color? icColor;
+  final double? iconSize;
   final MainAxisAlignment? mainAxisAlignment;
 
   const TitleWithIcon({
     super.key,
     required this.title,
     required this.icon,
-    this.mainAxisAlignment, this.icColor,
+    this.mainAxisAlignment,
+    this.icColor,
+    this.iconSize,
   });
 
   @override
@@ -20,8 +23,8 @@ class TitleWithIcon extends StatelessWidget {
       children: [
         SvgPicture.asset(
           icon,
-          width: 18.w,
-          height: 18.h,
+          width: iconSize ?? 18.w,
+          height: iconSize ?? 18.h,
           colorFilter: AppColors.colorFilter(icColor ?? AppColors.grey600),
         ),
         8.horizontalSpace,

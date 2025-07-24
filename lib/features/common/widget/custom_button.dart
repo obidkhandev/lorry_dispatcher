@@ -96,12 +96,12 @@ class _CustomButtonState extends State<CustomButton> {
                         widget.icon != null
                             ? SvgPicture.asset(
                                 widget.icon ?? "",
-                                colorFilter: ColorFilter.mode(
+                                colorFilter: widget.iconC != null? ColorFilter.mode(
                                   widget.iconC ??
                                       widget.textColor ??
                                       AppColors.white,
                                   BlendMode.srcIn,
-                                ),
+                                ) : null,
                               ).paddingOnly(right: 8)
                             : const SizedBox.shrink(),
                         widget.rightW ?? const SizedBox.shrink(),

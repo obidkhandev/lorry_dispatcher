@@ -7,8 +7,10 @@ import 'package:lorry_dispatcher/features/auth/presentation/pages/otp/otp_screen
 import 'package:lorry_dispatcher/features/auth/presentation/pages/register/register_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/about_driver_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
+import 'package:lorry_dispatcher/features/home/presentation/pages/offers/offers_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
+import 'package:lorry_dispatcher/features/status/presentation/pages/status/status_screen.dart';
 
 class AppPages {
   static GoRouter router = GoRouter(
@@ -29,6 +31,13 @@ class AppPages {
         path: AppRoutes.otpScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const OtpScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.offersScreen,
+        path: AppRoutes.offersScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const OffersScreen();
         },
       ),
       GoRoute(
@@ -67,44 +76,18 @@ class AppPages {
               ),
             ],
           ),
-          // if (di<SharedPreferences>().getBool(SharedModel.isLegal) == true)
-          //   StatefulShellBranch(
-          //     routes: <RouteBase>[
-          //       GoRoute(
-          //         name: AppRoutes.legalCars,
-          //         path: AppRoutes.legalCars,
-          //         pageBuilder: (BuildContext context, GoRouterState state) {
-          //           return buildPageWithDefaultTransition<void>(
-          //               context: context,
-          //               state: state,
-          //               child: const LegalMyCarsScreen());
-          //         },
-          //       ),
-          //     ],
-          //   )
-          // else
-          // StatefulShellBranch(
-          //   routes: <RouteBase>[
-          //     GoRoute(
-          //       name: AppRoutes.cars,
-          //       path: AppRoutes.cars,
-          //       builder: (BuildContext context, GoRouterState state) {
-          //         return const CarsPage();
-          //       },
-          //     ),
-          //   ],
-          // ),
-          // StatefulShellBranch(
-          //   routes: <RouteBase>[
-          //     GoRoute(
-          //       name: AppRoutes.facilitiesPage,
-          //       path: AppRoutes.facilitiesPage,
-          //       builder: (BuildContext context, GoRouterState state) {
-          //         return const FacilitiesPage();
-          //       },
-          //     ),
-          //   ],
-          // ),
+
+          StatefulShellBranch(
+            routes: <RouteBase>[
+              GoRoute(
+                name: AppRoutes.statusScreen,
+                path: AppRoutes.statusScreen,
+                builder: (BuildContext context, GoRouterState state) {
+                  return const StatusScreen();
+                },
+              ),
+            ],
+          ),
           // StatefulShellBranch(
           //   routes: <RouteBase>[
           //     GoRoute(

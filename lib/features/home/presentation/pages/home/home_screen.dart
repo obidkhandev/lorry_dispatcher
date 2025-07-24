@@ -1,9 +1,10 @@
+import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_tab_bar.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_completed_page.dart';
+import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/drivers_page.dart';
+import 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/order_completed_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/status_inprogress_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/part/add_order_bottom_sheet.dart';
 import 'package:lorry_dispatcher/generated/l10n.dart';
 
@@ -17,10 +18,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController tabController;
   int selectedTabIndex = 0;
+  List<String> titles = ["Orders", "drivers"];
 
   @override
   void initState() {
-    tabController = TabController(length: 3, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
@@ -56,25 +58,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         hasAutoLeading: false,
         toolbarHeight: 100.h,
         title: S.of(context).orders, // Replaced "Buyurtmalar"
-        bottom: CustomTabBar(
-          tabController: tabController,
-          selectedTabIndex: selectedTabIndex,
-          onTabChanged: (v) {
+        bottom: TabBar(
+          overlayColor: WidgetStateProperty.all(Colors.transparent),
+          controller: tabController,
+          indicatorSize: TabBarIndicatorSize.tab,
+          indicatorColor: AppColors.primaryColor,
+          labelColor: AppColors.primaryColor,
+          onFocusChange: (v, index) {
+            print("Index: $index");
+          },
+          onTap: (v) {
             setState(() {
               selectedTabIndex = v;
             });
           },
-          tabTitles: [
-            S.of(context).orders, // Replaced "Buyurtmalar"
-            S.of(context).inProgress, // Replaced "Jarayonda"
-            S.of(context).completed, // Replaced "Bajarilgan"
-          ],
-        ).paddingSymmetric(horizontal: 16.w),
+          labelStyle: AppTextStyles().body16w6,
+          tabs: List.generate(titles.length, (index) {
+            return Tab(text: titles[index]);
+          }),
+        ),
       ),
       body: TabBarView(
+        clipBehavior: Clip.hardEdge,
         physics: NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: [OrderPage(), OrderInProgressPage(), OrderCompletedPage()],
+        children: [OrderPage(), DriversPage()],
       ),
     );
   }

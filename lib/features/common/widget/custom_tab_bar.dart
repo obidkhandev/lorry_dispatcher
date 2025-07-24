@@ -24,7 +24,6 @@ class CustomTabBar extends StatelessWidget {
     return TabBar(
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       controller: tabController,
-
       indicator: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(10.r),
@@ -59,24 +58,6 @@ class CustomTabBar extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              // 10.horizontalSpace,
-              // DecoratedBox(
-              //   decoration: BoxDecoration(
-              //     color: selectedTabIndex == index
-              //         ? AppColors.primaryOpacity
-              //         : AppColors.grey200,
-              //     shape: BoxShape.circle,
-              //   ),
-              //   child: Text(
-              //     "12",
-              //     style: context.theme.textTheme.titleSmall?.copyWith(
-              //       color: selectedTabIndex == index
-              //           ? AppColors.primaryColor
-              //           : AppColors.grey808080,
-              //       fontWeight: FontWeight.w500,
-              //     ),
-              //   ).paddingAll(4.sp),
-              // ),
             ],
           ),
         );

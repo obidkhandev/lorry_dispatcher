@@ -1,7 +1,7 @@
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_salary_widget.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_completed_card.dart';
+import 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/order_completed_card.dart';
 
 class OrderCompletedPage extends StatelessWidget {
   const OrderCompletedPage({super.key});

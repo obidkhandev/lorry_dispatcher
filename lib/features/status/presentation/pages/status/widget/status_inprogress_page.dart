@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/status_inprogress_card.dart';
+import 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/status_inprogress_card.dart';
 
 class OrderInProgressPage extends StatelessWidget {
   const OrderInProgressPage({super.key});
