@@ -5,6 +5,8 @@ import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/login/login_screen.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/otp/otp_screen.dart';
 import 'package:lorry_dispatcher/features/auth/presentation/pages/register/register_screen.dart';
+import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/create_order_screen.dart';
+import 'package:lorry_dispatcher/features/create_order/presentation/pages/select_location/select_location_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/about_driver_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/offers/offers_screen.dart';
@@ -18,7 +20,6 @@ class AppPages {
     navigatorKey: rootNavigatorKey,
     initialLocation: AppRoutes.home,
     routes: <RouteBase>[
-
       GoRoute(
         name: AppRoutes.registerScreen,
         path: AppRoutes.registerScreen,
@@ -52,6 +53,21 @@ class AppPages {
         path: AppRoutes.aboutDriver,
         builder: (BuildContext context, GoRouterState state) {
           return const AboutDriverScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.createOrderScreen,
+        path: AppRoutes.createOrderScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const CreateOrderScreen();
+        },
+      ),
+
+      GoRoute(
+        name: AppRoutes.selectLocationScreen,
+        path: AppRoutes.selectLocationScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const SelectLocationScreen();
         },
       ),
 

@@ -3,6 +3,7 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/dr
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_jobless_card.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_underrapair_card.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/drivers_listview.dart';
+import 'package:lorry_dispatcher/features/home/presentation/part/send_offer_bottom_sheet.dart';
 
 import '../../../../../../export.dart';
 
@@ -57,7 +58,14 @@ class _DriversPageState extends State<DriversPage>
             physics: NeverScrollableScrollPhysics(),
             controller: tabController,
             children: [
-              DriversListview(card: DriverJoblessCard(isActive: true)),
+              DriversListview(
+                card: DriverJoblessCard(
+                  isActive: true,
+                  onTap: () {
+                    showSendOfferBottomSheet(context);
+                  },
+                ),
+              ),
               DriversListview(card: DriverBusyCard()),
               DriversListview(card: DriverUnderrapairCard()),
             ],

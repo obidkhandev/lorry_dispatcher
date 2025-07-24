@@ -1,3 +1,4 @@
+import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
@@ -45,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           child: CustomButton(
             height: 40.h,
             onTap: () {
-              showAddOrderBottomSheet(context);
+              context.push(AppRoutes.createOrderScreen);
             },
             paddingV: 0,
             icon: AppIcons.add,

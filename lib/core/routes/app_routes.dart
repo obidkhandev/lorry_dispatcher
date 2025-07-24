@@ -17,4 +17,8 @@ class AppRoutes{
   static const String statusScreen = "/statusScreen";
   static const String offersScreen = "/offersScreen";
 
+
+  // create order
+  static const String createOrderScreen = "/createOrderScreen";
+  static const String selectLocationScreen = "/selectLocationScreen";
 }

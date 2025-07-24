@@ -7,6 +7,7 @@ import 'package:lorry_dispatcher/core/values/app_theme.dart';
 import 'package:lorry_dispatcher/features/common/bloc/main_tab/main_tab_cubit.dart';
 import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_order_bloc.dart';
 import 'package:lorry_dispatcher/features/map/presentation/bloc/driver_tracking/driver_tracking_bloc.dart';
 import 'package:lorry_dispatcher/generated/l10n.dart';
 import 'core/utills/app_update_version.dart';
@@ -40,6 +41,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => DriverTrackingBloc(),
+        ),
+        BlocProvider(
+          create: (context) => CreateOrderBloc(),
         ),
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(

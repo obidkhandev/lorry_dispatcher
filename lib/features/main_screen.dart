@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
         },
         child: Scaffold(
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: context.theme.scaffoldBackgroundColor,
+            backgroundColor: context.theme.cardColor,
             currentIndex: widget.child.currentIndex,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: context.theme.textTheme.titleMedium?.color,
