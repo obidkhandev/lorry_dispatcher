@@ -8,7 +8,6 @@ import 'package:lorry_dispatcher/core/utills/widget_extantion.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:scale_button/scale_button.dart';
 
-
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
@@ -36,6 +35,7 @@ class CustomTextField extends StatefulWidget {
     this.hintText,
     this.leadingWidget,
     this.trailingWidget,
+    this.contentPadding,
   });
 
   final TextEditingController? textEditingController;
@@ -62,6 +62,7 @@ class CustomTextField extends StatefulWidget {
   final String? hintText;
   final Widget? leadingWidget;
   final Widget? trailingWidget;
+  final EdgeInsetsGeometry? contentPadding;
 
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
@@ -89,9 +90,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (widget.labelText != null) ...[
-          Text(widget.labelText!,
-              style: context.theme.textTheme.titleMedium
-                  ?.copyWith(fontWeight: FontWeight.w500)),
+          Text(
+            widget.labelText!,
+            style: context.theme.textTheme.titleMedium?.copyWith(
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           6.verticalSpace,
         ],
         ValueListenableBuilder<bool>(
@@ -117,15 +121,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
               maxLength: widget.maxLength,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(horizontal: 12.w),
+                contentPadding:
+                    widget.contentPadding ??
+                    EdgeInsets.symmetric(horizontal: 12.w),
                 hintText: widget.hintText,
                 hintStyle: context.theme.textTheme.displayMedium?.copyWith(
                   fontSize: 14.sp,
-                  color: AppColors.hintColor
+                  color: AppColors.hintColor,
                 ),
-                suffixIconConstraints:
-                    const BoxConstraints(minHeight: 25, minWidth: 25),
-                prefixIcon:  widget.prefixIcon == null
+                suffixIconConstraints: const BoxConstraints(
+                  minHeight: 25,
+                  minWidth: 25,
+                ),
+                prefixIcon: widget.prefixIcon == null
                     ? widget.leadingWidget
                     : SvgPicture.asset(
                         widget.prefixIcon!,
@@ -145,28 +153,34 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     : null,
                 filled: true,
                 fillColor: widget.fillColor ?? context.theme.cardColor,
-                border:  OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(color: widget.borderColor ??  AppColors.transparent),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderSide: BorderSide(
+                    color: widget.borderColor ?? AppColors.transparent,
+                  ),
                 ),
-                enabledBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(color: widget.borderColor ?? AppColors.transparent),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderSide: BorderSide(
+                    color: widget.borderColor ?? AppColors.transparent,
+                  ),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
                   borderSide: BorderSide(
                     color: widget.borderColor ?? AppColors.primaryColor,
                     width: 1.2,
                   ),
                 ),
                 focusedErrorBorder: const OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
                   borderSide: BorderSide(color: Colors.red),
                 ),
-                disabledBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                  borderSide: BorderSide(color: widget.borderColor ?? AppColors.transparent),
+                disabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                  borderSide: BorderSide(
+                    color: widget.borderColor ?? AppColors.transparent,
+                  ),
                 ),
               ),
             );

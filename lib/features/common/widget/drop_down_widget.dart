@@ -21,6 +21,7 @@ class CustomDropDownWidget extends StatefulWidget {
   final bool visibleClose;
   final String searchHintText;
   final bool enableSearch;
+  final double? height;
 
   const CustomDropDownWidget({
     super.key,
@@ -39,7 +40,7 @@ class CustomDropDownWidget extends StatefulWidget {
     this.leadingIcon,
     this.visibleClose = true,
     this.searchHintText = 'Search...',
-    this.enableSearch = true,
+    this.enableSearch = true, this.height,
   });
 
   @override
@@ -114,7 +115,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
           child: DropdownButton2<String>(
             isExpanded: true,
             buttonStyleData: ButtonStyleData(
-              height: 46.h,
+              height: widget.height ?? 46.h,
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? context.theme.cardColor,
                 border: widget.borderColor == null
