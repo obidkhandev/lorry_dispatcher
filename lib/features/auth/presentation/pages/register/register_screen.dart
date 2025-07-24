@@ -1,7 +1,6 @@
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/core/utills/formatters.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 
 class RegisterScreen extends StatefulWidget {

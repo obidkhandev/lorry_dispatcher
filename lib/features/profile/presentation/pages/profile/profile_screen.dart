@@ -11,7 +11,6 @@ import 'package:lorry_dispatcher/features/profile/data/models/profile_action_mod
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/widget/language_bottom_sheet.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/widget/profile_section.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/widget/theme_bottom_sheet.dart';
-import 'package:lorry_dispatcher/generated/l10n.dart';
 
 import '../../../../../../../../export.dart';
 

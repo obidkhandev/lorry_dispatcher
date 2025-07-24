@@ -1,13 +1,8 @@
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_tab_bar.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/drivers_page.dart';
-import 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/order_completed_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
-import 'package:lorry_dispatcher/features/home/presentation/part/add_order_bottom_sheet.dart';
-import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

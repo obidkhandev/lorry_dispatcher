@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 import 'dart:ui' as ui;
 import 'dart:typed_data';
@@ -10,7 +9,6 @@ import 'package:google_maps_flutter/google_maps_flutter.dart' as google; // Alia
 import 'package:lorry_dispatcher/core/api/api.dart';
 import 'package:lorry_dispatcher/features/map/presentation/bloc/driver_tracking/driver_tracking_event.dart';
 import 'package:lorry_dispatcher/features/map/presentation/bloc/driver_tracking/driver_tracking_state.dart';
-import 'package:http/http.dart' as http;
 
 class DriverTrackingBloc extends Bloc<DriverTrackingEvent, DriverTrackingState> {
   Timer? _locationTimer;

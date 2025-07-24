@@ -12,7 +12,7 @@ class InitializeTracking extends DriverTrackingEvent {
   final google.LatLng? startPoint;
   final google.LatLng? endPoint;
 
-  InitializeTracking({required this.startPoint, required this.endPoint});
+  const InitializeTracking({required this.startPoint, required this.endPoint});
 
   @override
   List<Object?> get props => [startPoint, endPoint];

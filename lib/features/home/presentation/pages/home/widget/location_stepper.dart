@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lorry_dispatcher/export.dart';
 
 class LocationStepper extends StatelessWidget {
@@ -14,7 +11,7 @@ class LocationStepper extends StatelessWidget {
   final VoidCallback? onDestinationTap;
 
   const LocationStepper({
-    Key? key,
+    super.key,
     required this.startTitle,
     required this.destinationTitle,
     this.startSubtitle,
@@ -23,7 +20,7 @@ class LocationStepper extends StatelessWidget {
     this.backgroundColor = const Color(0xFFF5F5F5),
     this.onStartTap,
     this.onDestinationTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

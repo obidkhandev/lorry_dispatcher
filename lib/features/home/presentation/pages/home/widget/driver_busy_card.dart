@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_image_and_rating.dart';
 

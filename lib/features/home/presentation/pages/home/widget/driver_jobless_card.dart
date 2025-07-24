@@ -1,9 +1,6 @@
-import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_network_image.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_image_and_rating.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/location_stepper.dart';
-import 'package:lorry_dispatcher/features/home/presentation/part/send_offer_bottom_sheet.dart';
 
 class DriverJoblessCard extends StatelessWidget {
   final bool isActive;

@@ -1,11 +1,8 @@
-import 'dart:io';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 // import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:intl/intl.dart';
-import 'package:lorry_dispatcher/core/api/dio_client.dart';
 import 'package:lorry_dispatcher/core/utills/enums.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';

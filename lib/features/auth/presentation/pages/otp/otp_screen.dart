@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_app_bar.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreen extends StatefulWidget {

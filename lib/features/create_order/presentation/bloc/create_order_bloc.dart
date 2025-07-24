@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/country_region_model.dart';
-import 'package:meta/meta.dart';
 
 part 'create_order_event.dart';
 part 'create_order_state.dart';

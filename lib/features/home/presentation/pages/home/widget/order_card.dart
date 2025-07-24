@@ -1,8 +1,5 @@
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/custom_icon_widget.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/title_with_icon.dart';
-import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class OrderCard extends StatefulWidget {
   const OrderCard({super.key});

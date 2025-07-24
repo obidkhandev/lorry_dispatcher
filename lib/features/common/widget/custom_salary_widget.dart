@@ -1,5 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:lorry_dispatcher/core/utills/resources.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 
 import '../../../../../../export.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lorry_dispatcher/core/utills/extensions.dart';
-import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 
 class Dimensions {

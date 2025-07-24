@@ -98,8 +98,8 @@ class _DriverTrackingScreenState extends State<DriverTrackingScreen>
                   target: google.LatLng(25.234369457896325, 55.280222457968712),
                   zoom: 12,
                 ),
-                markers: state.placemarks != null ? Set<google.Marker>.from(state.placemarks!.values) : {},
-                polylines: state.polylines != null ? Set<google.Polyline>.from(state.polylines!.values) : {},
+                markers: state.placemarks != null ? Set<google.Marker>.from(state.placemarks.values) : {},
+                polylines: state.polylines != null ? Set<google.Polyline>.from(state.polylines.values) : {},
                 onCameraMove: (position) {},
               ),
               Positioned(
@@ -165,16 +165,16 @@ class _DriverTrackingScreenState extends State<DriverTrackingScreen>
                       onPressed: state.status == TrackingStatus.idle || state.status == TrackingStatus.completed
                           ? () => context.read<DriverTrackingBloc>().add(StartLocationSimulation())
                           : null,
-                      child: const Icon(Icons.play_arrow),
                       tooltip: 'Start Simulation',
+                      child: const Icon(Icons.play_arrow),
                     ),
                     const SizedBox(height: 8),
                     FloatingActionButton(
                       onPressed: state.status == TrackingStatus.running
                           ? () => context.read<DriverTrackingBloc>().add(StopLocationSimulation())
                           : null,
-                      child: const Icon(Icons.stop),
                       tooltip: 'Stop Simulation',
+                      child: const Icon(Icons.stop),
                     ),
                   ],
                 ),
