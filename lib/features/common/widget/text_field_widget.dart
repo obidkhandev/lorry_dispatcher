@@ -42,7 +42,7 @@ class CustomTextField extends StatefulWidget {
   final Function(String value)? onChange;
   final String? labelText;
   final String? prefixIcon;
-  final String? suffixIcon;
+  final Widget? suffixIcon;
   final bool obscure;
   final bool readOnly;
   final TextInputAction? textInputAction;
@@ -139,18 +139,22 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         widget.prefixIcon!,
                         height: 20,
                       ).paddingAll(11),
-                suffixIcon: widget.obscure
-                    ? ScaleButton(
-                        bound: 0.040,
-                        onTap: () {
-                          _obscureText.value = !_obscureText.value;
-                        },
-                        child: Icon(
-                          obscure ? Icons.visibility_off : Icons.visibility,
-                          color: widget.preIconColor ?? AppColors.grey1,
-                        ),
-                      ).paddingAll(11)
-                    : null,
+                suffixIcon:
+                    widget.suffixIcon ??
+                    (widget.obscure == true
+                        ? ScaleButton(
+                            bound: 0.040,
+                            onTap: () {
+                              _obscureText.value = !_obscureText.value;
+                            },
+                            child: Icon(
+                              _obscureText.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                              color: widget.preIconColor ?? AppColors.grey1,
+                            ),
+                          ).paddingAll(11)
+                        : null),
                 filled: true,
                 fillColor: widget.fillColor ?? context.theme.cardColor,
                 border: OutlineInputBorder(

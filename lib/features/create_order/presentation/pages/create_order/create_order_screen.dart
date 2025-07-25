@@ -4,6 +4,7 @@ import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/country_region_model.dart';
+import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_order_bloc.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/widget/location_list_section.dart';
 
@@ -27,15 +28,19 @@ class CreateOrderScreen extends StatelessWidget {
                   bloc.add(DeletePickupLocationEvent(index));
                 },
                 onAddLocation: () async {
-                  // bloc.add(
-                  //   AddPickupLocationEvent(
-                  //     CountryRegionModel(
-                  //       name: 'random_!',
-                  //       latLng: LatLng(0, 0),
-                  //     ),
-                  //   ),
-                  // );
-                  context.push(AppRoutes.selectLocationScreen);
+                  context.push(AppRoutes.selectLocationScreen).then((e) {
+                    if (e != null) {
+                      e as LocationItemModel;
+                      bloc.add(
+                        AddPickupLocationEvent(
+                          CountryRegionModel(
+                            name: e.title,
+                            latLng: LatLng(e.latitude, e.longitude),
+                          ),
+                        ),
+                      );
+                    }
+                  });
                 },
               ),
               20.verticalSpace,
@@ -46,16 +51,19 @@ class CreateOrderScreen extends StatelessWidget {
                   bloc.add(DeleteDropoffLocationEvent(index));
                 },
                 onAddLocation: () async {
-                  // bloc.add(
-                  //   AddDropoffLocationEvent(
-                  //     CountryRegionModel(
-                  //       name: 'random_!',
-                  //       latLng: LatLng(0, 0),
-                  //     ),
-                  //   ),
-                  // );
-                  context.push(AppRoutes.selectLocationScreen);
-
+                  context.push(AppRoutes.selectLocationScreen).then((e) {
+                    if (e != null) {
+                      e as LocationItemModel;
+                      bloc.add(
+                        AddDropoffLocationEvent(
+                          CountryRegionModel(
+                            name: e.title,
+                            latLng: LatLng(e.latitude, e.longitude),
+                          ),
+                        ),
+                      );
+                    }
+                  });
                 },
               ),
               16.verticalSpace,

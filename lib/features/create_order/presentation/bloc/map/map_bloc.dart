@@ -113,12 +113,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     UpdateCameraPositionEvent event,
     Emitter<MapState> emit,
   ) {
+    // animateToPosition(event.latitude, event.longitude, event.zoom);
     emit(
       state.copyWith(
         latitude: event.latitude,
         longitude: event.longitude,
         zoom: event.zoom,
-        isUserLocation: false, // Clear user location flag when manually moving
+        isUserLocation: false,
       ),
     );
   }
