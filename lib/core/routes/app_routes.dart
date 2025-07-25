@@ -21,4 +21,5 @@ class AppRoutes{
   // create order
   static const String createOrderScreen = "/createOrderScreen";
   static const String selectLocationScreen = "/selectLocationScreen";
+  static const String driverProfileScreen = "/driverProfileScreen";
 }

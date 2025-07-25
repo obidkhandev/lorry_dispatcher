@@ -108,7 +108,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       iconSize: 60.sp,
                       radius: BorderRadius.circular(100.r),
                       fit: BoxFit.cover,
-                      imageUrl: '',
+                      imageUrl: profileImage,
                     ),
                     SizedBox(height: 16.h),
                     Text(

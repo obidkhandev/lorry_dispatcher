@@ -1,5 +1,4 @@
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
-import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/drivers_page.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/order_page.dart';
@@ -68,7 +67,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               selectedTabIndex = v;
             });
           },
-          labelStyle: AppTextStyles().body16w6,
+          dividerColor: AppColors.transparent,
+          labelStyle: context.theme.textTheme.titleMedium,
+          unselectedLabelStyle: context.theme.textTheme.titleMedium,
           tabs: List.generate(titles.length, (index) {
             return Tab(text: titles[index]);
           }),

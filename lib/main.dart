@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lorry_dispatcher/core/routes/app_pages.dart';
@@ -17,6 +18,7 @@ import 'di.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppUpdateService.getCloudVersion();
+
 
   await initDi();
 
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => inject<MainTabCubit>()),
         BlocProvider(
-          create: (context) => inject<SettingsCubit>()..loadAppLang(),
+          create: (context) => inject<SettingsCubit>()..loadAppLang()..loadTheme(),
         ),
         BlocProvider(create: (context) => DriverTrackingBloc()),
         BlocProvider(create: (context) => CreateOrderBloc()),

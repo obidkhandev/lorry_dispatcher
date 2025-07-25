@@ -24,6 +24,7 @@ class _StatusScreenState extends State<StatusScreen>
       appBar: CustomAppBar(
         hasAutoLeading: false,
         toolbarHeight: 100.h,
+
         title: S.of(context).orders, // Replaced "Buyurtmalar"
         bottom: CustomTabBar(
           tabController: tabController,

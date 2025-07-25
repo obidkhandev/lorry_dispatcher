@@ -18,7 +18,6 @@ class MainScreen extends StatefulWidget {
 }
 
 
-
 class _MainScreenState extends State<MainScreen> {
   void onTap(BuildContext context, int index) {
     if (index == widget.child.currentIndex) return;

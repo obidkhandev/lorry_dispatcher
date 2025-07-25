@@ -24,11 +24,13 @@ class CustomTabBar extends StatelessWidget {
     return TabBar(
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       controller: tabController,
+
       indicator: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(10.r),
       ),
       indicatorSize: TabBarIndicatorSize.tab,
+      dividerColor: AppColors.transparent,
       indicatorPadding: EdgeInsets.symmetric(
         horizontal: 4.w,
         vertical: 6.h,

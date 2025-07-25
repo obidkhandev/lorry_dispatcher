@@ -12,13 +12,14 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_scre
 import 'package:lorry_dispatcher/features/home/presentation/pages/offers/offers_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
+import 'package:lorry_dispatcher/features/status/presentation/pages/driver_profile/driver_profile_screen.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/status/status_screen.dart';
 
 class AppPages {
   static GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.loginScreen,
     routes: <RouteBase>[
       GoRoute(
         name: AppRoutes.registerScreen,
@@ -60,6 +61,13 @@ class AppPages {
         path: AppRoutes.createOrderScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const CreateOrderScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.driverProfileScreen,
+        path: AppRoutes.driverProfileScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const DriverProfileScreen();
         },
       ),
 

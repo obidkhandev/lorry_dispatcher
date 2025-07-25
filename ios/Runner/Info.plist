@@ -2,6 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
+		<!-- Other keys unchanged -->
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
@@ -29,10 +30,9 @@
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
 		<key>NSLocationWhenInUseUsageDescription</key>
-        <string>This app needs your location to provide location-based features.</string>
-        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-        <string>This app needs your location to provide location-based features even in the background.</string>
-
+		<string>This app needs your location to provide location-based features.</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>This app needs your location to provide location-based features even in the background.</string>
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -50,9 +50,11 @@
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
+		<!-- Ensure status bar is visible -->
 		<key>UIStatusBarHidden</key>
-		<true/>
-		<key>UIViewControllerBasedStatusBarAppearance</key>
 		<false/>
+		<!-- Allow Flutter to control status bar appearance -->
+		<key>UIViewControllerBasedStatusBarAppearance</key>
+		<true/>
 	</dict>
 </plist>
