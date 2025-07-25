@@ -139,6 +139,7 @@ class AppIcons {
   static const String icCpuSettings = '$_mapPath/cpu-setting.svg';
   static const String icBrain = '$_mapPath/brain.svg';
   static const String icWrench = '$_mapPath/wrench.svg';
+  static const String currentLocation = '$_mapPath/current_location.svg';
 
   static const String chervonRight = '$_basePath/chervon_right.svg';
   static const String arrowTop = '$_basePath/arrow_top.svg';

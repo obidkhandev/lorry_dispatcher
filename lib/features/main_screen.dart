@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:lorry_dispatcher/core/location/app_permission.dart';
 import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/core/values/app_icons.dart';
@@ -16,11 +17,19 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
+
 class _MainScreenState extends State<MainScreen> {
   void onTap(BuildContext context, int index) {
     if (index == widget.child.currentIndex) return;
 
     widget.child.goBranch(index, initialLocation: false);
+  }
+
+  @override
+  void initState() {
+    AppPermissions.getLocationPermission();
+    super.initState();
   }
 
   @override

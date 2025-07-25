@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
@@ -26,14 +27,15 @@ class CreateOrderScreen extends StatelessWidget {
                   bloc.add(DeletePickupLocationEvent(index));
                 },
                 onAddLocation: () async {
-                  bloc.add(
-                    AddPickupLocationEvent(
-                      CountryRegionModel(
-                        name: 'random_!',
-                        latLng: LatLng(0, 0),
-                      ),
-                    ),
-                  );
+                  // bloc.add(
+                  //   AddPickupLocationEvent(
+                  //     CountryRegionModel(
+                  //       name: 'random_!',
+                  //       latLng: LatLng(0, 0),
+                  //     ),
+                  //   ),
+                  // );
+                  context.push(AppRoutes.selectLocationScreen);
                 },
               ),
               20.verticalSpace,
@@ -44,14 +46,16 @@ class CreateOrderScreen extends StatelessWidget {
                   bloc.add(DeleteDropoffLocationEvent(index));
                 },
                 onAddLocation: () async {
-                  bloc.add(
-                    AddDropoffLocationEvent(
-                      CountryRegionModel(
-                        name: 'random_!',
-                        latLng: LatLng(0, 0),
-                      ),
-                    ),
-                  );
+                  // bloc.add(
+                  //   AddDropoffLocationEvent(
+                  //     CountryRegionModel(
+                  //       name: 'random_!',
+                  //       latLng: LatLng(0, 0),
+                  //     ),
+                  //   ),
+                  // );
+                  context.push(AppRoutes.selectLocationScreen);
+
                 },
               ),
               16.verticalSpace,

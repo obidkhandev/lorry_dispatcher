@@ -67,7 +67,7 @@ class AppPages {
         name: AppRoutes.selectLocationScreen,
         path: AppRoutes.selectLocationScreen,
         builder: (BuildContext context, GoRouterState state) {
-          return const SelectLocationScreen();
+          return const SelectLocationFromMapScreen();
         },
       ),
 
