@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
+import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
@@ -14,7 +15,11 @@ class CreateOrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: "Yuk qidirish"),
+      bottomNavigationBar: CustomButton(
+        text: "Yaratish",
+        height: 50.h,
+      ).paddingOnly(bottom: customButtonPadding.h, left: 16.w, right: 16.w),
+      appBar: CustomAppBar(title: "Yuk yaratish"),
       body: BlocBuilder<CreateOrderBloc, CreateOrderState>(
         builder: (context, state) {
           final bloc = context.read<CreateOrderBloc>();
@@ -22,7 +27,7 @@ class CreateOrderScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
             children: [
               LocationListSection(
-                title: "pickup_address",
+                title: "Yuklash manzili",
                 locations: state.pickUpAddress,
                 onRemoveLocation: (index) {
                   bloc.add(DeletePickupLocationEvent(index));
@@ -45,7 +50,7 @@ class CreateOrderScreen extends StatelessWidget {
               ),
               20.verticalSpace,
               LocationListSection(
-                title: "pickup_address",
+                title: "Tushirish manzili",
                 locations: state.dropOffAddress,
                 onRemoveLocation: (index) {
                   bloc.add(DeleteDropoffLocationEvent(index));
@@ -68,7 +73,7 @@ class CreateOrderScreen extends StatelessWidget {
               ),
               16.verticalSpace,
               CustomDropDownWidget(
-                height: 60.h,
+                // height: 60.h,
                 hintText: "Avtomobil turi",
                 enableSearch: false,
                 borderColor: AppColors.grey2,
@@ -76,34 +81,34 @@ class CreateOrderScreen extends StatelessWidget {
               ),
               16.verticalSpace,
               CustomDropDownWidget(
-                height: 60.h,
+                // height: 60.h,
                 enableSearch: false,
                 borderColor: AppColors.grey2,
                 hintText: "Tirkama turi",
-                items: ["Fura", "Isuzu"],
+                items: ["Tent"],
               ),
               16.verticalSpace,
               CustomDropDownWidget(
-                height: 60.h,
+                // height: 60.h,
                 enableSearch: false,
                 borderColor: AppColors.grey2,
                 hintText: "To'lov turi",
-                items: ["Fura", "Isuzu"],
+                items: ["So'm", "Usd", "Rubl"],
               ),
               16.verticalSpace,
               CustomTextField(
                 borderColor: AppColors.grey2,
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 18.h,
-                  horizontal: 12.w,
-                ),
+                // contentPadding: EdgeInsets.symmetric(
+                //   vertical: 18.h,
+                //   horizontal: 12.w,
+                // ),
                 hintText: "To’lov summasi",
               ),
               16.verticalSpace,
               CustomTextField(
                 borderColor: AppColors.grey2,
                 contentPadding: EdgeInsets.symmetric(
-                  vertical: 18.h,
+                  vertical: 12.h,
                   horizontal: 12.w,
                 ),
                 hintText: "Qo’shimcha ma’lumot",
@@ -111,6 +116,8 @@ class CreateOrderScreen extends StatelessWidget {
                 minLines: 3,
               ),
               30.verticalSpace,
+
+              // Spacer(),
             ],
           );
         },

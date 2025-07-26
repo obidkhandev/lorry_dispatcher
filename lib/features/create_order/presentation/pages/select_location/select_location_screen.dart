@@ -84,7 +84,10 @@ class _SelectLocationFromMapScreenState
 
     context.read<MapBloc>().state.controller?.animateCamera(
       CameraUpdate.newCameraPosition(
-        CameraPosition(target: LatLng(location.latitude, location.longitude),zoom: 15),
+        CameraPosition(
+          target: LatLng(location.latitude, location.longitude),
+          zoom: 15,
+        ),
       ),
     );
 
@@ -348,29 +351,31 @@ class _SelectLocationFromMapScreenState
                         ),
                       ],
                     ),
-                    child: Column(
+                    child: Stack(
                       children: [
-                        // Drag handle
-                        Container(
-                          width: 40.w,
-                          height: 4.h,
-                          margin: EdgeInsets.only(top: 8.h),
-                          decoration: BoxDecoration(
-                            color: AppColors.grey2,
-                            borderRadius: BorderRadius.circular(2.r),
-                          ),
-                        ),
-
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        SingleChildScrollView(
+                          controller: scrollController,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              // Drag handle
+                              Center(
+                                child: Container(
+                                  width: 40.w,
+                                  height: 4.h,
+                                  margin: EdgeInsets.only(top: 8.h),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.grey2,
+                                    borderRadius: BorderRadius.circular(2.r),
+                                  ),
+                                ),
+                              ),
+
                               16.verticalSpace,
                               Text(
                                 "Yuklash manzili",
                                 style: context.theme.textTheme.titleMedium,
-                              ),
+                              ).paddingOnly(left: 16.w),
                               16.verticalSpace,
                               CustomTextField(
                                 textEditingController: _searchController,
@@ -394,22 +399,22 @@ class _SelectLocationFromMapScreenState
                                         ),
                                       )
                                     : null,
-                              ),
-                              16.verticalSpace,
+                              ).paddingSymmetric(horizontal: 16.w),
+
+                              // Scrollable location list
+                              _buildLocationsList(),
+
+                              // Bottom buttons
                             ],
                           ),
                         ),
-
-                        // Scrollable location list
-                        Expanded(
-                          child: SingleChildScrollView(
-                            controller: scrollController,
-                            child: _buildLocationsList(),
-                          ),
-                        ),
-
-                        // Bottom buttons
-                        CustomButton(
+                        Positioned(
+                          bottom: 0,
+                          left: 16.w,
+                          right: 16.w,
+                          child: ColoredBox(
+                            color: AppColors.white,
+                            child: CustomButton(
                               height: 55.h,
                               isLoading: state.isLoading,
                               text: _selectedLocation != null
@@ -428,9 +433,9 @@ class _SelectLocationFromMapScreenState
                                 }
                                 context.pop(_selectedLocation);
                               },
-                            )
-                            .paddingSymmetric(horizontal: 16.w)
-                            .paddingOnly(bottom: customButtonPadding),
+                            ).paddingOnly(bottom: 30),
+                          ),
+                        ),
                       ],
                     ),
                   );

@@ -53,7 +53,7 @@ class AppPages {
         name: AppRoutes.aboutDriver,
         path: AppRoutes.aboutDriver,
         builder: (BuildContext context, GoRouterState state) {
-          return const AboutDriverScreen();
+          return  AboutDriverScreen(isConfirm: state.extra as bool? ?? true,);
         },
       ),
       GoRoute(

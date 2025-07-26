@@ -147,6 +147,8 @@ class AppIcons {
   static const String editSquare = '$_basePath/edit_square.svg';
   static const String cancel = '$_basePath/cancel (1).svg';
   static const String share = '$_basePath/share.svg';
+  static const String moreIc = '$_basePath/more_ic.svg';
+
 
 
 

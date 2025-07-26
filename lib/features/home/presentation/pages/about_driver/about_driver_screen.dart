@@ -3,14 +3,19 @@ import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/widget/comment_item_card.dart';
 
 class AboutDriverScreen extends StatelessWidget {
-  const AboutDriverScreen({super.key});
+  final bool isConfirm;
+
+  const AboutDriverScreen({super.key, this.isConfirm = true});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomButton(text: S.of(context).confirm) // Replaced "Tasdiqlash"
-          .paddingSymmetric(horizontal: 16.w)
-          .paddingOnly(bottom: customButtonPadding),
+      bottomNavigationBar:
+          CustomButton(
+                text: isConfirm ? S.of(context).confirm : "Taklif yuborish",
+              ) // Replaced "Tasdiqlash"
+              .paddingSymmetric(horizontal: 16.w)
+              .paddingOnly(bottom: customButtonPadding),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -45,7 +50,11 @@ class AboutDriverScreen extends StatelessWidget {
             ),
           ),
           30.verticalSpace,
-          Text(S.of(context).comments, style: context.theme.textTheme.titleMedium), // Replaced "Fikrlar"
+          Text(
+            S.of(context).comments,
+            style: context.theme.textTheme.titleMedium,
+          ),
+          // Replaced "Fikrlar"
           16.verticalSpace,
           CommentItemCard(),
         ],

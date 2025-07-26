@@ -109,9 +109,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
               focusNode: widget.focusNode,
               inputFormatters: widget.formatter,
               onTap: widget.onTap,
+
               onFieldSubmitted: widget.onFieldSubmitted,
               initialValue: widget.initialValue,
-              style: context.theme.textTheme.titleMedium,
+              style: context.theme.textTheme.titleMedium?.copyWith(
+                fontSize: 15.sp,
+                fontWeight: FontWeight.w400,
+              ),
               obscureText: obscure,
               textInputAction: widget.textInputAction,
               keyboardType: widget.textInputType,
@@ -133,6 +137,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   minHeight: 25,
                   minWidth: 25,
                 ),
+              prefixIconConstraints: const BoxConstraints(
+                minHeight: 40,
+                minWidth: 40,
+              ),
                 prefixIcon: widget.prefixIcon == null
                     ? widget.leadingWidget
                     : SvgPicture.asset(

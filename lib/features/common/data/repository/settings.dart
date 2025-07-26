@@ -15,7 +15,7 @@ class SettingRepository extends ISettingRepository {
   @override
   Future<Either<Failure, String>> getAppLang() async {
     try {
-      String lang = _preferences.getString(SharedModel.appLang) ?? 'ru';
+      String lang = _preferences.getString(SharedModel.appLang) ?? 'uz';
       return Right(lang);
     } on DioException catch (e) {
       if (kDebugMode) {

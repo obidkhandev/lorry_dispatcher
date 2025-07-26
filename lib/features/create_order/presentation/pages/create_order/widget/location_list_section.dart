@@ -60,7 +60,7 @@ class _LocationListSectionState extends State<LocationListSection> {
     return DecoratedBox(
       decoration: BoxDecoration(
         color: context.theme.cardColor,
-        borderRadius: BorderRadius.circular(16.r),
+        borderRadius: BorderRadius.circular(10.r),
         border: Border.all(color: AppColors.grey2),
       ),
       child: Column(
@@ -88,14 +88,14 @@ class _LocationListSectionState extends State<LocationListSection> {
               decoration: BoxDecoration(color: AppColors.white),
               child: Row(
                 children: [
-                  const Icon(Icons.add),
-                  Text(widget.title, style: AppTextStyles().body16w6),
+                  Icon(Icons.add, size: 20.sp),
+                  Text(widget.title, style: AppTextStyles().body14w5),
                 ],
               ),
             ),
-          ).paddingSymmetric(vertical: 8.h),
+          ),
         ],
-      ).paddingAll(16.sp),
+      ).paddingAll(14.sp),
     );
   }
 }

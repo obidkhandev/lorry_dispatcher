@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController tabController;
   int selectedTabIndex = 0;
-  List<String> titles = ["Orders", "drivers"];
+  List<String> titles = ["Buyurtmalar", "Haydovchilar"];
 
   @override
   void initState() {
