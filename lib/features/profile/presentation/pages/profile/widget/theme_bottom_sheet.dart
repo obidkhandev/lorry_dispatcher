@@ -26,6 +26,14 @@ class ThemeBottomSheet extends StatelessWidget {
                 controlAffinity: ListTileControlAffinity.trailing,
                 value: ThemeModeState.auto,
                 groupValue: selectedMode,
+                fillColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.selected)) {
+                      return AppColors.primaryColor;
+                    }
+                    return AppColors.grey600;
+                  },
+                ),
                 onChanged: (mode) {
                   if (mode != null) {
                     cubit.setThemeMode(mode);
@@ -38,11 +46,25 @@ class ThemeBottomSheet extends StatelessWidget {
                   style: context.theme.textTheme.titleMedium,
                 ),
               ),
-              customDivider,
+              Divider(
+                color: context.isDarkMode?
+                AppColors.grey808080
+                    : AppColors.grey200,
+                thickness: 1,
+                height: 0,
+              ),
               RadioListTile<ThemeModeState>(
                 contentPadding: EdgeInsets.zero,
                 controlAffinity: ListTileControlAffinity.trailing,
                 value: ThemeModeState.light,
+                fillColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.selected)) {
+                      return AppColors.primaryColor;
+                    }
+                    return AppColors.grey600;
+                  },
+                ),
                 groupValue: selectedMode,
                 onChanged: (mode) {
                   if (mode != null) {
@@ -56,12 +78,26 @@ class ThemeBottomSheet extends StatelessWidget {
                   style: context.theme.textTheme.titleMedium,
                 ),
               ),
-              customDivider,
+              Divider(
+                color: context.isDarkMode?
+                AppColors.grey808080
+                    : AppColors.grey200,
+                thickness: 1,
+                height: 0,
+              ),
               RadioListTile<ThemeModeState>(
                 contentPadding: EdgeInsets.zero,
                 controlAffinity: ListTileControlAffinity.trailing,
                 value: ThemeModeState.dark,
                 groupValue: selectedMode,
+                fillColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                    if (states.contains(WidgetState.selected)) {
+                      return AppColors.primaryColor;
+                    }
+                    return AppColors.grey600;
+                  },
+                ),
                 onChanged: (mode) {
                   if (mode != null) {
                     // context.read<MapBloc>().add(SetMapTheme(true));

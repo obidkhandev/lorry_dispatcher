@@ -10,9 +10,8 @@ class DriverProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // bottomNavigationBar:
-
       appBar: CustomAppBar(
-        toolbarHeight: 120.h,
+        toolbarHeight: 140.h,
         bottom: DriverImageAndRating(
           showStatus: false,
         ).paddingSymmetric(horizontal: 16.w, vertical: 20.h),

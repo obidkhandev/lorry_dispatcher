@@ -55,7 +55,7 @@ class _SendOfferBottomSheetState extends State<SendOfferBottomSheet> {
         Flexible(
           child: ListView.separated(
             shrinkWrap: true,
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            padding: EdgeInsets.symmetric(horizontal: 16.w,vertical: 20.h),
             itemBuilder: (_, index) {
               return OrderOfferCard(
                 isSelected: selectedIndices.contains(index),
@@ -65,7 +65,7 @@ class _SendOfferBottomSheetState extends State<SendOfferBottomSheet> {
             separatorBuilder: (_, index) {
               return 12.verticalSpace;
             },
-            itemCount: 3,
+            itemCount: 5,
           ),
         ),
         20.verticalSpace,
@@ -73,7 +73,8 @@ class _SendOfferBottomSheetState extends State<SendOfferBottomSheet> {
           text: selectedIndices.isEmpty
               ? "Taklif tanlang"
               : "Taklif yuborish (${selectedIndices.length})",
-          icon: AppIcons.send,
+          icon: AppIcons.send2,
+
           onTap: selectedIndices.isNotEmpty
               ? () {
                   // Handle send offer logic here
@@ -81,7 +82,7 @@ class _SendOfferBottomSheetState extends State<SendOfferBottomSheet> {
                   // You can pass selectedIndices to your API call
                 }
               : null,
-        ).paddingOnly(left: 16.w, right: 16.w, bottom: customButtonPadding),
+        ).paddingOnly(left: 16.w, right: 16.w, bottom: 20.h),
       ],
     );
   }

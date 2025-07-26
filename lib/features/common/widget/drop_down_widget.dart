@@ -40,7 +40,8 @@ class CustomDropDownWidget extends StatefulWidget {
     this.leadingIcon,
     this.visibleClose = true,
     this.searchHintText = 'Search...',
-    this.enableSearch = true, this.height,
+    this.enableSearch = true,
+    this.height,
   });
 
   @override
@@ -96,7 +97,7 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
               children: [
                 TextSpan(
                   text: widget.label!,
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
+                  style: context.theme.textTheme.titleMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -118,9 +119,11 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
               height: widget.height ?? 46.h,
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? context.theme.cardColor,
-                border: widget.borderColor == null
-                    ? null
-                    : Border.all(color: widget.borderColor ?? AppColors.transparent),
+                border: Border.all(
+                        color: context.isDarkMode
+                            ? widget.borderColor ?? AppColors.grey808080
+                            : widget.borderColor ?? AppColors.grey2,
+                      ),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -130,61 +133,74 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                 color: widget.backgroundColor ?? context.theme.cardColor,
                 borderRadius: BorderRadius.circular(8.r),
               ),
-              width: widget.width ?? MediaQuery.of(context).size.width * 0.78,
+              width: widget.width ?? MediaQuery.of(context).size.width - 32,
               maxHeight: MediaQuery.of(context).size.height * 0.5,
             ),
-            dropdownSearchData: widget.enableSearch ? DropdownSearchData(
-              searchController: searchController,
-              searchInnerWidgetHeight: 50,
-              searchInnerWidget: Container(
-                height: 50,
-                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
-                child: TextField(
-                  controller: searchController,
-                  focusNode: searchFocusNode,
-                  style: context.theme.textTheme.bodyMedium?.copyWith(
-                    fontWeight: FontWeight.w500,
-                  ),
-                  decoration: InputDecoration(
-                    isDense: true,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
-                    hintText: widget.searchHintText,
-                    hintStyle: AppTextStyles().body16w4.copyWith(
-                      color: AppColors.borderSecondary,
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: BorderSide(
-                        color: widget.borderColor ?? AppColors.borderSecondary,
+            dropdownSearchData: widget.enableSearch
+                ? DropdownSearchData(
+                    searchController: searchController,
+                    searchInnerWidgetHeight: 50,
+                    searchInnerWidget: Container(
+                      height: 50,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 12.w,
+                        vertical: 8.h,
+                      ),
+                      child: TextField(
+                        controller: searchController,
+                        focusNode: searchFocusNode,
+                        style: context.theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                        ),
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.symmetric(
+                            horizontal: 10.w,
+                            vertical: 8.h,
+                          ),
+                          hintText: widget.searchHintText,
+                          hintStyle: AppTextStyles().body16w4.copyWith(
+                            color: AppColors.borderSecondary,
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                            borderSide: BorderSide(
+                              color:
+                                  widget.borderColor ??
+                                  AppColors.borderSecondary,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.r),
+                            borderSide: BorderSide(
+                              color: context.theme.primaryColor,
+                              width: 2,
+                            ),
+                          ),
+                          suffixIcon: searchController.text.isNotEmpty
+                              ? IconButton(
+                                  icon: SvgPicture.asset(
+                                    AppIcons.cancel,
+                                    height: 12,
+                                    width: 12,
+                                  ),
+                                  onPressed: _clearSearch,
+                                )
+                              : null,
+                        ),
+                        onChanged: (value) {
+                          _filterItems(value);
+                        },
                       ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.r),
-                      borderSide: BorderSide(
-                        color: context.theme.primaryColor,
-                        width: 2,
-                      ),
-                    ),
-                    suffixIcon: searchController.text.isNotEmpty
-                        ? IconButton(
-                      icon: SvgPicture.asset(
-                        AppIcons.cancel,
-                        height: 12,
-                        width: 12,
-                      ),
-                      onPressed: _clearSearch,
-                    )
-                        : null,
-                  ),
-                  onChanged: (value) {
-                    _filterItems(value);
-                  },
-                ),
-              ),
-              searchMatchFn: (item, searchValue) {
-                return item.value?.toLowerCase().contains(searchValue.toLowerCase()) ?? false;
-              },
-            ) : null,
+                    searchMatchFn: (item, searchValue) {
+                      return item.value?.toLowerCase().contains(
+                            searchValue.toLowerCase(),
+                          ) ??
+                          false;
+                    },
+                  )
+                : null,
             iconStyleData: IconStyleData(
               icon: Row(
                 children: [
@@ -197,15 +213,17 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                       },
                       child: SvgPicture.asset(
                         AppIcons.cancel,
-                        height: 12,
-                        width: 12,
+                        height: 16,
+                        width: 16,
                       ),
                     ),
                   8.horizontalSpace,
                   SvgPicture.asset(
                     AppIcons.arrowDown,
                     width: 18,
-                    color: widget.iconColor ?? context.theme.textTheme.bodyMedium?.color,
+                    color:
+                        widget.iconColor ??
+                        context.theme.textTheme.titleMedium?.color,
                   ),
                 ],
               ),
@@ -213,12 +231,14 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
             value: selectedValue,
             hint: Text(
               widget.hintText,
-              style: widget.hintStyle ??
+              style:
+                  widget.hintStyle ??
                   AppTextStyles().body16w4.copyWith(
                     color: AppColors.borderSecondary,
                   ),
             ),
-            style: widget.textStyle ??
+            style:
+                widget.textStyle ??
                 context.theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
@@ -229,8 +249,9 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                   children: [
                     Text(
                       item,
-                      style: widget.textStyle ??
-                          context.theme.textTheme.bodyMedium?.copyWith(
+                      style:
+                          widget.textStyle ??
+                          context.theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
                     ),

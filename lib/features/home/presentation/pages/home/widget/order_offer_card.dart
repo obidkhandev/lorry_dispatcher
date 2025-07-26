@@ -20,7 +20,7 @@ class OrderOfferCard extends StatelessWidget {
           context,
           borderColor: isSelected
               ? AppColors.primaryColor
-              : context.theme.dividerColor,
+              : AppColors.transparent,
         ),
         child: Column(
           children: [
@@ -48,42 +48,10 @@ class OrderOfferCard extends StatelessWidget {
               children: [
                 Text('#95SDA', style: context.theme.textTheme.titleSmall),
                 const Spacer(),
-                Text('18:25', style: context.theme.textTheme.titleSmall),
+                Text(DateTime.now().toDateAndTimeFormat(), style: context.theme.textTheme.titleSmall),
               ],
             ),
-            // Selection indicator
-            if (isSelected) ...[
-              8.verticalSpace,
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                    decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(
-                          Icons.check,
-                          color: AppColors.white,
-                          size: 16.sp,
-                        ),
-                        4.horizontalSpace,
-                        Text(
-                          'Tanlangan',
-                          style: context.theme.textTheme.labelSmall?.copyWith(
-                            color: AppColors.white,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ],
+
           ],
         ).paddingAll(14.sp),
       ),

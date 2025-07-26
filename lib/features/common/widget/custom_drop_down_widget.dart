@@ -307,7 +307,7 @@ class _CustomSearchableDropDownWidgetState extends State<CustomSearchableDropDow
                     controller: textController,
                     focusNode: focusNode,
                     style: widget.textStyle ??
-                        context.theme.textTheme.bodyMedium?.copyWith(
+                        context.theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                         ),
                     decoration: InputDecoration(

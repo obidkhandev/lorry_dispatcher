@@ -129,6 +129,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     widget.contentPadding ??
                     EdgeInsets.symmetric(horizontal: 12.w),
                 hintText: widget.hintText,
+
                 hintStyle: context.theme.textTheme.displayMedium?.copyWith(
                   fontSize: 14.sp,
                   color: AppColors.hintColor,

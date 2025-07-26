@@ -2,6 +2,7 @@ import 'package:lorry_dispatcher/export.dart';
 
 class TitleWithIcon extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final String icon;
   final Color? icColor;
   final double? iconSize;
@@ -14,12 +15,14 @@ class TitleWithIcon extends StatelessWidget {
     this.mainAxisAlignment,
     this.icColor,
     this.iconSize,
+    this.subtitle,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SvgPicture.asset(
           icon,
@@ -29,13 +32,32 @@ class TitleWithIcon extends StatelessWidget {
         ),
         8.horizontalSpace,
         Flexible(
-          child: Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: context.theme.textTheme.titleMedium?.copyWith(
-              fontSize: 14.sp,
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+
+              if(subtitle != null) ...[
+                Text(
+                  subtitle ?? '',
+                  maxLines: 1,
+
+                  overflow: TextOverflow.ellipsis,
+                  style: context.theme.textTheme.titleSmall?.copyWith(
+                    height: 0
+                  ),
+                ),
+              ],
+
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: context.theme.textTheme.titleMedium?.copyWith(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400
+                ),
+              ),
+            ],
           ),
         ),
       ],

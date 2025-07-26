@@ -35,30 +35,33 @@ class DriverImageAndRating extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text(
+                "Xumoyunmirzo Y.",
+                style: context.theme.textTheme.titleMedium?.copyWith(
+                  fontSize: 17.sp,
+                ),
+              ),
               Row(
                 children: [
-                  Text(
-                    "Xumoyunmirzo Y.",
-                    style: context.theme.textTheme.titleMedium?.copyWith(
-                      fontSize: 17.sp,
+                  GestureDetector(
+                    onTap: ()async {
+                      await MyFunctions.dialPhoneNumber("+998942665030");
+                    },
+                    child: Text(
+                      "+998942665030",
+                      style: context.theme.textTheme.titleMedium?.copyWith(
+                        fontSize: 14.sp,
+                        color: Colors.blueAccent,
+                      ),
                     ),
                   ),
                   20.horizontalSpace,
-                  SvgPicture.asset(AppIcons.star),
-                  Text("4.5"),
+                  SvgPicture.asset(AppIcons.star,width: 16),
+                  2.horizontalSpace,
+                  Text("4.5",style: context.theme.textTheme.titleSmall?.copyWith(
+                    fontSize: 14,
+                  ),),
                 ],
-              ),
-              GestureDetector(
-                onTap: ()async {
-                  await MyFunctions.dialPhoneNumber("+998942665030");
-                },
-                child: Text(
-                  "+998942665030",
-                  style: context.theme.textTheme.titleMedium?.copyWith(
-                    fontSize: 14.sp,
-                    color: Colors.blueAccent,
-                  ),
-                ),
               ),
             ],
           ),

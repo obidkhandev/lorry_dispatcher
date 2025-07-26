@@ -19,7 +19,6 @@ class ProfileSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        12.verticalSpace,
         Text(
           title,
           style: context.theme.textTheme.titleMedium?.copyWith(
@@ -37,7 +36,8 @@ class ProfileSection extends StatelessWidget {
             return CustomTile(
               title: e.title ?? '',
               trailing: e.tralingWidget ?? SvgPicture.asset(
-                AppIcons.arrowRight,
+                AppIcons.chervonRight,
+                width: 20.w,
                 color: context.theme.iconTheme.color?.withOpacity(0.7),
               ),
               leading: e.icon != null
@@ -62,7 +62,9 @@ class ProfileSection extends StatelessWidget {
           },
           separatorBuilder: (_, __) {
             return Divider(
-              color: AppColors.grey200,
+              color: context.isDarkMode?
+                  AppColors.grey808080
+                  : AppColors.grey200,
               thickness: 1,
               height: 0,
             ).paddingOnly(top: 6.h);

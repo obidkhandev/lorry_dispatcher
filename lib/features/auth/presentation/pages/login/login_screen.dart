@@ -19,13 +19,13 @@ class LoginScreen extends StatelessWidget {
           100.verticalSpace,
           SvgPicture.asset(AppIcons.logo),
           30.verticalSpace,
-          CustomTextField(fillColor: AppColors.grey100,
+          CustomTextField(
             labelText: "Telefon raqamingiz",
             hintText: "Telefon raqamingiz",
             leadingWidget: Text(
               "+998",
               style: context.theme.textTheme.titleMedium,
-            ).paddingOnly(left: 10.w, top: 14.h),
+            ).paddingOnly(left: 10.w, top: 8.h),
             formatter: [Formatters.phoneFormatter],
           ),
           Spacer(),

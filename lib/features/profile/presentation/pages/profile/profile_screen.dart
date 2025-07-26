@@ -204,11 +204,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               MyFunctions.themeName(state.themeMode, context),
                               style: context.theme.textTheme.displayMedium?.copyWith(fontSize: 16.sp),
                             ),
+                            10.horizontalSpace,
                             SvgPicture.asset(
-                              AppIcons.arrowRight,
-                              colorFilter: AppColors.colorFilter(
-                                context.isDarkMode ? AppColors.grey4 : AppColors.black,
-                              ),
+                              AppIcons.chervonRight,
+                              width: 20.w,
+                              color: context.theme.iconTheme.color?.withOpacity(0.7),
                             ),
                           ],
                         ),
@@ -233,11 +233,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               MyFunctions.languageName(state.language, context),
                               style: context.theme.textTheme.displayMedium?.copyWith(fontSize: 16.sp),
                             ),
+                            10.horizontalSpace,
                             SvgPicture.asset(
-                              AppIcons.arrowRight,
-                              colorFilter: AppColors.colorFilter(
-                                context.isDarkMode ? AppColors.grey4 : AppColors.black,
-                              ),
+                              AppIcons.chervonRight,
+                              width: 20.w,
+                              color: context.theme.iconTheme.color?.withOpacity(0.7),
                             ),
                           ],
                         ),
@@ -282,7 +282,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       style: context.theme.textTheme.titleMedium?.copyWith(
                         color: context.theme.textTheme.titleMedium?.color?.withOpacity(0.6),
                       ),
-                    ),
+                    ).paddingOnly(right: 8.w),
                   ),
                 ],
               ).paddingAll(12.sp),

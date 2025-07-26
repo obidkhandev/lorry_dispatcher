@@ -8,8 +8,7 @@ class OrderCard extends StatefulWidget {
   State<OrderCard> createState() => _OrderCardState();
 }
 
-class _OrderCardState extends State<OrderCard>
-    with TickerProviderStateMixin {
+class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
   // Separate states for each button
   bool _isOffersExpanded = false;
   bool _isEmptyTrucksExpanded = false;
@@ -127,24 +126,13 @@ class _OrderCardState extends State<OrderCard>
                 },
                 itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
                   PopupMenuItem<String>(
-                    value: 'edit',
-                    child: ListTile(
-                      leading: SvgPicture.asset(AppIcons.edit2, width: 20.w),
-                      title: Text(
-                        'O\'zgartirish',
-                        style: context.theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14.sp,
-                        ),
-                      ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8),
-                      visualDensity: VisualDensity.compact,
-                    ),
-                  ),
-                  PopupMenuItem<String>(
                     value: 'share',
                     child: ListTile(
-                      leading: SvgPicture.asset(AppIcons.share, width: 20.w),
+                      leading: SvgPicture.asset(
+                        AppIcons.share,
+                        width: 18.w,
+                        color: context.theme.iconTheme.color,
+                      ),
                       title: Text(
                         'Ulashish',
                         style: context.theme.textTheme.titleMedium?.copyWith(
@@ -157,9 +145,28 @@ class _OrderCardState extends State<OrderCard>
                     ),
                   ),
                   PopupMenuItem<String>(
+                    value: 'edit',
+                    child: ListTile(
+                      leading: SvgPicture.asset(
+                        AppIcons.edit2,
+                        width: 18.w,
+                        color: context.theme.iconTheme.color
+                      ),
+                      title: Text(
+                        'O\'zgartirish',
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp,
+                        ),
+                      ),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 8),
+                      visualDensity: VisualDensity.compact,
+                    ),
+                  ),
+                  PopupMenuItem<String>(
                     value: 'delete',
                     child: ListTile(
-                      leading: SvgPicture.asset(AppIcons.delete, width: 20.w),
+                      leading: SvgPicture.asset(AppIcons.delete, width: 18.w),
                       title: Text(
                         'O\'chirish',
                         style: context.theme.textTheme.titleMedium?.copyWith(
@@ -218,10 +225,11 @@ class _OrderCardState extends State<OrderCard>
                           Spacer(),
                           Text(
                             S.of(context).offers,
-                            style: context.theme.textTheme.titleMedium?.copyWith(
-                              color: AppColors.primaryColor,
-                              fontSize: 14.sp,
-                            ),
+                            style: context.theme.textTheme.titleMedium
+                                ?.copyWith(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14.sp,
+                                ),
                           ),
                           const SizedBox(width: 8),
                           DecoratedBox(
@@ -233,10 +241,10 @@ class _OrderCardState extends State<OrderCard>
                               '12',
                               style: context.theme.textTheme.titleMedium
                                   ?.copyWith(
-                                color: AppColors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 12.sp,
-                              ),
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 12.sp,
+                                  ),
                             ).paddingAll(6.sp),
                           ),
                           Spacer(),
@@ -272,10 +280,11 @@ class _OrderCardState extends State<OrderCard>
                           Spacer(),
                           Text(
                             "Bo'sh mashinalar",
-                            style: context.theme.textTheme.titleMedium?.copyWith(
-                              color: AppColors.primaryColor,
-                              fontSize: 14.sp,
-                            ),
+                            style: context.theme.textTheme.titleMedium
+                                ?.copyWith(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 14.sp,
+                                ),
                           ),
                           Spacer(),
                           AnimatedRotation(
@@ -309,70 +318,74 @@ class _OrderCardState extends State<OrderCard>
                 ),
               );
             },
-            child: _isOffersExpanded ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Takliflar',
-                  style: context.theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-                8.verticalSpace,
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, index) {
-                    final suggestion = suggestions[index];
-                    return InkWell(
-                      onTap: () {
-                        context.push(AppRoutes.aboutDriver);
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Text(
-                              suggestion['name'],
-                              style: context.theme.textTheme.titleMedium,
-                            ),
-                          ),
-                          const Spacer(),
-                          Expanded(
-                            flex: 1,
-                            child: TitleWithIcon(
-                              title: "4.5",
-                              icon: AppIcons.star,
-                              icColor: AppColors.orange,
-                            ),
-                          ),
-                          Spacer(),
-                          Expanded(
-                            flex: 2,
-                            child: TitleWithIcon(
-                              title: "2 000 000",
-                              icon: AppIcons.creditCard,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          CustomIconWidget(
-                            color: AppColors.primaryOpacity,
-                            icon: AppIcons.chervonRight,
-                            onTap: () {},
-                          ),
-                        ],
+            child: _isOffersExpanded
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Takliflar',
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (_, index) {
-                    return 6.verticalSpace;
-                  },
-                  itemCount: suggestions.length,
-                ),
-                16.verticalSpace,
-              ],
-            ) : SizedBox.shrink(),
+                      8.verticalSpace,
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (_, index) {
+                          final suggestion = suggestions[index];
+                          return InkWell(
+                            onTap: () {
+                              context.push(AppRoutes.aboutDriver);
+                            },
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    suggestion['name'],
+                                    style: context.theme.textTheme.titleMedium,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Expanded(
+                                  flex: 1,
+                                  child: TitleWithIcon(
+                                    title: "4.5",
+                                    icon: AppIcons.star,
+                                    icColor: AppColors.orange,
+                                  ),
+                                ),
+                                Spacer(),
+                                Expanded(
+                                  flex: 2,
+                                  child: TitleWithIcon(
+                                    title: "2 000 000",
+                                    icon: AppIcons.creditCard,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                CustomIconWidget(
+                                  color: AppColors.primaryOpacity,
+                                  icon: AppIcons.chervonRight,
+                                  onTap: () {
+                                    context.push(AppRoutes.aboutDriver);
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (_, index) {
+                          return 6.verticalSpace;
+                        },
+                        itemCount: suggestions.length,
+                      ),
+                      16.verticalSpace,
+                    ],
+                  )
+                : SizedBox.shrink(),
           ),
 
           // Empty trucks list
@@ -387,73 +400,80 @@ class _OrderCardState extends State<OrderCard>
                 ),
               );
             },
-            child: _isEmptyTrucksExpanded ? Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Bo'sh mashinalar",
-                  style: context.theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primaryColor,
-                  ),
-                ),
-                8.verticalSpace,
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemBuilder: (_, index) {
-                    final truck = emptyTrucks[index];
-                    return InkWell(
-                      onTap: () {
-                        context.push(AppRoutes.aboutDriver, extra: false);
-                      },
-                      child: Row(
-                        // crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Text(
-                              truck['name'],
-                              maxLines: 1,
-                              overflow: TextOverflow.visible,
-                              style: context.theme.textTheme.titleMedium,
-                            ),
-                          ),
-                          const Spacer(),
-                          Expanded(
-                            flex: 2,
-                            child: TitleWithIcon(
-                              title: truck['rating'].toString(),
-                              icon: AppIcons.star,
-                              icColor: AppColors.orange,
-                            ),
-                          ),
-                          // Spacer(),
-                          Expanded(
-                            flex: 2,
-                            child: TitleWithIcon(
-                              title: truck['location'],
-                              icon: AppIcons.location,
-                            ),
-                          ),
-                          const SizedBox(width: 8),
-                          CustomIconWidget(
-                            color: AppColors.primaryOpacity,
-                            icon: AppIcons.chervonRight,
-                            onTap: () {},
-                          ),
-                        ],
+            child: _isEmptyTrucksExpanded
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bo'sh mashinalar",
+                        style: context.theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.primaryColor,
+                        ),
                       ),
-                    );
-                  },
-                  separatorBuilder: (_, index) {
-                    return 6.verticalSpace;
-                  },
-                  itemCount: emptyTrucks.length,
-                ),
-                16.verticalSpace,
-              ],
-            ) : SizedBox.shrink(),
+                      8.verticalSpace,
+                      ListView.separated(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        itemBuilder: (_, index) {
+                          final truck = emptyTrucks[index];
+                          return InkWell(
+                            onTap: () {
+                              context.push(AppRoutes.aboutDriver, extra: false);
+                            },
+                            child: Row(
+                              // crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Expanded(
+                                  flex: 3,
+                                  child: Text(
+                                    truck['name'],
+                                    maxLines: 1,
+                                    overflow: TextOverflow.visible,
+                                    style: context.theme.textTheme.titleMedium,
+                                  ),
+                                ),
+                                const Spacer(),
+                                Expanded(
+                                  flex: 2,
+                                  child: TitleWithIcon(
+                                    title: truck['rating'].toString(),
+                                    icon: AppIcons.star,
+                                    icColor: AppColors.orange,
+                                  ),
+                                ),
+                                // Spacer(),
+                                Expanded(
+                                  flex: 2,
+                                  child: TitleWithIcon(
+                                    title: truck['location'],
+                                    icon: AppIcons.location,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                CustomIconWidget(
+                                  color: AppColors.primaryOpacity,
+                                  icon: AppIcons.chervonRight,
+                                  onTap: () {
+                                    context.push(
+                                      AppRoutes.aboutDriver,
+                                      extra: false,
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (_, index) {
+                          return 6.verticalSpace;
+                        },
+                        itemCount: emptyTrucks.length,
+                      ),
+                      16.verticalSpace,
+                    ],
+                  )
+                : SizedBox.shrink(),
           ),
 
           10.verticalSpace,
@@ -461,7 +481,7 @@ class _OrderCardState extends State<OrderCard>
             children: [
               Text('#95SDA', style: context.theme.textTheme.titleSmall),
               const Spacer(),
-              Text('18:25', style: context.theme.textTheme.titleSmall),
+              Text(DateTime.now().toDateAndTimeFormat(), style: context.theme.textTheme.titleSmall),
             ],
           ),
         ],

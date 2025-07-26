@@ -33,5 +33,7 @@
   "offers": "Offers",
 
   "home": "Home",
-  "profile": "Profile"
+  "profile": "Profile",
+  "cancel": "Cancel",
+  "resendCode": "Resend code"
 }

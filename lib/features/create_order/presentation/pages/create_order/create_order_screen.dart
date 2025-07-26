@@ -76,14 +76,12 @@ class CreateOrderScreen extends StatelessWidget {
                 // height: 60.h,
                 hintText: "Avtomobil turi",
                 enableSearch: false,
-                borderColor: AppColors.grey2,
                 items: ["Fura", "Isuzu"],
               ),
               16.verticalSpace,
               CustomDropDownWidget(
                 // height: 60.h,
                 enableSearch: false,
-                borderColor: AppColors.grey2,
                 hintText: "Tirkama turi",
                 items: ["Tent"],
               ),
@@ -91,13 +89,14 @@ class CreateOrderScreen extends StatelessWidget {
               CustomDropDownWidget(
                 // height: 60.h,
                 enableSearch: false,
-                borderColor: AppColors.grey2,
                 hintText: "To'lov turi",
                 items: ["So'm", "Usd", "Rubl"],
               ),
               16.verticalSpace,
               CustomTextField(
-                borderColor: AppColors.grey2,
+                borderColor: context.isDarkMode
+                    ?  AppColors.grey808080
+                    : AppColors.grey2,
                 // contentPadding: EdgeInsets.symmetric(
                 //   vertical: 18.h,
                 //   horizontal: 12.w,
@@ -106,7 +105,9 @@ class CreateOrderScreen extends StatelessWidget {
               ),
               16.verticalSpace,
               CustomTextField(
-                borderColor: AppColors.grey2,
+                borderColor: context.isDarkMode
+                    ?  AppColors.grey808080
+                    : AppColors.grey2,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 12.h,
                   horizontal: 12.w,

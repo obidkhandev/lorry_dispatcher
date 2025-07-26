@@ -57,45 +57,50 @@ class _LocationListSectionState extends State<LocationListSection> {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: context.theme.cardColor,
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: AppColors.grey2),
-      ),
-      child: Column(
-        children: [
-          ReorderableListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.zero,
-            onReorder: _onReorder,
-            itemCount: locations.length,
-            itemBuilder: (context, index) {
-              return LocationItem(
-                onDelete: () {
-                  _removeLocation(index);
-                },
-                key: Key("${locations[index].name ?? 'unknown'}_$index"),
-                color: AppColors.transparent,
-                title: locations[index].name ?? 'Unknown',
-              );
-            },
-          ),
-          InkWell(
-            onTap: widget.onAddLocation,
-            child: DecoratedBox(
-              decoration: BoxDecoration(color: AppColors.white),
-              child: Row(
-                children: [
-                  Icon(Icons.add, size: 20.sp),
-                  Text(widget.title, style: AppTextStyles().body14w5),
-                ],
-              ),
+    return InkWell(
+      onTap: widget.onAddLocation,
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: context.theme.cardColor,
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: context.isDarkMode
+              ?  AppColors.grey808080
+              : AppColors.grey2),
+        ),
+        child: Column(
+          children: [
+            ReorderableListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.zero,
+              onReorder: _onReorder,
+              itemCount: locations.length,
+              itemBuilder: (context, index) {
+                return LocationItem(
+                  onDelete: () {
+                    _removeLocation(index);
+                  },
+                  key: Key("${locations[index].name ?? 'unknown'}_$index"),
+                  color: AppColors.transparent,
+                  title: locations[index].name ?? 'Unknown',
+                );
+              },
             ),
-          ),
-        ],
-      ).paddingAll(14.sp),
+            Row(
+              children: [
+                Icon(Icons.add, size: 20.sp),
+                10.horizontalSpace,
+                Text(
+                  widget.title,
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    fontSize: 14.sp,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ).paddingAll(14.sp),
+      ),
     );
   }
 }

@@ -58,6 +58,7 @@ class OrderInprogressCard extends StatelessWidget {
               Expanded(
                 child: CustomButton(
                   onTap: () {},
+                  height: 42.h,
                   bgColor: AppColors.primaryOpacity,
                   textColor: AppColors.primaryColor,
                   text: status == 1
@@ -69,15 +70,16 @@ class OrderInprogressCard extends StatelessWidget {
                       : S.of(context).unloaded,
                 ),
               ),
+              10.horizontalSpace,
               CustomIconWidget(
                 icon: AppIcons.location,
+                color: AppColors.primaryOpacity,
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (_) => DriverTrackingScreen(
                         startPoint: google.LatLng(41.3000, 69.3100),
-
                         // Toshkent markazi
                         endPoint: google.LatLng(
                           41.2995,
@@ -98,7 +100,7 @@ class OrderInprogressCard extends StatelessWidget {
             children: [
               Text("#955DA", style: context.theme.textTheme.titleSmall),
               Text(
-                DateTime.now().toTimeFormat(),
+                DateTime.now().toDateAndTimeFormat(),
                 style: context.theme.textTheme.titleSmall,
               ),
             ],

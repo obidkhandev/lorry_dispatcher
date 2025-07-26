@@ -21,7 +21,6 @@ class LocationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        10.verticalSpace,
         Row(
           children: [
             SvgPicture.asset(AppIcons.menuVertical),
@@ -50,9 +49,16 @@ class LocationItem extends StatelessWidget {
             ),
           ],
         ),
-        16.verticalSpace,
-        customDivider,
+        8.verticalSpace,
+        Divider(
+          color: context.isDarkMode?
+          AppColors.grey808080
+              : AppColors.grey200,
+          thickness: 1,
+          height: 0,
+        ),
+        8.verticalSpace,
       ],
-    ).paddingSymmetric(horizontal: 12.w);
+    );
   }
 }

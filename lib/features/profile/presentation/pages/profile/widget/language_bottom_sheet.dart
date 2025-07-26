@@ -49,7 +49,13 @@ class LanguageSelectionBottomSheet extends StatelessWidget {
                   Navigator.pop(context);
                 },
               ),
-              customDivider,
+              Divider(
+                color: context.isDarkMode?
+                AppColors.grey808080
+                    : AppColors.grey200,
+                thickness: 1,
+                height: 0,
+              ),
             ],
           )),
         ],

@@ -81,6 +81,7 @@ class AppIcons {
   static const String location = '$_basePath/location.svg';
   static const String routing = '$_basePath/routing.svg';
   static const String send = '$_basePath/send_rounded.svg';
+  static const String send2 = '$_basePath/send-2.svg';
   static const String attach = '$_basePath/attach-square.svg';
   static const String logo = '$_basePath/logo.svg';
   static const String lightLogo = '$_basePath/logo_light.svg';

@@ -98,7 +98,7 @@ class _OtpScreenState extends State<OtpScreen> {
             child: TextButton(
               onPressed: () {},
               child: Text(
-                "S.of(context).resendCode",
+                S.of(context).resendCode,
                 style: context.theme.textTheme.titleMedium?.copyWith(
                   color: AppColors.primaryColor,
                 ),

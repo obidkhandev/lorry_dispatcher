@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 // import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:intl/intl.dart';
 import 'package:lorry_dispatcher/core/utills/enums.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:math';
 
@@ -66,24 +67,24 @@ class MyFunctions {
   static String themeName(ThemeModeState mode, BuildContext context) {
     switch (mode) {
       case ThemeModeState.light:
-        return "S.of(context).light"; // "Light"
+        return S.of(context).light; // "Light"
       case ThemeModeState.dark:
-        return "S.of(context).dark"; // "Dark"
+        return S.of(context).dark; // "Dark"
       case ThemeModeState.auto:
       default:
-        return "S.of(context).auto"; // "Auto"
+        return S.of(context).auto; // "Auto"
     }
   }
 
   static String languageName(String code, BuildContext context) {
     switch (code) {
       case 'uz':
-        return "S.of(context).uzbek"; // "O'zbek"
+        return "O'zbek"; // "O'zbek"
       case 'ru':
-        return "S.of(context).russian"; // "Русский"
+        return "Русский"; // "Русский"
       case 'en':
       default:
-        return "S.of(context).english"; // "English"
+        return "English"; // "English"
     }
   }
 

@@ -33,7 +33,7 @@ class CustomYesNoDialog extends StatelessWidget {
             onPressed: isLoadingYes ? () {} : onYes,
             isDefaultAction: true,
             child: Text(
-              titleYes ?? "S.of(context).confirm",
+              titleYes ?? S.of(context).confirm,
               style: TextStyle(
                 color: isLoadingYes
                     ? CupertinoColors.inactiveGray
@@ -46,7 +46,7 @@ class CustomYesNoDialog extends StatelessWidget {
             onPressed: onNo,
             isDestructiveAction: true,
             child: Text(
-              titleNo ?? "S.of(context).cancel",
+              titleNo ?? S.of(context).cancel,
               style: TextStyle(
                 color: CupertinoColors.destructiveRed,
                 fontSize: 20,
@@ -77,14 +77,14 @@ class CustomYesNoDialog extends StatelessWidget {
                   textColor: AppColors.primaryColor,
                   borderColor: AppColors.primaryColor,
                   bgColor: AppColors.transparent,
-                  text: titleNo ?? "S.of(context).cancel",
+                  text: titleNo ?? S.of(context).cancel,
                 ),
               ),
               Expanded(
                 child: CustomButton(
                   height: 50.h,
                   onTap: isLoadingYes ? () {} : onYes,
-                  text: titleYes ?? "S.of(context).confirm",
+                  text: titleYes ?? S.of(context).confirm,
                 ),
               ),
             ],

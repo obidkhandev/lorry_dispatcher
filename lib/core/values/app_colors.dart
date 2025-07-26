@@ -47,6 +47,7 @@ class AppColors {
   static const grey4 = Color(0xFF393F48);
   static const dividerColor = Color(0xFFD7D8DD);
   static const secondary = Color(0xFFF1F1F1);
+  static const secondaryText = Color(0xFF0A1E56);
   static const borderSecondary = Color(0xFF8C919E);
   static const secondary2 = Color(0xFFF8F8FA);
   static const cff8989 = Color(0xFFFF8989);

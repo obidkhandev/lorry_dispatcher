@@ -273,6 +273,16 @@ class S {
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Resend code`
+  String get resendCode {
+    return Intl.message('Resend code', name: 'resendCode', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

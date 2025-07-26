@@ -107,7 +107,7 @@ class _SelectLocationFromMapScreenState
     return InkWell(
       onTap: () => _selectLocation(location),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 16.w),
+        padding: EdgeInsets.symmetric(vertical: 6.h,horizontal: 16.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           // border: isSelected
@@ -186,33 +186,36 @@ class _SelectLocationFromMapScreenState
   Widget _buildLocationsList() {
     if (_isSearching) {
       if (_filteredLocations.isEmpty) {
-        return Container(
-          padding: EdgeInsets.all(32.w),
-          child: Column(
-            children: [
-              Icon(Icons.search_off, size: 48.sp, color: AppColors.grey2),
-              16.verticalSpace,
-              Text(
-                "Hech narsa topilmadi",
-                style: context.theme.textTheme.titleMedium?.copyWith(
-                  color: AppColors.grey2,
+        return Center(
+          child: Container(
+            padding: EdgeInsets.all(32.w),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.search_off, size: 48.sp, color: AppColors.grey2),
+                16.verticalSpace,
+                Text(
+                  "Hech narsa topilmadi",
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    color: AppColors.grey2,
+                  ),
                 ),
-              ),
-              8.verticalSpace,
-              Text(
-                "Boshqa so'z bilan qidiring",
-                style: context.theme.textTheme.bodySmall?.copyWith(
-                  color: AppColors.grey2,
+                8.verticalSpace,
+                Text(
+                  "Boshqa so'z bilan qidiring",
+                  style: context.theme.textTheme.bodySmall?.copyWith(
+                    color: AppColors.grey2,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       }
 
       return ListView.builder(
         shrinkWrap: true,
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: _filteredLocations.length,
         itemBuilder: (context, index) {
@@ -251,6 +254,7 @@ class _SelectLocationFromMapScreenState
                 ),
 
                 onCameraMove: (CameraPosition position) {
+                  // print("point ${position.target}");
                   context.read<MapBloc>().add(
                     UpdateCameraPositionEvent(
                       latitude: position.target.latitude,
@@ -329,12 +333,16 @@ class _SelectLocationFromMapScreenState
               ),
 
               // Center marker (for location selection)
-              Center(child: SvgPicture.asset(AppIcons.currentLocation)),
+              Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.46,
+                width: MediaQuery.of(context).size.width,
+                child: SvgPicture.asset(AppIcons.currentLocation),
+              ),
 
               // Enhanced bottom sheet
               DraggableScrollableSheet(
                 initialChildSize: 0.4,
-                minChildSize: 0.4,
+                minChildSize: 0.35,
                 maxChildSize: 0.8,
                 builder: (context, scrollController) {
                   return Container(
@@ -361,7 +369,7 @@ class _SelectLocationFromMapScreenState
                               // Drag handle
                               Center(
                                 child: Container(
-                                  width: 40.w,
+                                  width: 60.w,
                                   height: 4.h,
                                   margin: EdgeInsets.only(top: 8.h),
                                   decoration: BoxDecoration(
@@ -413,7 +421,7 @@ class _SelectLocationFromMapScreenState
                           left: 16.w,
                           right: 16.w,
                           child: ColoredBox(
-                            color: AppColors.white,
+                            color: context.theme.cardColor,
                             child: CustomButton(
                               height: 55.h,
                               isLoading: state.isLoading,

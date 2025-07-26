@@ -18,6 +18,7 @@ class CustomModalBottomSheet extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           // mainAxisSize: M,
           children: [
+            46.horizontalSpace,
             const Spacer(),
             Text(
               title,
@@ -46,7 +47,13 @@ class CustomModalBottomSheet extends StatelessWidget {
             horizontal: 16.w
         ),
         16.verticalSpace,
-        customDivider,
+        Divider(
+          color: context.isDarkMode?
+          AppColors.grey808080
+              : AppColors.grey200,
+          thickness: 1,
+          height: 0,
+        ),
         content?.paddingAll(20.sp) ?? const SizedBox.shrink(),
       ],
     ).paddingOnly(

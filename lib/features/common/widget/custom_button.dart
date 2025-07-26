@@ -96,6 +96,7 @@ class _CustomButtonState extends State<CustomButton> {
                         widget.icon != null
                             ? SvgPicture.asset(
                                 widget.icon ?? "",
+                                width: 20.w,
                                 colorFilter: widget.iconC != null? ColorFilter.mode(
                                   widget.iconC ??
                                       widget.textColor ??

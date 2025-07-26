@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceAndRating": MessageLookupByLibrary.simpleMessage(
       "Balance and Rating",
     ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "comments": MessageLookupByLibrary.simpleMessage("Comments"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
     "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -60,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "poweredBy": MessageLookupByLibrary.simpleMessage("©️ Powered by IMB Tech"),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage("Select language"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
