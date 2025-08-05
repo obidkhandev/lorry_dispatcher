@@ -29,9 +29,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
       ),
       appBar: CustomAppBar(title: "Register"),
-      backgroundColor: context.isDarkMode
-          ? context.theme.scaffoldBackgroundColor
-          : AppColors.white,
       body: ListView(
         padding: EdgeInsets.zero,
         children: [

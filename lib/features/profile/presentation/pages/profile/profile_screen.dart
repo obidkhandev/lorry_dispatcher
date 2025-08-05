@@ -165,7 +165,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ProfileActionModel(
                     title: "Rating 5", // Dynamic, not replaced
                     icColor: AppColors.white,
-                    icon: AppIcons.creditCard,
+                    icon: AppIcons.star,
                   ),
                 ],
               ).paddingAll(12.sp),
@@ -264,14 +264,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       await MyFunctions.launchMyUrl(ListAPI.baseUrl);
                     },
                     icon: AppIcons.infoCircle,
-                  ),
-                  ProfileActionModel(
-                    title: S.of(context).licenseAgreement, // Replaced "license_agreement"
-                    icColor: AppColors.white,
-                    onTap: () async {
-                      await MyFunctions.launchMyUrl(ListAPI.baseUrl);
-                    },
-                    icon: AppIcons.home,
                   ),
                   ProfileActionModel(
                     title: S.of(context).version, // Replaced "Version"

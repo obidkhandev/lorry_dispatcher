@@ -9,11 +9,9 @@ class OrderCard extends StatefulWidget {
 }
 
 class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
-  // Separate states for each button
   bool _isOffersExpanded = false;
   bool _isEmptyTrucksExpanded = false;
 
-  // Separate animation controllers for each button
   late AnimationController _offersAnimationController;
   late AnimationController _emptyTrucksAnimationController;
   late Animation<double> _offersAnimation;
@@ -36,7 +34,6 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
   void initState() {
     super.initState();
 
-    // Initialize first animation controller (Offers)
     _offersAnimationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -46,7 +43,6 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
       curve: Curves.easeInOut,
     );
 
-    // Initialize second animation controller (Empty Trucks)
     _emptyTrucksAnimationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this,
@@ -114,7 +110,6 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                 color: context.theme.cardColor,
                 padding: EdgeInsets.zero,
                 onSelected: (String value) {
-                  // Handle menu item selection
                   switch (value) {
                     case 'edit':
                       break;
@@ -134,7 +129,7 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                         color: context.theme.iconTheme.color,
                       ),
                       title: Text(
-                        'Ulashish',
+                        S.of(context).share, // Localized "Share"
                         style: context.theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.sp,
@@ -150,10 +145,10 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                       leading: SvgPicture.asset(
                         AppIcons.edit2,
                         width: 18.w,
-                        color: context.theme.iconTheme.color
+                        color: context.theme.iconTheme.color,
                       ),
                       title: Text(
-                        'O\'zgartirish',
+                        S.of(context).edit, // Localized "Edit"
                         style: context.theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.sp,
@@ -168,7 +163,7 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                     child: ListTile(
                       leading: SvgPicture.asset(AppIcons.delete, width: 18.w),
                       title: Text(
-                        'O\'chirish',
+                        S.of(context).delete, // Localized "Delete"
                         style: context.theme.textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w500,
                           fontSize: 14.sp,
@@ -192,17 +187,23 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          20.verticalSpace,
 
           // Truck type
-          TitleWithIcon(title: "Ref fura", icon: AppIcons.truckFast),
+          TitleWithIcon(
+            title: S.of(context).truckType, // Localized "Refrigerated Truck"
+            icon: AppIcons.truckFast,
+          ),
           8.verticalSpace,
           TitleWithIcon(
-            title: "Kafel bor, ertaga yuklanadi Kafel bor, ertaga yuklanadi",
+            title: S.of(context).description, // Localized "Tiles available, loading tomorrow"
             icon: AppIcons.messageText,
           ),
           8.verticalSpace,
-          TitleWithIcon(title: "2 000 000", icon: AppIcons.creditCard),
+          TitleWithIcon(
+            title: "2 000 000 ${S.of(context).sum}", // Localized currency "Sum"
+            icon: AppIcons.creditCard,
+          ),
           16.verticalSpace,
 
           // Buttons row
@@ -224,12 +225,11 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                         children: [
                           Spacer(),
                           Text(
-                            S.of(context).offers,
-                            style: context.theme.textTheme.titleMedium
-                                ?.copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontSize: 14.sp,
-                                ),
+                            S.of(context).offers, // Localized "Offers"
+                            style: context.theme.textTheme.titleMedium?.copyWith(
+                              color: AppColors.primaryColor,
+                              fontSize: 14.sp,
+                            ),
                           ),
                           const SizedBox(width: 8),
                           DecoratedBox(
@@ -239,12 +239,11 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                             ),
                             child: Text(
                               '12',
-                              style: context.theme.textTheme.titleMedium
-                                  ?.copyWith(
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12.sp,
-                                  ),
+                              style: context.theme.textTheme.titleMedium?.copyWith(
+                                color: AppColors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12.sp,
+                              ),
                             ).paddingAll(6.sp),
                           ),
                           Spacer(),
@@ -279,12 +278,11 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
                         children: [
                           Spacer(),
                           Text(
-                            "Bo'sh mashinalar",
-                            style: context.theme.textTheme.titleMedium
-                                ?.copyWith(
-                                  color: AppColors.primaryColor,
-                                  fontSize: 14.sp,
-                                ),
+                            S.of(context).emptyTrucks, // Localized "Empty Trucks"
+                            style: context.theme.textTheme.titleMedium?.copyWith(
+                              color: AppColors.primaryColor,
+                              fontSize: 14.sp,
+                            ),
                           ),
                           Spacer(),
                           AnimatedRotation(
@@ -320,71 +318,71 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
             },
             child: _isOffersExpanded
                 ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Takliflar',
-                        style: context.theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      8.verticalSpace,
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (_, index) {
-                          final suggestion = suggestions[index];
-                          return InkWell(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).suggestions, // Localized "Suggestions"
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                8.verticalSpace,
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, index) {
+                    final suggestion = suggestions[index];
+                    return InkWell(
+                      onTap: () {
+                        context.push(AppRoutes.aboutDriver);
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              suggestion['name'],
+                              style: context.theme.textTheme.titleMedium,
+                            ),
+                          ),
+                          const Spacer(),
+                          Expanded(
+                            flex: 1,
+                            child: TitleWithIcon(
+                              title: suggestion['rating'].toString(),
+                              icon: AppIcons.star,
+                              icColor: AppColors.orange,
+                            ),
+                          ),
+                          Spacer(),
+                          Expanded(
+                            flex: 2,
+                            child: TitleWithIcon(
+                              title: "${suggestion['price']} ${S.of(context).sum}", // Localized currency
+                              icon: AppIcons.creditCard,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          CustomIconWidget(
+                            color: AppColors.primaryOpacity,
+                            icon: AppIcons.chervonRight,
                             onTap: () {
                               context.push(AppRoutes.aboutDriver);
                             },
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    suggestion['name'],
-                                    style: context.theme.textTheme.titleMedium,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Expanded(
-                                  flex: 1,
-                                  child: TitleWithIcon(
-                                    title: "4.5",
-                                    icon: AppIcons.star,
-                                    icColor: AppColors.orange,
-                                  ),
-                                ),
-                                Spacer(),
-                                Expanded(
-                                  flex: 2,
-                                  child: TitleWithIcon(
-                                    title: "2 000 000",
-                                    icon: AppIcons.creditCard,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                CustomIconWidget(
-                                  color: AppColors.primaryOpacity,
-                                  icon: AppIcons.chervonRight,
-                                  onTap: () {
-                                    context.push(AppRoutes.aboutDriver);
-                                  },
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        separatorBuilder: (_, index) {
-                          return 6.verticalSpace;
-                        },
-                        itemCount: suggestions.length,
+                          ),
+                        ],
                       ),
-                      16.verticalSpace,
-                    ],
-                  )
+                    );
+                  },
+                  separatorBuilder: (_, index) {
+                    return 6.verticalSpace;
+                  },
+                  itemCount: suggestions.length,
+                ),
+                16.verticalSpace,
+              ],
+            )
                 : SizedBox.shrink(),
           ),
 
@@ -402,77 +400,75 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
             },
             child: _isEmptyTrucksExpanded
                 ? Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Bo'sh mashinalar",
-                        style: context.theme.textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      8.verticalSpace,
-                      ListView.separated(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (_, index) {
-                          final truck = emptyTrucks[index];
-                          return InkWell(
-                            onTap: () {
-                              context.push(AppRoutes.aboutDriver, extra: false);
-                            },
-                            child: Row(
-                              // crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Expanded(
-                                  flex: 3,
-                                  child: Text(
-                                    truck['name'],
-                                    maxLines: 1,
-                                    overflow: TextOverflow.visible,
-                                    style: context.theme.textTheme.titleMedium,
-                                  ),
-                                ),
-                                const Spacer(),
-                                Expanded(
-                                  flex: 2,
-                                  child: TitleWithIcon(
-                                    title: truck['rating'].toString(),
-                                    icon: AppIcons.star,
-                                    icColor: AppColors.orange,
-                                  ),
-                                ),
-                                // Spacer(),
-                                Expanded(
-                                  flex: 2,
-                                  child: TitleWithIcon(
-                                    title: truck['location'],
-                                    icon: AppIcons.location,
-                                  ),
-                                ),
-                                const SizedBox(width: 8),
-                                CustomIconWidget(
-                                  color: AppColors.primaryOpacity,
-                                  icon: AppIcons.chervonRight,
-                                  onTap: () {
-                                    context.push(
-                                      AppRoutes.aboutDriver,
-                                      extra: false,
-                                    );
-                                  },
-                                ),
-                              ],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).emptyTrucks, // Localized "Empty Trucks"
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
+                8.verticalSpace,
+                ListView.separated(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  itemBuilder: (_, index) {
+                    final truck = emptyTrucks[index];
+                    return InkWell(
+                      onTap: () {
+                        context.push(AppRoutes.aboutDriver, extra: false);
+                      },
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Text(
+                              truck['name'],
+                              maxLines: 1,
+                              overflow: TextOverflow.visible,
+                              style: context.theme.textTheme.titleMedium,
                             ),
-                          );
-                        },
-                        separatorBuilder: (_, index) {
-                          return 6.verticalSpace;
-                        },
-                        itemCount: emptyTrucks.length,
+                          ),
+                          const Spacer(),
+                          Expanded(
+                            flex: 2,
+                            child: TitleWithIcon(
+                              title: truck['rating'].toString(),
+                              icon: AppIcons.star,
+                              icColor: AppColors.orange,
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: TitleWithIcon(
+                              title: truck['location'],
+                              icon: AppIcons.location,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          CustomIconWidget(
+                            color: AppColors.primaryOpacity,
+                            icon: AppIcons.chervonRight,
+                            onTap: () {
+                              context.push(
+                                AppRoutes.aboutDriver,
+                                extra: false,
+                              );
+                            },
+                          ),
+                        ],
                       ),
-                      16.verticalSpace,
-                    ],
-                  )
+                    );
+                  },
+                  separatorBuilder: (_, index) {
+                    return 6.verticalSpace;
+                  },
+                  itemCount: emptyTrucks.length,
+                ),
+                16.verticalSpace,
+              ],
+            )
                 : SizedBox.shrink(),
           ),
 
@@ -481,7 +477,10 @@ class _OrderCardState extends State<OrderCard> with TickerProviderStateMixin {
             children: [
               Text('#95SDA', style: context.theme.textTheme.titleSmall),
               const Spacer(),
-              Text(DateTime.now().toDateAndTimeFormat(), style: context.theme.textTheme.titleSmall),
+              Text(
+                DateTime.now().toDateAndTimeFormat(),
+                style: context.theme.textTheme.titleMedium,
+              ),
             ],
           ),
         ],

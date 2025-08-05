@@ -37,7 +37,7 @@ class DriverJoblessCard extends StatelessWidget {
           ),
           if (isActive)
             CustomButton(
-              text: "Taklif yuborish",
+              text: S.of(context).sendOffer,
               icon: AppIcons.send2,
               onTap: onTap,
               textColor: AppColors.primaryColor,

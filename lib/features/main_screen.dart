@@ -41,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
 
     List<String> labels = [
      S.of(context).home,
-      "status",
+      S.of(context).status,
       S.of(context).profile,
     ];
 

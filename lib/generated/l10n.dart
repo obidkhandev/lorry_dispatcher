@@ -283,6 +283,91 @@ class S {
   String get resendCode {
     return Intl.message('Resend code', name: 'resendCode', desc: '', args: []);
   }
+
+  /// `Status`
+  String get status {
+    return Intl.message('Status', name: 'status', desc: '', args: []);
+  }
+
+  /// `Drivers`
+  String get drivers {
+    return Intl.message('Drivers', name: 'drivers', desc: '', args: []);
+  }
+
+  /// `Suggestions`
+  String get suggestions {
+    return Intl.message('Suggestions', name: 'suggestions', desc: '', args: []);
+  }
+
+  /// `Empty Trucks`
+  String get emptyTrucks {
+    return Intl.message(
+      'Empty Trucks',
+      name: 'emptyTrucks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share`
+  String get share {
+    return Intl.message('Share', name: 'share', desc: '', args: []);
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Refrigerated Truck`
+  String get truckType {
+    return Intl.message(
+      'Refrigerated Truck',
+      name: 'truckType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tiles available, loading tomorrow`
+  String get description {
+    return Intl.message(
+      'Tiles available, loading tomorrow',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sum`
+  String get sum {
+    return Intl.message('Sum', name: 'sum', desc: '', args: []);
+  }
+
+  /// `Send offer`
+  String get sendOffer {
+    return Intl.message('Send offer', name: 'sendOffer', desc: '', args: []);
+  }
+
+  /// `Available`
+  String get jobless {
+    return Intl.message('Available', name: 'jobless', desc: '', args: []);
+  }
+
+  /// `Busy`
+  String get busy {
+    return Intl.message('Busy', name: 'busy', desc: '', args: []);
+  }
+
+  /// `Under Repair`
+  String get underRepair {
+    return Intl.message(
+      'Under Repair',
+      name: 'underRepair',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

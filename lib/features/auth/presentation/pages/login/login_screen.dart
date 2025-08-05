@@ -11,9 +11,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       // appBar: AppBar(),
-      backgroundColor: context.isDarkMode
-          ? context.theme.scaffoldBackgroundColor
-          : AppColors.white,
       body: Column(
         children: [
           100.verticalSpace,

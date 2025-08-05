@@ -31,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "balanceAndRating": MessageLookupByLibrary.simpleMessage(
       "Balance and Rating",
     ),
+    "busy": MessageLookupByLibrary.simpleMessage("Busy"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "comments": MessageLookupByLibrary.simpleMessage("Comments"),
     "completed": MessageLookupByLibrary.simpleMessage("Completed"),
@@ -38,15 +39,22 @@ class MessageLookup extends MessageLookupByLibrary {
     "confirmLogout": MessageLookupByLibrary.simpleMessage("Confirm Logout"),
     "createOrder": MessageLookupByLibrary.simpleMessage("Create Order"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAllProfiles": MessageLookupByLibrary.simpleMessage(
       "Delete All Profiles",
     ),
     "deleteAndLogout": MessageLookupByLibrary.simpleMessage(
       "Delete and Logout",
     ),
+    "description": MessageLookupByLibrary.simpleMessage(
+      "Tiles available, loading tomorrow",
+    ),
+    "drivers": MessageLookupByLibrary.simpleMessage("Drivers"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "emptyTrucks": MessageLookupByLibrary.simpleMessage("Empty Trucks"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "inProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+    "jobless": MessageLookupByLibrary.simpleMessage("Available"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "licenseAgreement": MessageLookupByLibrary.simpleMessage(
       "License Agreement",
@@ -63,8 +71,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend code"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage("Select language"),
+    "sendOffer": MessageLookupByLibrary.simpleMessage("Send offer"),
     "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+    "share": MessageLookupByLibrary.simpleMessage("Share"),
+    "status": MessageLookupByLibrary.simpleMessage("Status"),
+    "suggestions": MessageLookupByLibrary.simpleMessage("Suggestions"),
+    "sum": MessageLookupByLibrary.simpleMessage("Sum"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "truckType": MessageLookupByLibrary.simpleMessage("Refrigerated Truck"),
+    "underRepair": MessageLookupByLibrary.simpleMessage("Under Repair"),
     "unloaded": MessageLookupByLibrary.simpleMessage("Unloaded"),
     "version": MessageLookupByLibrary.simpleMessage("Version"),
   };

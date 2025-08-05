@@ -3,8 +3,7 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/dr
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_underrapair_card.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/drivers_listview.dart';
 import 'package:lorry_dispatcher/features/home/presentation/part/send_offer_bottom_sheet.dart';
-
-import '../../../../../../export.dart';
+import 'package:lorry_dispatcher/export.dart';
 
 class DriversPage extends StatefulWidget {
   const DriversPage({super.key});
@@ -13,8 +12,7 @@ class DriversPage extends StatefulWidget {
   State<DriversPage> createState() => _DriversPageState();
 }
 
-class _DriversPageState extends State<DriversPage>
-    with TickerProviderStateMixin {
+class _DriversPageState extends State<DriversPage> with TickerProviderStateMixin {
   late TabController tabController;
   int selectedTabIndex = 0;
 
@@ -49,7 +47,11 @@ class _DriversPageState extends State<DriversPage>
                 selectedTabIndex = v;
               });
             },
-            tabTitles: ["Bo'sh", "Band", "Tamirda"],
+            tabTitles: [
+              S.of(context).jobless, // Localized "Available"
+              S.of(context).busy, // Localized "Busy"
+              S.of(context).underRepair, // Localized "Under Repair"
+            ],
           ),
         ).paddingSymmetric(horizontal: 16.w),
         Expanded(

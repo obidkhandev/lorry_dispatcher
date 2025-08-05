@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late TabController tabController;
   int selectedTabIndex = 0;
-  List<String> titles = ["Buyurtmalar", "Haydovchilar"];
 
   @override
   void initState() {
@@ -23,6 +22,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    List<String> titles = [S.of(context).orders, S.of(context).drivers];
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButton: SizedBox(

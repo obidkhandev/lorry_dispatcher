@@ -2,11 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
-		<!-- Other keys unchanged -->
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
 		<key>CFBundleDisplayName</key>
-		<string>Lorry Dispatcher</string>
+		<string>Lorry Driver</string>
 		<key>CFBundleExecutable</key>
 		<string>$(EXECUTABLE_NAME)</string>
 		<key>CFBundleIdentifier</key>
@@ -14,7 +13,7 @@
 		<key>CFBundleInfoDictionaryVersion</key>
 		<string>6.0</string>
 		<key>CFBundleName</key>
-		<string>lorry_dispatcher</string>
+		<string>lorry_driver</string>
 		<key>CFBundlePackageType</key>
 		<string>APPL</string>
 		<key>CFBundleShortVersionString</key>
@@ -29,10 +28,10 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
-		<key>NSLocationWhenInUseUsageDescription</key>
-		<string>This app needs your location to provide location-based features.</string>
-		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-		<string>This app needs your location to provide location-based features even in the background.</string>
+
+	    <key>NSLocationWhenInUseUsageDescription</key>
+        <string>We need your location to provide location-based services.</string>
+
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -50,11 +49,7 @@
 		<true/>
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
-		<!-- Ensure status bar is visible -->
 		<key>UIStatusBarHidden</key>
 		<false/>
-		<!-- Allow Flutter to control status bar appearance -->
-		<key>UIViewControllerBasedStatusBarAppearance</key>
-		<true/>
 	</dict>
 </plist>
