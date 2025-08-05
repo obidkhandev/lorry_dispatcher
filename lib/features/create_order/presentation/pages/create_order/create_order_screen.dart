@@ -8,6 +8,7 @@ import 'package:lorry_dispatcher/features/create_order/data/models/country_regio
 import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_order_bloc.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/widget/location_list_section.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class CreateOrderScreen extends StatelessWidget {
   const CreateOrderScreen({super.key});
@@ -40,7 +41,10 @@ class CreateOrderScreen extends StatelessWidget {
                         AddPickupLocationEvent(
                           CountryRegionModel(
                             name: e.title,
-                            latLng: LatLng(e.latitude, e.longitude),
+                            latLng: Point(
+                              latitude: e.latitude,
+                              longitude: e.longitude,
+                            ),
                           ),
                         ),
                       );
@@ -63,7 +67,10 @@ class CreateOrderScreen extends StatelessWidget {
                         AddDropoffLocationEvent(
                           CountryRegionModel(
                             name: e.title,
-                            latLng: LatLng(e.latitude, e.longitude),
+                            latLng: Point(
+                              latitude: e.latitude,
+                              longitude: e.longitude,
+                            ),
                           ),
                         ),
                       );
@@ -95,7 +102,7 @@ class CreateOrderScreen extends StatelessWidget {
               16.verticalSpace,
               CustomTextField(
                 borderColor: context.isDarkMode
-                    ?  AppColors.grey808080
+                    ? AppColors.grey808080
                     : AppColors.grey2,
                 // contentPadding: EdgeInsets.symmetric(
                 //   vertical: 18.h,
@@ -106,7 +113,7 @@ class CreateOrderScreen extends StatelessWidget {
               16.verticalSpace,
               CustomTextField(
                 borderColor: context.isDarkMode
-                    ?  AppColors.grey808080
+                    ? AppColors.grey808080
                     : AppColors.grey2,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 12.h,

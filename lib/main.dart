@@ -28,6 +28,7 @@ Future<void> main() async {
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
 
+
   runApp(const MyApp());
 }
 
@@ -42,7 +43,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => inject<SettingsCubit>()..loadAppLang()..loadTheme(),
         ),
-        BlocProvider(create: (context) => DriverTrackingBloc()),
         BlocProvider(create: (context) => CreateOrderBloc()),
         BlocProvider(create: (context) => MapBloc()),
       ],

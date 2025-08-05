@@ -30,7 +30,6 @@ export 'package:lorry_dispatcher/features/status/presentation/pages/status/widge
 export 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/status_inprogress_page.dart';
 export 'package:lorry_dispatcher/generated/l10n.dart';
 
-export 'package:google_maps_flutter/google_maps_flutter.dart';
 export 'package:lorry_dispatcher/core/utills/date_extension.dart';
 export 'package:lorry_dispatcher/core/utills/resources.dart';
 export 'package:lorry_dispatcher/features/common/widget/custom_icon_widget.dart';

@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/export.dart';
+import 'package:lorry_dispatcher/features/common/widget/loading_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 import 'package:lorry_dispatcher/features/create_order/data/mock.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
@@ -8,6 +10,7 @@ import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_event.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_state.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/widget/location_item.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class SelectLocationFromMapScreen extends StatefulWidget {
   const SelectLocationFromMapScreen({super.key});
@@ -21,59 +24,16 @@ class _SelectLocationFromMapScreenState
     extends State<SelectLocationFromMapScreen> {
   final TextEditingController _searchController = TextEditingController();
   LocationItemModel? _selectedLocation;
-  List<LocationItemModel> _filteredLocations = [];
-  bool _isSearching = false;
 
   @override
   void initState() {
     super.initState();
-    _initializeLocations();
-    _searchController.addListener(_onSearchChanged);
   }
 
   @override
   void dispose() {
-    _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
     super.dispose();
-  }
-
-  void _initializeLocations() {
-    setState(() {
-      _filteredLocations = [...recentLocations];
-    });
-  }
-
-  void _onSearchChanged() {
-    final query = _searchController.text.toLowerCase().trim();
-
-    setState(() {
-      _isSearching = query.isNotEmpty;
-
-      if (query.isEmpty) {
-        _filteredLocations = [...recentLocations];
-      } else {
-        // First filter from saved and recent locations
-        final localResults = [...recentLocations]
-            .where(
-              (location) =>
-                  location.title.toLowerCase().contains(query) ||
-                  location.subtitle.toLowerCase().contains(query),
-            )
-            .toList();
-
-        // Then add search results that don't match local results
-        final searchResults = searchResultsData
-            .where(
-              (location) =>
-                  location.title.toLowerCase().contains(query) ||
-                  location.subtitle.toLowerCase().contains(query),
-            )
-            .toList();
-
-        _filteredLocations = [...localResults, ...searchResults];
-      }
-    });
   }
 
   void _selectLocation(LocationItemModel location) {
@@ -82,10 +42,13 @@ class _SelectLocationFromMapScreenState
       _searchController.text = location.title;
     });
 
-    context.read<MapBloc>().state.controller?.animateCamera(
+    context.read<MapBloc>().state.controller?.moveCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          target: LatLng(location.latitude, location.longitude),
+          target: Point(
+            latitude: location.latitude,
+            longitude: location.longitude,
+          ),
           zoom: 15,
         ),
       ),
@@ -107,7 +70,7 @@ class _SelectLocationFromMapScreenState
     return InkWell(
       onTap: () => _selectLocation(location),
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: 6.h,horizontal: 16.w),
+        padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 16.w),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.r),
           // border: isSelected
@@ -183,58 +146,6 @@ class _SelectLocationFromMapScreenState
     );
   }
 
-  Widget _buildLocationsList() {
-    if (_isSearching) {
-      if (_filteredLocations.isEmpty) {
-        return Center(
-          child: Container(
-            padding: EdgeInsets.all(32.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(Icons.search_off, size: 48.sp, color: AppColors.grey2),
-                16.verticalSpace,
-                Text(
-                  "Hech narsa topilmadi",
-                  style: context.theme.textTheme.titleMedium?.copyWith(
-                    color: AppColors.grey2,
-                  ),
-                ),
-                8.verticalSpace,
-                Text(
-                  "Boshqa so'z bilan qidiring",
-                  style: context.theme.textTheme.bodySmall?.copyWith(
-                    color: AppColors.grey2,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      }
-
-      return ListView.builder(
-        shrinkWrap: true,
-        padding: EdgeInsets.zero,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: _filteredLocations.length,
-        itemBuilder: (context, index) {
-          return _buildLocationItem(_filteredLocations[index]);
-        },
-      );
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (recentLocations.isNotEmpty) ...[
-          _buildSectionHeader("Yaqinda qidirilgan"),
-          ...recentLocations.map((location) => _buildLocationItem(location)),
-        ],
-      ],
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,30 +154,10 @@ class _SelectLocationFromMapScreenState
           final bloc = context.read<MapBloc>();
           return Stack(
             children: [
-              // Google Map
-              GoogleMap(
-                onMapCreated: (GoogleMapController controller) {
+              YandexMap(
+                onMapCreated: (YandexMapController controller) {
                   bloc.add(InitializeMapEvent(controller));
                 },
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(state.latitude, state.longitude),
-                  zoom: state.zoom,
-                ),
-
-                onCameraMove: (CameraPosition position) {
-                  // print("point ${position.target}");
-                  context.read<MapBloc>().add(
-                    UpdateCameraPositionEvent(
-                      latitude: position.target.latitude,
-                      longitude: position.target.longitude,
-                      zoom: position.zoom,
-                    ),
-                  );
-                },
-                markers: state.markers,
-                myLocationEnabled: true,
-                myLocationButtonEnabled: false,
-                zoomControlsEnabled: false,
               ),
 
               Positioned(
@@ -292,18 +183,6 @@ class _SelectLocationFromMapScreenState
                 child: Column(
                   children: [
                     FloatingActionButton(
-                      heroTag: "find_me",
-                      onPressed: () {
-                        context.read<MapBloc>().add(GetUserLocationEvent());
-                      },
-                      backgroundColor: context.theme.cardColor,
-                      child: Icon(
-                        Icons.my_location,
-                        color: AppColors.primaryColor,
-                      ),
-                    ),
-                    10.verticalSpace,
-                    FloatingActionButton(
                       heroTag: "zoom_in",
                       onPressed: () {
                         context.read<MapBloc>().add(ZoomInEvent());
@@ -328,11 +207,22 @@ class _SelectLocationFromMapScreenState
                         color: AppColors.primaryColor,
                       ),
                     ),
+                    10.verticalSpace,
+                    FloatingActionButton(
+                      heroTag: "find_me",
+                      onPressed: () {
+                        context.read<MapBloc>().add(GetUserLocationEvent());
+                      },
+                      backgroundColor: context.theme.cardColor,
+                      child: Icon(
+                        Icons.my_location,
+                        color: AppColors.primaryColor,
+                      ),
+                    ),
                   ],
                 ),
               ),
 
-              // Center marker (for location selection)
               Positioned(
                 bottom: MediaQuery.of(context).size.height * 0.46,
                 width: MediaQuery.of(context).size.width,
@@ -389,6 +279,11 @@ class _SelectLocationFromMapScreenState
                                 textEditingController: _searchController,
                                 hintText: "Manzil qidiring...",
                                 borderColor: AppColors.grey2,
+                                onChange: (v) {
+                                  context.read<MapBloc>().add(
+                                    SearchByQueryEvent(v),
+                                  );
+                                },
                                 leadingWidget: Icon(
                                   Icons.search,
                                   color: AppColors.grey2,
@@ -400,19 +295,98 @@ class _SelectLocationFromMapScreenState
                                           _searchController.clear();
                                           _selectedLocation = null;
                                         },
-                                        icon: Icon(
-                                          Icons.clear,
-                                          color: AppColors.grey2,
-                                          size: 20.sp,
-                                        ),
+                                        icon: state.isLoading
+                                            ? CupertinoActivityIndicator(
+                                                color: AppColors.primaryColor,
+                                              )
+                                            : Icon(
+                                                Icons.clear,
+                                                color: AppColors.grey2,
+                                                size: 20.sp,
+                                              ),
                                       )
                                     : null,
                               ).paddingSymmetric(horizontal: 16.w),
 
-                              // Scrollable location list
-                              _buildLocationsList(),
+                              BlocBuilder<MapBloc, MapState>(
+                                builder: (context, searchLocation) {
+                                  if (searchLocation.suggestionItem.isEmpty) {
+                                    return Center(
+                                      child: Container(
+                                        padding: EdgeInsets.all(32.w),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.search_off,
+                                              size: 48.sp,
+                                              color: AppColors.grey2,
+                                            ),
+                                            16.verticalSpace,
+                                            Text(
+                                              "Hech narsa topilmadi",
+                                              style: context
+                                                  .theme
+                                                  .textTheme
+                                                  .titleMedium
+                                                  ?.copyWith(
+                                                    color: AppColors.grey2,
+                                                  ),
+                                            ),
+                                            8.verticalSpace,
+                                            Text(
+                                              "Boshqa so'z bilan qidiring",
+                                              style: context
+                                                  .theme
+                                                  .textTheme
+                                                  .bodySmall
+                                                  ?.copyWith(
+                                                    color: AppColors.grey2,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    padding: EdgeInsets.zero,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount:
+                                        searchLocation.suggestionItem.length,
+                                    itemBuilder: (context, index) {
+                                      final item =
+                                          searchLocation.suggestionItem[index];
 
-                              // Bottom buttons
+                                      return _buildLocationItem(
+                                        LocationItemModel(
+                                          title: item.title,
+                                          subtitle: item.displayText,
+                                          latitude: item.center?.latitude ?? 0,
+                                          longitude:
+                                              item.center?.longitude ?? 0,
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (recentLocations.isNotEmpty) ...[
+                                    _buildSectionHeader("Yaqinda qidirilgan"),
+                                    ...recentLocations.map(
+                                      (location) =>
+                                          _buildLocationItem(location),
+                                    ),
+                                  ],
+                                ],
+                              ),
                             ],
                           ),
                         ),
@@ -424,7 +398,6 @@ class _SelectLocationFromMapScreenState
                             color: context.theme.cardColor,
                             child: CustomButton(
                               height: 55.h,
-                              isLoading: state.isLoading,
                               text: _selectedLocation != null
                                   ? "Tanlangan manzil bilan davom etish"
                                   : "Joriy joylashuv bilan davom etish",

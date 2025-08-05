@@ -1,8 +1,8 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class CountryRegionModel{
   final String name;
-  final LatLng latLng;
+  final Point latLng;
 
   CountryRegionModel({required this.name, required this.latLng});
 }

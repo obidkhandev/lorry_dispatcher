@@ -1,9 +1,9 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 abstract class MapEvent {}
 
 class InitializeMapEvent extends MapEvent {
-  final GoogleMapController controller;
+  final YandexMapController controller;
 
   InitializeMapEvent(this.controller);
 }
@@ -13,6 +13,14 @@ class GetUserLocationEvent extends MapEvent {}
 class ZoomInEvent extends MapEvent {}
 
 class ZoomOutEvent extends MapEvent {}
+
+class SearchByQueryEvent extends MapEvent {
+  final String query;
+
+  SearchByQueryEvent(this.query);
+}
+
+class SearchByPointEvent extends MapEvent {}
 
 class UpdateCameraPositionEvent extends MapEvent {
   final double latitude;

@@ -1,15 +1,16 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapState {
   final double latitude;
   final double longitude;
   final double zoom;
   final bool isInitialized;
-  final GoogleMapController? controller;
+  final YandexMapController? controller;
   final bool isLoading;
   final String? error;
   final bool isUserLocation;
-  final Set<Marker> markers; // Yangi xususiyat
+  final List<SuggestItem> suggestionItem;
+  final String? currentLocationName;
 
   const MapState({
     required this.latitude,
@@ -19,8 +20,9 @@ class MapState {
     this.controller,
     this.isLoading = false,
     this.error,
+    this.currentLocationName = '',
+    this.suggestionItem = const [],
     this.isUserLocation = false,
-    this.markers = const {}, // Default bo'sh markerlar to'plami
   });
 
   MapState copyWith({
@@ -28,11 +30,12 @@ class MapState {
     double? longitude,
     double? zoom,
     bool? isInitialized,
-    GoogleMapController? controller,
+    YandexMapController? controller,
     bool? isLoading,
     String? error,
     bool? isUserLocation,
-    Set<Marker>? markers,
+    List<SuggestItem>? suggestionItem,
+    String? currentLocationName,
   }) {
     return MapState(
       latitude: latitude ?? this.latitude,
@@ -42,8 +45,9 @@ class MapState {
       controller: controller ?? this.controller,
       isLoading: isLoading ?? this.isLoading,
       error: error ?? this.error,
+      suggestionItem: suggestionItem ?? this.suggestionItem,
+      currentLocationName: currentLocationName ?? this.currentLocationName,
       isUserLocation: isUserLocation ?? this.isUserLocation,
-      markers: markers ?? this.markers,
     );
   }
 }

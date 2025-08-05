@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_event.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_state.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
   MapBloc()
@@ -15,6 +17,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<ZoomInEvent>(_onZoomIn);
     on<ZoomOutEvent>(_onZoomOut);
     on<UpdateCameraPositionEvent>(_onUpdateCameraPosition);
+    on<SearchByQueryEvent>(_searchByQuery);
   }
 
   void _onInitializeMap(InitializeMapEvent event, Emitter<MapState> emit) {
@@ -22,14 +25,73 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     add(GetUserLocationEvent());
   }
 
-
-  Future<void> _onGetUserLocation(
-      GetUserLocationEvent event,
-      Emitter<MapState> emit,
-      ) async {
+  Future<void> _searchByQuery(
+    SearchByQueryEvent event,
+    Emitter<MapState> emit,
+  ) async {
     try {
+      // Emit loading state
       emit(state.copyWith(isLoading: true, error: null));
 
+      // final suggestSession = await YandexSearch.searchByText(
+      //   searchText: searchText,
+      //   geometry: geometry,
+      //   searchOptions: searchOptions,
+      // );
+
+      // Call Yandex Suggest API to get suggestions
+      final response = YandexSuggest.getSuggestions(
+        text: event.query,
+        boundingBox: BoundingBox(
+          northEast: Point(latitude: 55.75, longitude: 37.55),
+          southWest: Point(latitude: 55.65, longitude: 37.65),
+        ),
+        suggestOptions: const SuggestOptions(
+          suggestType: SuggestType.geo,
+          // Use geo for location-based suggestions
+          suggestWords: true,
+        ),
+      );
+
+      await response.result.then((values) {
+        print("items ${values.items}");
+        // Check if the response contains suggestions
+        if (values.items != null && values.items!.isNotEmpty) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              suggestionItem: values.items,
+              currentLocationName: values.items?.first.title,
+            ),
+          );
+        } else {
+          // No suggestions found
+          emit(
+            state.copyWith(
+              isLoading: false,
+              error: 'No suggestions found for the query',
+            ),
+          );
+        }
+      });
+    } catch (e) {
+      print("error: $e");
+      // Handle any errors (e.g., network issues)
+      emit(
+        state.copyWith(
+          isLoading: false,
+          error: 'Search failed: ${e.toString()}',
+        ),
+      );
+    }
+  }
+
+  Future<void> _onGetUserLocation(
+    GetUserLocationEvent event,
+    Emitter<MapState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true, error: null));
 
       // Check if location services are enabled
       bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -50,13 +112,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       animateToPosition(position.latitude, position.longitude, 16);
 
-      // Marker yaratish
-      final marker = Marker(
-        markerId: const MarkerId('user_location'),
-        position: LatLng(position.latitude, position.longitude),
-        infoWindow: const InfoWindow(title: 'Your Location'),
-        icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-      );
+      // // Marker yaratish
+      // final marker = Marker(
+      //   markerId: const MarkerId('user_location'),
+      //   position: LatLng(position.latitude, position.longitude),
+      //   infoWindow: const InfoWindow(title: 'Your Location'),
+      //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+      // );
 
       emit(
         state.copyWith(
@@ -66,7 +128,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           isLoading: false,
           isUserLocation: true,
           error: null,
-          markers: {marker}, // Markerlarni yangilash
+          // markers: {marker}, // Markerlarni yangilash
         ),
       );
     } catch (e) {
@@ -82,18 +144,17 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   void _onZoomIn(ZoomInEvent event, Emitter<MapState> emit) {
     if (state.zoom < 20.0) {
       final newZoom = state.zoom + 1.0;
-      animateToPosition(state.latitude, state.longitude, newZoom);
+      state.controller!.moveCamera(CameraUpdate.zoomIn());
       emit(state.copyWith(zoom: newZoom));
     }
   }
 
-
   void animateToPosition(double latitude, double longitude, double zoom) {
     if (state.controller != null) {
-      state.controller!.animateCamera(
+      state.controller!.moveCamera(
         CameraUpdate.newCameraPosition(
           CameraPosition(
-            target: LatLng(latitude, longitude),
+            target: Point(latitude: latitude, longitude: longitude),
             zoom: zoom,
           ),
         ),
@@ -104,7 +165,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   void _onZoomOut(ZoomOutEvent event, Emitter<MapState> emit) {
     if (state.zoom > 2.0) {
       final newZoom = state.zoom - 1.0;
-      animateToPosition(state.latitude, state.longitude, newZoom);
+      state.controller!.moveCamera(CameraUpdate.zoomOut());
       emit(state.copyWith(zoom: newZoom));
     }
   }
