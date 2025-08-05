@@ -28,20 +28,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               bottom: MediaQuery.of(context).viewInsets.bottom + 20,
             ),
       ),
-      appBar: CustomAppBar(title: "Register"),
+      appBar: CustomAppBar(title: "Ro'yxatdan o'tish"),
       body: ListView(
         padding: EdgeInsets.zero,
         children: [
-          20.verticalSpace,
-          CustomTextField(
-            labelText: "Ism",
-            hintText: "Ism",
-          ),
-          12.verticalSpace,
-          CustomTextField(
-            labelText: "Familiya",
-            hintText: "Familiya",
-          ),
+
           12.verticalSpace,
           CustomTextField(
             labelText: "Telefon raqamingiz",
