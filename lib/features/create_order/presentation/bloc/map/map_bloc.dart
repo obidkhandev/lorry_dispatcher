@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_event.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_state.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {

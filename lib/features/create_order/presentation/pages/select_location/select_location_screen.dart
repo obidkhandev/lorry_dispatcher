@@ -154,6 +154,7 @@ class _SelectLocationFromMapScreenState
           return Stack(
             children: [
               YandexMap(
+                nightModeEnabled: context.isDarkMode,
                 onMapCreated: (YandexMapController controller) {
                   bloc.add(InitializeMapEvent(controller));
                   controller.toggleUserLayer(visible: true);

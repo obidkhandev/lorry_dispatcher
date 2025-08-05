@@ -12,6 +12,7 @@ import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_bloc.dart';
 import 'package:lorry_dispatcher/features/map/presentation/bloc/driver_tracking/driver_tracking_bloc.dart';
 import 'package:lorry_dispatcher/generated/l10n.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
 import 'core/utills/app_update_version.dart';
 import 'di.dart';
 
@@ -19,6 +20,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppUpdateService.getCloudVersion();
 
+   AndroidYandexMap.useAndroidViewSurface = true;
 
   await initDi();
 

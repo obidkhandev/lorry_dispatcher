@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       appBar: CustomAppBar(
         hasAutoLeading: false,
         toolbarHeight: 100.h,
-        title: S.of(context).orders, // Replaced "Buyurtmalar"
+        title: S.of(context).orders,
         bottom: TabBar(
           overlayColor: WidgetStateProperty.all(Colors.transparent),
           controller: tabController,
