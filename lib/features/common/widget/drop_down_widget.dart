@@ -9,6 +9,7 @@ import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 
 class CustomDropDownWidget extends StatefulWidget {
   final List<String> items;
+  final List<String>? icons;
   final String hintText;
   final String? initValue;
   final List<Widget>? leadingIcon;
@@ -22,11 +23,15 @@ class CustomDropDownWidget extends StatefulWidget {
   final String searchHintText;
   final bool enableSearch;
   final double? height;
+  final bool? hasCloseIc;
+
 
   const CustomDropDownWidget({
     super.key,
     required this.items,
     this.hintText = 'select',
+    this.icons,
+    this.hasCloseIc,
     this.onChanged,
     this.backgroundColor,
     this.borderColor,
@@ -120,10 +125,10 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
               decoration: BoxDecoration(
                 color: widget.backgroundColor ?? context.theme.cardColor,
                 border: Border.all(
-                        color: context.isDarkMode
-                            ? widget.borderColor ?? AppColors.grey808080
-                            : widget.borderColor ?? AppColors.grey2,
-                      ),
+                  color: context.isDarkMode
+                      ? widget.borderColor ?? AppColors.grey808080
+                      : widget.borderColor ?? AppColors.grey2,
+                ),
                 borderRadius: BorderRadius.circular(8.r),
               ),
               padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -242,23 +247,33 @@ class _CustomDropDownWidgetState extends State<CustomDropDownWidget> {
                 context.theme.textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
-            items: widget.items.map((String item) {
+            items: List.generate(widget.items.length, (index) {
               return DropdownMenuItem<String>(
-                value: item,
+                value: widget.items[index],
                 child: Row(
                   children: [
+                    if (widget.icons != null && widget.icons!.isNotEmpty)...[
+                      SvgPicture.asset(
+                        widget.icons![index],
+                        width: 20.w,
+                        height: 20.h,
+                        colorFilter: AppColors.colorFilter(AppColors.primaryColor.withAlpha(100)),
+                      ),
+                      10.horizontalSpace,
+                    ],
                     Text(
-                      item,
+                      widget.items[index],
                       style:
                           widget.textStyle ??
                           context.theme.textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w500,
                           ),
                     ),
+
                   ],
                 ),
               );
-            }).toList(),
+            }),
             onChanged: (String? newValue) {
               setState(() {
                 selectedValue = newValue;

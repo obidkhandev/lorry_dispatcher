@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
+import 'package:lorry_dispatcher/core/services/location/location_service.dart';
 import 'package:lorry_dispatcher/export.dart';
-import 'package:lorry_dispatcher/features/common/widget/loading_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
 import 'package:lorry_dispatcher/features/create_order/data/mock.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_bloc.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_event.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_state.dart';
-import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/widget/location_item.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class SelectLocationFromMapScreen extends StatefulWidget {
@@ -24,6 +22,7 @@ class _SelectLocationFromMapScreenState
     extends State<SelectLocationFromMapScreen> {
   final TextEditingController _searchController = TextEditingController();
   LocationItemModel? _selectedLocation;
+  final LocationService locationService = LocationService();
 
   @override
   void initState() {
@@ -157,6 +156,34 @@ class _SelectLocationFromMapScreenState
               YandexMap(
                 onMapCreated: (YandexMapController controller) {
                   bloc.add(InitializeMapEvent(controller));
+                  controller.toggleUserLayer(visible: true);
+                },
+                onUserLocationAdded: (UserLocationView view) async {
+                  return locationService.onUserLocationAdded(view, state);
+                },
+                mapObjects: [
+                  locationService.buildClusterizedPlacemarkCollection(state),
+                ],
+                onCameraPositionChanged: (cameraPosition, _, isFinished) {
+                  if (isFinished) {
+                    bloc.add(
+                      UpdateCameraPositionEvent(
+                        latitude: cameraPosition.target.latitude,
+                        longitude: cameraPosition.target.longitude,
+                        zoom: cameraPosition.zoom,
+                      ),
+                    );
+                    bloc.add(
+                      SearchByPointEvent(
+                        point: cameraPosition.target,
+                        onSuccess: (v) {
+                          if (v.isNotEmpty) {
+                            _searchController.text = v;
+                          }
+                        },
+                      ),
+                    );
+                  }
                 },
               ),
 

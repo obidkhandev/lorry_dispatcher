@@ -18,6 +18,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<ZoomOutEvent>(_onZoomOut);
     on<UpdateCameraPositionEvent>(_onUpdateCameraPosition);
     on<SearchByQueryEvent>(_searchByQuery);
+    on<SearchByPointEvent>(_searchByPoint);
   }
 
   void _onInitializeMap(InitializeMapEvent event, Emitter<MapState> emit) {
@@ -33,13 +34,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       // Emit loading state
       emit(state.copyWith(isLoading: true, error: null));
 
-      // final suggestSession = await YandexSearch.searchByText(
-      //   searchText: searchText,
-      //   geometry: geometry,
-      //   searchOptions: searchOptions,
-      // );
-
-      // Call Yandex Suggest API to get suggestions
       final response = YandexSuggest.getSuggestions(
         text: event.query,
         boundingBox: BoundingBox(
@@ -54,14 +48,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       );
 
       await response.result.then((values) {
-        print("items ${values.items}");
-        // Check if the response contains suggestions
         if (values.items != null && values.items!.isNotEmpty) {
           emit(
             state.copyWith(
               isLoading: false,
               suggestionItem: values.items,
-              currentLocationName: values.items?.first.title,
             ),
           );
         } else {
@@ -77,6 +68,50 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     } catch (e) {
       print("error: $e");
       // Handle any errors (e.g., network issues)
+      emit(
+        state.copyWith(
+          isLoading: false,
+          error: 'Search failed: ${e.toString()}',
+        ),
+      );
+    }
+  }
+
+  Future<void> _searchByPoint(
+    SearchByPointEvent event,
+    Emitter<MapState> emit,
+  ) async {
+    try {
+      emit(state.copyWith(isLoading: true, error: null));
+
+      final response = YandexSearch.searchByPoint(
+        point: event.point,
+
+        searchOptions: const SearchOptions(
+          searchType: SearchType.geo,
+        ),
+      );
+
+      await response.result.then((values) {
+        if (values.items != null && values.items!.isNotEmpty) {
+          emit(
+            state.copyWith(
+              isLoading: false,
+              currentLocationName: values.items?.first.name,
+            ),
+          );
+          event.onSuccess(values.items?.first.name ?? '');
+        } else {
+          // No suggestions found
+          emit(
+            state.copyWith(
+              isLoading: false,
+              error: 'No suggestions found for the query',
+            ),
+          );
+        }
+      });
+    } catch (e) {
       emit(
         state.copyWith(
           isLoading: false,
@@ -111,14 +146,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       );
 
       animateToPosition(position.latitude, position.longitude, 16);
-
-      // // Marker yaratish
-      // final marker = Marker(
-      //   markerId: const MarkerId('user_location'),
-      //   position: LatLng(position.latitude, position.longitude),
-      //   infoWindow: const InfoWindow(title: 'Your Location'),
-      //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-      // );
 
       emit(
         state.copyWith(
@@ -174,7 +201,6 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     UpdateCameraPositionEvent event,
     Emitter<MapState> emit,
   ) {
-    // animateToPosition(event.latitude, event.longitude, event.zoom);
     emit(
       state.copyWith(
         latitude: event.latitude,

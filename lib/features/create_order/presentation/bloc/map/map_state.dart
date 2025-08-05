@@ -11,6 +11,7 @@ class MapState {
   final bool isUserLocation;
   final List<SuggestItem> suggestionItem;
   final String? currentLocationName;
+  final List<PlacemarkMapObject> placemarks;
 
   const MapState({
     required this.latitude,
@@ -22,6 +23,7 @@ class MapState {
     this.error,
     this.currentLocationName = '',
     this.suggestionItem = const [],
+    this.placemarks = const [],
     this.isUserLocation = false,
   });
 
@@ -36,6 +38,7 @@ class MapState {
     bool? isUserLocation,
     List<SuggestItem>? suggestionItem,
     String? currentLocationName,
+    List<PlacemarkMapObject>? placemarks,
   }) {
     return MapState(
       latitude: latitude ?? this.latitude,
@@ -48,6 +51,7 @@ class MapState {
       suggestionItem: suggestionItem ?? this.suggestionItem,
       currentLocationName: currentLocationName ?? this.currentLocationName,
       isUserLocation: isUserLocation ?? this.isUserLocation,
+      placemarks: placemarks ?? this.placemarks,
     );
   }
 }

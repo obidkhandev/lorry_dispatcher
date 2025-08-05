@@ -20,7 +20,15 @@ class SearchByQueryEvent extends MapEvent {
   SearchByQueryEvent(this.query);
 }
 
-class SearchByPointEvent extends MapEvent {}
+class SearchByPointEvent extends MapEvent {
+  final Point point;
+  final Function(String text) onSuccess;
+
+  SearchByPointEvent({
+    required this.point,
+    required this.onSuccess,
+  });
+}
 
 class UpdateCameraPositionEvent extends MapEvent {
   final double latitude;

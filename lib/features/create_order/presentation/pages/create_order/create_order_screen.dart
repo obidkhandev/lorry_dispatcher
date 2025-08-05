@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
+import 'package:lorry_dispatcher/core/utills/formatters.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
+import 'package:lorry_dispatcher/core/utills/number_formatter.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';
@@ -80,8 +82,8 @@ class CreateOrderScreen extends StatelessWidget {
               ),
               16.verticalSpace,
               CustomDropDownWidget(
-                // height: 60.h,
                 hintText: "Avtomobil turi",
+                label: "Avtomobil turi",
                 enableSearch: false,
                 items: ["Fura", "Isuzu"],
               ),
@@ -90,25 +92,74 @@ class CreateOrderScreen extends StatelessWidget {
                 // height: 60.h,
                 enableSearch: false,
                 hintText: "Tirkama turi",
+                label: "Tirkama turi",
                 items: ["Tent"],
               ),
               16.verticalSpace,
               CustomDropDownWidget(
-                // height: 60.h,
                 enableSearch: false,
                 hintText: "To'lov turi",
-                items: ["So'm", "Usd", "Rubl"],
+                label: "To'lov turi",
+                icons: [
+                  AppIcons.creditCard,
+                  AppIcons.home,
+                  AppIcons.home,
+                ],
+                items: ["Naxt", "Karta", "Prechesliyna"],
               ),
               16.verticalSpace,
               CustomTextField(
                 borderColor: context.isDarkMode
                     ? AppColors.grey808080
                     : AppColors.grey2,
-                // contentPadding: EdgeInsets.symmetric(
-                //   vertical: 18.h,
-                //   horizontal: 12.w,
-                // ),
                 hintText: "To’lov summasi",
+                suffixIcon: SizedBox(
+                  width: 100.w,
+                  child: CustomDropDownWidget(
+                    enableSearch: false,
+                    initValue: "\$",
+                    width: 100.w,
+                    borderColor: AppColors.transparent,
+                    visibleClose: false,
+                    items: ["\$", "Y.e", "Rubl"],
+
+                  ),
+                ),
+                labelText: "To’lov summasi",
+              ),
+              16.verticalSpace,
+              CustomTextField(
+                borderColor: context.isDarkMode
+                    ? AppColors.grey808080
+                    : AppColors.grey2,
+                leadingWidget: Text(
+                  "+998",
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ).paddingOnly(left: 10.w, top: 8.h),
+                hintText: "Yuklab beruvchi telefon raqami",
+                labelText: "Yuklab beruvchi telefon raqami",
+                formatter: [
+                  Formatters.phoneFormatter,
+                ],
+              ),
+              16.verticalSpace,
+              CustomTextField(
+                leadingWidget: Text(
+                  "+998",
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.w500,
+                  ),
+                ).paddingOnly(left: 10.w, top: 8.h),
+                formatter: [
+                  Formatters.phoneFormatter
+                ],
+                borderColor: context.isDarkMode
+                    ? AppColors.grey808080
+                    : AppColors.grey2,
+                hintText: "Qabul qiluvchining kontakti",
+                labelText: "Qabul qiluvchining kontakti",
               ),
               16.verticalSpace,
               CustomTextField(
@@ -120,6 +171,7 @@ class CreateOrderScreen extends StatelessWidget {
                   horizontal: 12.w,
                 ),
                 hintText: "Qo’shimcha ma’lumot",
+                labelText: "Qo’shimcha ma’lumot",
                 maxLines: 3,
                 minLines: 3,
               ),
