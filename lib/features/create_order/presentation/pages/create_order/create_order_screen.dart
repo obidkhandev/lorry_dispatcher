@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
 import 'package:lorry_dispatcher/core/utills/formatters.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
-import 'package:lorry_dispatcher/core/utills/number_formatter.dart';
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/common/widget/drop_down_widget.dart';
 import 'package:lorry_dispatcher/features/common/widget/text_field_widget.dart';

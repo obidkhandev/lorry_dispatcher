@@ -65,27 +65,34 @@ class _MainScreenState extends State<MainScreen> {
           }
         },
         child: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: context.theme.cardColor,
-            currentIndex: widget.child.currentIndex,
-            type: BottomNavigationBarType.fixed,
-            selectedItemColor: context.theme.textTheme.titleMedium?.color,
-            selectedIconTheme: const IconThemeData(color: AppColors.primaryColor),
-            unselectedIconTheme: const IconThemeData(color: AppColors.grey600),
-            onTap: (i) => onTap(context, i),
-            items: List.generate(
-              icons.length,
-                  (index) => BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  icons[index],
-                  colorFilter: ColorFilter.mode(
-                    widget.child.currentIndex == index
-                        ? AppColors.primaryColor
-                        : AppColors.grey600,
-                    BlendMode.srcIn,
+          bottomNavigationBar: Theme(
+
+            data: Theme.of(context).copyWith(
+              splashColor: AppColors.transparent,
+              highlightColor: AppColors.transparent,
+            ),
+            child: BottomNavigationBar(
+              backgroundColor: context.theme.cardColor,
+              currentIndex: widget.child.currentIndex,
+              type: BottomNavigationBarType.fixed,
+              selectedItemColor: context.theme.textTheme.titleMedium?.color,
+              selectedIconTheme: const IconThemeData(color: AppColors.primaryColor),
+              unselectedIconTheme: const IconThemeData(color: AppColors.grey600),
+              onTap: (i) => onTap(context, i),
+              items: List.generate(
+                icons.length,
+                    (index) => BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    icons[index],
+                    colorFilter: ColorFilter.mode(
+                      widget.child.currentIndex == index
+                          ? AppColors.primaryColor
+                          : AppColors.grey600,
+                      BlendMode.srcIn,
+                    ),
                   ),
+                  label: labels[index],
                 ),
-                label: labels[index],
               ),
             ),
           ),

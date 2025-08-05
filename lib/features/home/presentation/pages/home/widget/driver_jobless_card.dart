@@ -1,6 +1,5 @@
 import 'package:lorry_dispatcher/export.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/driver_image_and_rating.dart';
-import 'package:lorry_dispatcher/features/home/presentation/pages/home/widget/location_stepper.dart';
 
 class DriverJoblessCard extends StatelessWidget {
   final bool isActive;

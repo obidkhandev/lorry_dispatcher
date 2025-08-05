@@ -1,4 +1,3 @@
-import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/country_region_model.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/pages/create_order/widget/location_item.dart';
 import '../../../../../../export.dart';

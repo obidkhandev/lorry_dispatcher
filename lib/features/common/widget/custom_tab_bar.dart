@@ -46,21 +46,23 @@ class CustomTabBar extends StatelessWidget {
       onTap: onTabChanged,
       tabs: List.generate(tabTitles.length, (index) {
         return Tab(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(
-                tabTitles[index],
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: context.theme.textTheme.titleMedium?.copyWith(
-                  color: selectedTabIndex == index
-                      ? AppColors.white
-                      : AppColors.grey600,
-                  fontWeight: FontWeight.w500,
+          child: FittedBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  tabTitles[index],
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: context.theme.textTheme.titleMedium?.copyWith(
+                    color: selectedTabIndex == index
+                        ? AppColors.white
+                        : AppColors.grey600,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         );
       }),
