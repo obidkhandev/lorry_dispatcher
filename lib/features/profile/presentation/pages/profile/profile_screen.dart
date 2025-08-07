@@ -157,7 +157,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ProfileActionModel(
                     title: "200 000 uzs", // Dynamic, not replaced
                     onTap: () {
-                      // context.push(AppRoutes.balance);
+                      context.push(AppRoutes.balanceScreen);
                     },
                     icColor: AppColors.white,
                     icon: AppIcons.dollarCircle,

@@ -11,6 +11,11 @@ import 'package:lorry_dispatcher/features/home/presentation/pages/about_driver/a
 import 'package:lorry_dispatcher/features/home/presentation/pages/home/home_screen.dart';
 import 'package:lorry_dispatcher/features/home/presentation/pages/offers/offers_screen.dart';
 import 'package:lorry_dispatcher/features/main_screen.dart';
+import 'package:lorry_dispatcher/features/payment/presentation/pages/add_card/add_card_screen.dart';
+import 'package:lorry_dispatcher/features/payment/presentation/pages/balance/balance_screen.dart';
+import 'package:lorry_dispatcher/features/payment/presentation/pages/monitoring/monitoring_screen.dart';
+import 'package:lorry_dispatcher/features/payment/presentation/pages/receipts/receipts_screen.dart';
+import 'package:lorry_dispatcher/features/payment/presentation/pages/transfer/transfer_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/driver_profile/driver_profile_screen.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/status/status_screen.dart';
@@ -53,7 +58,7 @@ class AppPages {
         name: AppRoutes.aboutDriver,
         path: AppRoutes.aboutDriver,
         builder: (BuildContext context, GoRouterState state) {
-          return  AboutDriverScreen(isConfirm: state.extra as bool? ?? true,);
+          return AboutDriverScreen(isConfirm: state.extra as bool? ?? true);
         },
       ),
       GoRoute(
@@ -76,6 +81,42 @@ class AppPages {
         path: AppRoutes.selectLocationScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const SelectLocationFromMapScreen();
+        },
+      ),
+      // payment
+      GoRoute(
+        name: AppRoutes.transferScreen,
+        path: AppRoutes.transferScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const TransferScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.balanceScreen,
+        path: AppRoutes.balanceScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const BalanceScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.monitoringScreen,
+        path: AppRoutes.monitoringScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const MonitoringScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.addCardScreen,
+        path: AppRoutes.addCardScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const AddCardScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.receiptsScreen,
+        path: AppRoutes.receiptsScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const ReceiptsScreen();
         },
       ),
 

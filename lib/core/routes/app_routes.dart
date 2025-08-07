@@ -22,4 +22,12 @@ class AppRoutes{
   static const String createOrderScreen = "/createOrderScreen";
   static const String selectLocationScreen = "/selectLocationScreen";
   static const String driverProfileScreen = "/driverProfileScreen";
+
+  // payment
+  static const String transferScreen = "/transferScreen";
+  static const String balanceScreen = "/balanceScreen";
+  static const String monitoringScreen = "/monitoringScreen";
+  static const String addCardScreen = "/addCardScreen";
+  static const String receiptsScreen = "/receiptsScreen";
+
 }

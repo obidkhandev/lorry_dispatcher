@@ -9,6 +9,7 @@ class CustomTabBar extends StatelessWidget {
   final int selectedTabIndex;
   final Function(int) onTabChanged;
   final List<String> tabTitles;
+  final Color? unSelectedTextColor;
 
   const CustomTabBar({
     super.key,
@@ -16,6 +17,7 @@ class CustomTabBar extends StatelessWidget {
     required this.selectedTabIndex,
     required this.onTabChanged,
     required this.tabTitles,
+     this.unSelectedTextColor,
   });
 
 
@@ -24,7 +26,6 @@ class CustomTabBar extends StatelessWidget {
     return TabBar(
       overlayColor: WidgetStateProperty.all(Colors.transparent),
       controller: tabController,
-
       indicator: BoxDecoration(
         color: AppColors.primaryColor,
         borderRadius: BorderRadius.circular(10.r),
@@ -35,14 +36,8 @@ class CustomTabBar extends StatelessWidget {
         horizontal: 4.w,
         vertical: 6.h,
       ),
-      // isScrollable: true,
-      // tabAlignment: TabAlignment.start,
       indicatorColor: AppColors.primaryColor,
       labelColor: AppColors.primaryColor,
-      onFocusChange: (v,index){
-        print("Index: $index");
-      },
-
       onTap: onTabChanged,
       tabs: List.generate(tabTitles.length, (index) {
         return Tab(
@@ -56,8 +51,8 @@ class CustomTabBar extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   style: context.theme.textTheme.titleMedium?.copyWith(
                     color: selectedTabIndex == index
-                        ? AppColors.white
-                        : AppColors.grey600,
+                        ?  AppColors.white
+                        : unSelectedTextColor ?? AppColors.grey600,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
