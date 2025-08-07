@@ -10,6 +10,8 @@ class AppImages {
   static const String faceId = '$_basePath/face_id.png';
   static const String passport = '$_basePath/passport.png';
   static const String imgCancel = '$_basePath/ic_cancel.jpg';
+  static const String idCardFront = '$_basePath/idcard_fornt.png';
+  static const String idCardBack = '$_basePath/idcardback.png';
 }
 
 /// App Audios - All audio paths as static const

@@ -24,7 +24,7 @@ class OrderCompletedPage extends StatelessWidget {
             shrinkWrap: true,
             padding: EdgeInsets.symmetric(
               horizontal: 16.w,
-            ).copyWith(bottom: customButtonPadding + 20),
+            ).copyWith(bottom: customButtonPadding),
             itemBuilder: (_, index) {
               return OrderCompletedCard();
             },

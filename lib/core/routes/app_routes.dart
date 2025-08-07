@@ -16,6 +16,7 @@ class AppRoutes{
   static const String home = "/";
   static const String statusScreen = "/statusScreen";
   static const String offersScreen = "/offersScreen";
+  static const String documentScreen = "/documentScreen";
 
 
   // create order

@@ -16,6 +16,7 @@ import 'package:lorry_dispatcher/features/payment/presentation/pages/balance/bal
 import 'package:lorry_dispatcher/features/payment/presentation/pages/monitoring/monitoring_screen.dart';
 import 'package:lorry_dispatcher/features/payment/presentation/pages/receipts/receipts_screen.dart';
 import 'package:lorry_dispatcher/features/payment/presentation/pages/transfer/transfer_screen.dart';
+import 'package:lorry_dispatcher/features/profile/presentation/pages/documents/document_screen.dart';
 import 'package:lorry_dispatcher/features/profile/presentation/pages/profile/profile_screen.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/driver_profile/driver_profile_screen.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/status/status_screen.dart';
@@ -45,6 +46,13 @@ class AppPages {
         path: AppRoutes.offersScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const OffersScreen();
+        },
+      ),
+      GoRoute(
+        name: AppRoutes.documentScreen,
+        path: AppRoutes.documentScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const DocumentScreen();
         },
       ),
       GoRoute(

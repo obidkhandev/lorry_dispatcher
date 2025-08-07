@@ -167,6 +167,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icColor: AppColors.white,
                     icon: AppIcons.star,
                   ),
+                  ProfileActionModel(
+                    title: "Shaxsiy ma'lumotlar",
+                    onTap: (){
+                      context.push(AppRoutes.documentScreen);
+                    },
+                    icon: AppIcons.document,
+                  ),
                 ],
               ).paddingAll(12.sp),
             ).paddingSymmetric(horizontal: 16.w, vertical: 8.h),
