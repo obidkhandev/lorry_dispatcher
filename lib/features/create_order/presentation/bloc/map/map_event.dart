@@ -1,3 +1,4 @@
+import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 abstract class MapEvent {}
@@ -40,4 +41,18 @@ class UpdateCameraPositionEvent extends MapEvent {
     required this.longitude,
     required this.zoom,
   });
+}
+
+
+class AddSelectedLocationMarkerEvent extends MapEvent {
+  final LocationItemModel location;
+
+  AddSelectedLocationMarkerEvent({required this.location});
+
+
+}
+
+class RemoveSelectedLocationMarkerEvent extends MapEvent {
+
+
 }

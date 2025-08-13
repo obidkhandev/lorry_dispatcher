@@ -1,6 +1,11 @@
 import 'dart:async';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:lorry_dispatcher/core/services/location/location_service.dart';
+import 'package:lorry_dispatcher/core/values/app_assets.dart';
+import 'package:lorry_dispatcher/core/values/app_icons.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_event.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/map/map_state.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
@@ -17,11 +22,68 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<UpdateCameraPositionEvent>(_onUpdateCameraPosition);
     on<SearchByQueryEvent>(_searchByQuery);
     on<SearchByPointEvent>(_searchByPoint);
+    on<AddSelectedLocationMarkerEvent>(_onAddSelectedLocationMarker);
+    on<RemoveSelectedLocationMarkerEvent>(_onRemoveSelectedLocationMarker);
   }
 
   void _onInitializeMap(InitializeMapEvent event, Emitter<MapState> emit) {
     emit(state.copyWith(isInitialized: true, controller: event.controller));
     add(GetUserLocationEvent());
+  }
+
+  Future<void> _onAddSelectedLocationMarker(
+    AddSelectedLocationMarkerEvent event,
+    Emitter<MapState> emit,
+  ) async {
+    animateToPosition(event.location.latitude, event.location.longitude, 15);
+
+    emit(
+      state.copyWith(
+        selectedLocation: event.location,
+      ),
+    );
+  }
+
+  void _onRemoveSelectedLocationMarker(
+    RemoveSelectedLocationMarkerEvent event,
+    Emitter<MapState> emit,
+  ) {
+    emit(state.copyWith(selectedLocation: null,));
+  }
+
+  /// Get placemark objects for the map
+  Future<PlacemarkMapObject> getPlacemarkObjects(
+    Point point,
+    String icon,
+  ) async {
+    final Uint8List buildingIconBytes = await _loadBuildingIcon(icon);
+
+    final placemark = PlacemarkMapObject(
+      mapId: MapObjectId('MapObject_${point.longitude}_${point.latitude}'),
+      point: Point(latitude: point.latitude, longitude: point.longitude),
+      opacity: 1,
+      icon: PlacemarkIcon.single(
+        PlacemarkIconStyle(
+          image: BitmapDescriptor.fromBytes(buildingIconBytes),
+          rotationType: RotationType.rotate,
+          scale: 0.7,
+        ),
+      ),
+    );
+    return placemark;
+  }
+
+  /// Load the building icon from assets
+  Future<Uint8List> _loadBuildingIcon(String iconSvg) async {
+    try {
+      final ByteData data = await rootBundle.load(
+        iconSvg,
+      ); // Ensure the correct path is provided here
+      return data.buffer.asUint8List();
+    } catch (e) {
+      debugPrint('Error loading building icon: $e');
+      return Uint8List(0); // Return empty list in case of error
+    }
   }
 
   Future<void> _searchByQuery(
@@ -39,7 +101,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           southWest: Point(latitude: 55.65, longitude: 37.65),
         ),
         suggestOptions: const SuggestOptions(
-          suggestType: SuggestType.geo,
+          suggestType: SuggestType.unspecified,
           // Use geo for location-based suggestions
           suggestWords: true,
         ),
@@ -47,12 +109,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       await response.result.then((values) {
         if (values.items != null && values.items!.isNotEmpty) {
-          emit(
-            state.copyWith(
-              isLoading: false,
-              suggestionItem: values.items,
-            ),
-          );
+          print("location search ${values.items?.first.title}");
+          print("location search ${values.items?.first.displayText}");
+          print("location search ${values.items?.first.subtitle}");
+          print("location search ${values.items?.first.tags}");
+          print("location search ${values.items?.first.type}");
+          print("location search ${values.items?.first.props}");
+          emit(state.copyWith(isLoading: false, suggestionItem: values.items));
         } else {
           // No suggestions found
           emit(
@@ -85,9 +148,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       final response = YandexSearch.searchByPoint(
         point: event.point,
 
-        searchOptions: const SearchOptions(
-          searchType: SearchType.geo,
-        ),
+        searchOptions: const SearchOptions(searchType: SearchType.none),
       );
 
       await response.result.then((values) {

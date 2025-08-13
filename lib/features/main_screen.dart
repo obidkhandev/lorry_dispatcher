@@ -66,7 +66,6 @@ class _MainScreenState extends State<MainScreen> {
         },
         child: Scaffold(
           bottomNavigationBar: Theme(
-
             data: Theme.of(context).copyWith(
               splashColor: AppColors.transparent,
               highlightColor: AppColors.transparent,

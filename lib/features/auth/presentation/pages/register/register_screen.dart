@@ -246,6 +246,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           24.verticalSpace,
           SwitchListTile(
+            hoverColor: AppColors.transparent,
+            overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                  (Set<WidgetState> states) {
+                return AppColors.transparent;
+              },
+            ),
             activeTrackColor: AppColors.primaryColor,
             inactiveTrackColor: AppColors.grey600,
             title: RichText(

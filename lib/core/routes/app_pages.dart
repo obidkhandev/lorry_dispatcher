@@ -25,7 +25,7 @@ class AppPages {
   static GoRouter router = GoRouter(
     debugLogDiagnostics: true,
     navigatorKey: rootNavigatorKey,
-    initialLocation: AppRoutes.home,
+    initialLocation: AppRoutes.loginScreen,
     routes: <RouteBase>[
       GoRoute(
         name: AppRoutes.registerScreen,

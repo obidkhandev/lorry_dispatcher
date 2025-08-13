@@ -1,3 +1,4 @@
+import 'package:lorry_dispatcher/features/create_order/data/models/location_item_model.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapState {
@@ -12,6 +13,7 @@ class MapState {
   final List<SuggestItem> suggestionItem;
   final String? currentLocationName;
   final List<PlacemarkMapObject> placemarks;
+  final LocationItemModel? selectedLocation;
 
   const MapState({
     required this.latitude,
@@ -25,6 +27,7 @@ class MapState {
     this.suggestionItem = const [],
     this.placemarks = const [],
     this.isUserLocation = false,
+    this.selectedLocation,
   });
 
   MapState copyWith({
@@ -39,6 +42,7 @@ class MapState {
     List<SuggestItem>? suggestionItem,
     String? currentLocationName,
     List<PlacemarkMapObject>? placemarks,
+    LocationItemModel? selectedLocation,
   }) {
     return MapState(
       latitude: latitude ?? this.latitude,
@@ -52,6 +56,7 @@ class MapState {
       currentLocationName: currentLocationName ?? this.currentLocationName,
       isUserLocation: isUserLocation ?? this.isUserLocation,
       placemarks: placemarks ?? this.placemarks,
+      selectedLocation: selectedLocation ?? this.selectedLocation,
     );
   }
 }
