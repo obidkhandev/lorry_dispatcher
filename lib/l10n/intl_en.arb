@@ -50,5 +50,13 @@
   "sendOffer": "Send offer",
   "jobless": "Available",
   "busy": "Busy",
-  "underRepair": "Under Repair"
+  "underRepair": "Under Repair",
+  "arrived": "Arrived",
+  "loaded": "Loaded",
+  "arrived_for_unloading": "Arrived for Unloading",
+  "unloaded": "Unloaded",
+  "isNoActive": "Is not active",
+  "active": "Active",
+  "from": "From",
+  "to": "To"
 }

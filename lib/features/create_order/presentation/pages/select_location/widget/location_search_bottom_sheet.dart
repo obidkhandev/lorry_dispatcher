@@ -356,6 +356,7 @@ class _LocationSearchBottomSheetState extends State<LocationSearchBottomSheet>
         // Content
         Expanded(
           child: SingleChildScrollView(
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

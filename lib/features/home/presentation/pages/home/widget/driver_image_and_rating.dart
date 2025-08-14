@@ -75,7 +75,7 @@ class DriverImageAndRating extends StatelessWidget {
             ),
             6.horizontalSpace,
             Text(
-              "Aktiv emas",
+              isActive? S.of(context).active :  S.of(context).isNoActive,
               style: AppTextStyles().body13w4.copyWith(
                 color: isActive ? AppColors.green : AppColors.yellow,
               ),

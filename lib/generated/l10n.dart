@@ -368,6 +368,41 @@ class S {
       args: [],
     );
   }
+
+  /// `Arrived for Unloading`
+  String get arrived_for_unloading {
+    return Intl.message(
+      'Arrived for Unloading',
+      name: 'arrived_for_unloading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is not active`
+  String get isNoActive {
+    return Intl.message(
+      'Is not active',
+      name: 'isNoActive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Active`
+  String get active {
+    return Intl.message('Active', name: 'active', desc: '', args: []);
+  }
+
+  /// `From`
+  String get from {
+    return Intl.message('From', name: 'from', desc: '', args: []);
+  }
+
+  /// `To`
+  String get to {
+    return Intl.message('To', name: 'to', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

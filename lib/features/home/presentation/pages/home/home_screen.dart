@@ -60,9 +60,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           indicatorSize: TabBarIndicatorSize.tab,
           indicatorColor: AppColors.primaryColor,
           labelColor: AppColors.primaryColor,
-          onFocusChange: (v, index) {
-            print("Index: $index");
-          },
           onTap: (v) {
             setState(() {
               selectedTabIndex = v;

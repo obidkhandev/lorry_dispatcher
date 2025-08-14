@@ -20,14 +20,14 @@ class DriverJoblessCard extends StatelessWidget {
         children: [
           DriverImageAndRating(isActive: isActive),
           TitleWithIcon(
-            title: "Toshkent",
+            title: "Tashkent sergili",
             icon: AppIcons.location,
-            subtitle: "Qayerdan",
+            subtitle: S.of(context).from,
           ),
           TitleWithIcon(
-            title: "Namangan sergili",
+            title: "Namangan chust",
             icon: AppIcons.location,
-            subtitle: "Qayerga",
+            subtitle: S.of(context).to,
           ),
           TitleWithIcon(
             title: "Ref Fure",

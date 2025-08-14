@@ -86,6 +86,7 @@ class _SelectLocationFromMapScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: BlocBuilder<MapBloc, MapState>(
         builder: (context, state) {
           final bloc = context.read<MapBloc>();

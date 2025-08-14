@@ -22,9 +22,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "active": MessageLookupByLibrary.simpleMessage("Active"),
     "additional": MessageLookupByLibrary.simpleMessage("Additional"),
     "arrived": MessageLookupByLibrary.simpleMessage("Arrived"),
     "arrivedForUnloading": MessageLookupByLibrary.simpleMessage(
+      "Arrived for Unloading",
+    ),
+    "arrived_for_unloading": MessageLookupByLibrary.simpleMessage(
       "Arrived for Unloading",
     ),
     "auto": MessageLookupByLibrary.simpleMessage("Auto"),
@@ -52,8 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "drivers": MessageLookupByLibrary.simpleMessage("Drivers"),
     "edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "emptyTrucks": MessageLookupByLibrary.simpleMessage("Empty Trucks"),
+    "from": MessageLookupByLibrary.simpleMessage("From"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "inProgress": MessageLookupByLibrary.simpleMessage("In Progress"),
+    "isNoActive": MessageLookupByLibrary.simpleMessage("Is not active"),
     "jobless": MessageLookupByLibrary.simpleMessage("Available"),
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "licenseAgreement": MessageLookupByLibrary.simpleMessage(
@@ -78,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "suggestions": MessageLookupByLibrary.simpleMessage("Suggestions"),
     "sum": MessageLookupByLibrary.simpleMessage("Sum"),
     "theme": MessageLookupByLibrary.simpleMessage("Theme"),
+    "to": MessageLookupByLibrary.simpleMessage("To"),
     "truckType": MessageLookupByLibrary.simpleMessage("Refrigerated Truck"),
     "underRepair": MessageLookupByLibrary.simpleMessage("Under Repair"),
     "unloaded": MessageLookupByLibrary.simpleMessage("Unloaded"),

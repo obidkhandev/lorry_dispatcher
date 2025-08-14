@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lorry_dispatcher/core/utills/extensions.dart';
 import 'package:lorry_dispatcher/core/utills/helper_widget.dart';
 import 'package:lorry_dispatcher/core/utills/widget_extantion.dart';
 import 'package:lorry_dispatcher/core/values/app_colors.dart';
 import 'package:lorry_dispatcher/core/values/app_text_sytle.dart';
 import 'package:lorry_dispatcher/features/common/widget/custom_tab_bar.dart';
 import 'package:lorry_dispatcher/features/status/presentation/pages/status/widget/status_inprogress_card.dart';
+import 'package:lorry_dispatcher/generated/l10n.dart';
 
 class OrderInProgressPage extends StatefulWidget {
   const OrderInProgressPage({super.key});
@@ -29,30 +31,38 @@ class _OrderInProgressPageState extends State<OrderInProgressPage>
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TabBar(
-          isScrollable: true,
-          tabAlignment: TabAlignment.start,
-          dividerColor: AppColors.transparent,
-          indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: AppTextStyles().body16w4,
-          indicator: BoxDecoration(
-            color: AppColors.primaryColor,
-            borderRadius: BorderRadius.circular(10.r),
+        10.verticalSpace,
+        DecoratedBox(
+          decoration: BoxDecoration(
+            color: context.theme.cardColor,
           ),
-          overlayColor: WidgetStateProperty.all(Colors.transparent),
-          indicatorColor: AppColors.primaryColor,
-          labelColor: AppColors.white,
-          indicatorPadding: EdgeInsets.symmetric(
-            vertical: 6.h,
+          child: TabBar(
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
+            dividerColor: AppColors.transparent,
+            indicatorSize: TabBarIndicatorSize.tab,
+            labelStyle: context.theme.textTheme.titleMedium,
+            unselectedLabelColor: AppColors.hintColor,
+            indicator: BoxDecoration(
+              color: AppColors.primaryColor,
+              borderRadius: BorderRadius.circular(10.r),
+            ),
+            overlayColor: WidgetStateProperty.all(Colors.transparent),
+            indicatorColor: AppColors.primaryColor,
+            labelColor: AppColors.white,
+            indicatorPadding: EdgeInsets.symmetric(
+              vertical: 6.h,
+            ),
+            controller: tabController,
+
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            tabs: [
+              Tab(text: S.of(context).arrived),
+              Tab(text: S.of(context).loaded),
+              Tab(text: S.of(context).arrived_for_unloading),
+              Tab(text: S.of(context).unloaded),
+            ],
           ),
-          controller: tabController,
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          tabs: [
-            Tab(text: "yetib keldi"),
-            Tab(text: "yuklangan"),
-            Tab(text: "tushirish uchun yetib keldi"),
-            Tab(text: "tushirilgan"),
-          ],
         ),
         Expanded(
           child: ListView.separated(
