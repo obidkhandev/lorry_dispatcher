@@ -5,22 +5,34 @@ import 'package:lorry_dispatcher/features/common/data/datasource/auth_datasource
 import 'package:lorry_dispatcher/features/common/domain/repository/auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class AuthRepository implements IAuthRepository {
   final SharedPreferences _preferences;
   final AuthDatasource datasource;
-  AuthRepository(this._preferences, this.datasource,);
 
+  AuthRepository(this._preferences, this.datasource);
 
   @override
   Future<Either<Failure, String>> getOtp(String phone) async {
     final response = await datasource.getOtp(phone);
-    return response.fold(
-          (failure) => Left(failure),
-          (response) async {
-        return Right(response);
-      },
+    return response.fold((failure) => Left(failure), (response) async {
+      return Right(response);
+    });
+  }
+
+  @override
+  Future<Either<Failure, String>> otpVerifyCode({
+    required String code,
+    required String phone,
+    required int role,
+  }) async {
+    final response = await datasource.otpVerifyCode(
+      code: code,
+      phone: phone,
+      role: role,
     );
+    return response.fold((failure) => Left(failure), (response) async {
+      return Right(response);
+    });
   }
 
   @override

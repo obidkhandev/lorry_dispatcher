@@ -35,7 +35,7 @@ Future<void> initDi() async {
 
 void _dataSources() {
   inject.registerLazySingleton<AuthDatasource>(
-    () => AuthDatasourceImpl(inject()),
+    () => AuthDatasourceImpl(inject(), inject()),
   );
 
   inject.registerLazySingleton<OrderCreateDatasource>(

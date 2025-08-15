@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AuthState {
 
- bool get authenticated; int? get retryAfter; Failure? get getOtpFailure; Failure? get loginFailure; Failure? get registerFailure; Status get getOtpSt; Status get loginSt; Status get registerSt; Status get checkAuthSt;
+ bool get authenticated; int? get retryAfter; Failure? get getOtpFailure; Failure? get loginFailure; Failure? get registerFailure; Failure? get otpVerifyFailure; Status get getOtpSt; Status get loginSt; Status get otpVerifySt; Status get registerSt; Status get checkAuthSt;
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $AuthStateCopyWith<AuthState> get copyWith => _$AuthStateCopyWithImpl<AuthState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthState&&(identical(other.authenticated, authenticated) || other.authenticated == authenticated)&&(identical(other.retryAfter, retryAfter) || other.retryAfter == retryAfter)&&(identical(other.getOtpFailure, getOtpFailure) || other.getOtpFailure == getOtpFailure)&&(identical(other.loginFailure, loginFailure) || other.loginFailure == loginFailure)&&(identical(other.registerFailure, registerFailure) || other.registerFailure == registerFailure)&&(identical(other.getOtpSt, getOtpSt) || other.getOtpSt == getOtpSt)&&(identical(other.loginSt, loginSt) || other.loginSt == loginSt)&&(identical(other.registerSt, registerSt) || other.registerSt == registerSt)&&(identical(other.checkAuthSt, checkAuthSt) || other.checkAuthSt == checkAuthSt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthState&&(identical(other.authenticated, authenticated) || other.authenticated == authenticated)&&(identical(other.retryAfter, retryAfter) || other.retryAfter == retryAfter)&&(identical(other.getOtpFailure, getOtpFailure) || other.getOtpFailure == getOtpFailure)&&(identical(other.loginFailure, loginFailure) || other.loginFailure == loginFailure)&&(identical(other.registerFailure, registerFailure) || other.registerFailure == registerFailure)&&(identical(other.otpVerifyFailure, otpVerifyFailure) || other.otpVerifyFailure == otpVerifyFailure)&&(identical(other.getOtpSt, getOtpSt) || other.getOtpSt == getOtpSt)&&(identical(other.loginSt, loginSt) || other.loginSt == loginSt)&&(identical(other.otpVerifySt, otpVerifySt) || other.otpVerifySt == otpVerifySt)&&(identical(other.registerSt, registerSt) || other.registerSt == registerSt)&&(identical(other.checkAuthSt, checkAuthSt) || other.checkAuthSt == checkAuthSt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,authenticated,retryAfter,getOtpFailure,loginFailure,registerFailure,getOtpSt,loginSt,registerSt,checkAuthSt);
+int get hashCode => Object.hash(runtimeType,authenticated,retryAfter,getOtpFailure,loginFailure,registerFailure,otpVerifyFailure,getOtpSt,loginSt,otpVerifySt,registerSt,checkAuthSt);
 
 @override
 String toString() {
-  return 'AuthState(authenticated: $authenticated, retryAfter: $retryAfter, getOtpFailure: $getOtpFailure, loginFailure: $loginFailure, registerFailure: $registerFailure, getOtpSt: $getOtpSt, loginSt: $loginSt, registerSt: $registerSt, checkAuthSt: $checkAuthSt)';
+  return 'AuthState(authenticated: $authenticated, retryAfter: $retryAfter, getOtpFailure: $getOtpFailure, loginFailure: $loginFailure, registerFailure: $registerFailure, otpVerifyFailure: $otpVerifyFailure, getOtpSt: $getOtpSt, loginSt: $loginSt, otpVerifySt: $otpVerifySt, registerSt: $registerSt, checkAuthSt: $checkAuthSt)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $AuthStateCopyWith<$Res>  {
   factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) _then) = _$AuthStateCopyWithImpl;
 @useResult
 $Res call({
- bool authenticated, int? retryAfter, Failure? getOtpFailure, Failure? loginFailure, Failure? registerFailure, Status getOtpSt, Status loginSt, Status registerSt, Status checkAuthSt
+ bool authenticated, int? retryAfter, Failure? getOtpFailure, Failure? loginFailure, Failure? registerFailure, Failure? otpVerifyFailure, Status getOtpSt, Status loginSt, Status otpVerifySt, Status registerSt, Status checkAuthSt
 });
 
 
@@ -62,15 +62,17 @@ class _$AuthStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? authenticated = null,Object? retryAfter = freezed,Object? getOtpFailure = freezed,Object? loginFailure = freezed,Object? registerFailure = freezed,Object? getOtpSt = null,Object? loginSt = null,Object? registerSt = null,Object? checkAuthSt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? authenticated = null,Object? retryAfter = freezed,Object? getOtpFailure = freezed,Object? loginFailure = freezed,Object? registerFailure = freezed,Object? otpVerifyFailure = freezed,Object? getOtpSt = null,Object? loginSt = null,Object? otpVerifySt = null,Object? registerSt = null,Object? checkAuthSt = null,}) {
   return _then(_self.copyWith(
 authenticated: null == authenticated ? _self.authenticated : authenticated // ignore: cast_nullable_to_non_nullable
 as bool,retryAfter: freezed == retryAfter ? _self.retryAfter : retryAfter // ignore: cast_nullable_to_non_nullable
 as int?,getOtpFailure: freezed == getOtpFailure ? _self.getOtpFailure : getOtpFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,loginFailure: freezed == loginFailure ? _self.loginFailure : loginFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,registerFailure: freezed == registerFailure ? _self.registerFailure : registerFailure // ignore: cast_nullable_to_non_nullable
+as Failure?,otpVerifyFailure: freezed == otpVerifyFailure ? _self.otpVerifyFailure : otpVerifyFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,getOtpSt: null == getOtpSt ? _self.getOtpSt : getOtpSt // ignore: cast_nullable_to_non_nullable
 as Status,loginSt: null == loginSt ? _self.loginSt : loginSt // ignore: cast_nullable_to_non_nullable
+as Status,otpVerifySt: null == otpVerifySt ? _self.otpVerifySt : otpVerifySt // ignore: cast_nullable_to_non_nullable
 as Status,registerSt: null == registerSt ? _self.registerSt : registerSt // ignore: cast_nullable_to_non_nullable
 as Status,checkAuthSt: null == checkAuthSt ? _self.checkAuthSt : checkAuthSt // ignore: cast_nullable_to_non_nullable
 as Status,
@@ -158,10 +160,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Status getOtpSt,  Status loginSt,  Status registerSt,  Status checkAuthSt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Failure? otpVerifyFailure,  Status getOtpSt,  Status loginSt,  Status otpVerifySt,  Status registerSt,  Status checkAuthSt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AuthState() when $default != null:
-return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.getOtpSt,_that.loginSt,_that.registerSt,_that.checkAuthSt);case _:
+return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.otpVerifyFailure,_that.getOtpSt,_that.loginSt,_that.otpVerifySt,_that.registerSt,_that.checkAuthSt);case _:
   return orElse();
 
 }
@@ -179,10 +181,10 @@ return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.l
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Status getOtpSt,  Status loginSt,  Status registerSt,  Status checkAuthSt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Failure? otpVerifyFailure,  Status getOtpSt,  Status loginSt,  Status otpVerifySt,  Status registerSt,  Status checkAuthSt)  $default,) {final _that = this;
 switch (_that) {
 case _AuthState():
-return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.getOtpSt,_that.loginSt,_that.registerSt,_that.checkAuthSt);case _:
+return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.otpVerifyFailure,_that.getOtpSt,_that.loginSt,_that.otpVerifySt,_that.registerSt,_that.checkAuthSt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +201,10 @@ return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.l
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Status getOtpSt,  Status loginSt,  Status registerSt,  Status checkAuthSt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool authenticated,  int? retryAfter,  Failure? getOtpFailure,  Failure? loginFailure,  Failure? registerFailure,  Failure? otpVerifyFailure,  Status getOtpSt,  Status loginSt,  Status otpVerifySt,  Status registerSt,  Status checkAuthSt)?  $default,) {final _that = this;
 switch (_that) {
 case _AuthState() when $default != null:
-return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.getOtpSt,_that.loginSt,_that.registerSt,_that.checkAuthSt);case _:
+return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.loginFailure,_that.registerFailure,_that.otpVerifyFailure,_that.getOtpSt,_that.loginSt,_that.otpVerifySt,_that.registerSt,_that.checkAuthSt);case _:
   return null;
 
 }
@@ -214,7 +216,7 @@ return $default(_that.authenticated,_that.retryAfter,_that.getOtpFailure,_that.l
 
 
 class _AuthState implements AuthState {
-  const _AuthState({this.authenticated = false, this.retryAfter, this.getOtpFailure = const UnknownFailure(), this.loginFailure = const UnknownFailure(), this.registerFailure = const UnknownFailure(), this.getOtpSt = Status.UNKNOWN, this.loginSt = Status.UNKNOWN, this.registerSt = Status.UNKNOWN, this.checkAuthSt = Status.UNKNOWN});
+  const _AuthState({this.authenticated = false, this.retryAfter, this.getOtpFailure = const UnknownFailure(), this.loginFailure = const UnknownFailure(), this.registerFailure = const UnknownFailure(), this.otpVerifyFailure = const UnknownFailure(), this.getOtpSt = Status.UNKNOWN, this.loginSt = Status.UNKNOWN, this.otpVerifySt = Status.UNKNOWN, this.registerSt = Status.UNKNOWN, this.checkAuthSt = Status.UNKNOWN});
   
 
 @override@JsonKey() final  bool authenticated;
@@ -222,8 +224,10 @@ class _AuthState implements AuthState {
 @override@JsonKey() final  Failure? getOtpFailure;
 @override@JsonKey() final  Failure? loginFailure;
 @override@JsonKey() final  Failure? registerFailure;
+@override@JsonKey() final  Failure? otpVerifyFailure;
 @override@JsonKey() final  Status getOtpSt;
 @override@JsonKey() final  Status loginSt;
+@override@JsonKey() final  Status otpVerifySt;
 @override@JsonKey() final  Status registerSt;
 @override@JsonKey() final  Status checkAuthSt;
 
@@ -237,16 +241,16 @@ _$AuthStateCopyWith<_AuthState> get copyWith => __$AuthStateCopyWithImpl<_AuthSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthState&&(identical(other.authenticated, authenticated) || other.authenticated == authenticated)&&(identical(other.retryAfter, retryAfter) || other.retryAfter == retryAfter)&&(identical(other.getOtpFailure, getOtpFailure) || other.getOtpFailure == getOtpFailure)&&(identical(other.loginFailure, loginFailure) || other.loginFailure == loginFailure)&&(identical(other.registerFailure, registerFailure) || other.registerFailure == registerFailure)&&(identical(other.getOtpSt, getOtpSt) || other.getOtpSt == getOtpSt)&&(identical(other.loginSt, loginSt) || other.loginSt == loginSt)&&(identical(other.registerSt, registerSt) || other.registerSt == registerSt)&&(identical(other.checkAuthSt, checkAuthSt) || other.checkAuthSt == checkAuthSt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthState&&(identical(other.authenticated, authenticated) || other.authenticated == authenticated)&&(identical(other.retryAfter, retryAfter) || other.retryAfter == retryAfter)&&(identical(other.getOtpFailure, getOtpFailure) || other.getOtpFailure == getOtpFailure)&&(identical(other.loginFailure, loginFailure) || other.loginFailure == loginFailure)&&(identical(other.registerFailure, registerFailure) || other.registerFailure == registerFailure)&&(identical(other.otpVerifyFailure, otpVerifyFailure) || other.otpVerifyFailure == otpVerifyFailure)&&(identical(other.getOtpSt, getOtpSt) || other.getOtpSt == getOtpSt)&&(identical(other.loginSt, loginSt) || other.loginSt == loginSt)&&(identical(other.otpVerifySt, otpVerifySt) || other.otpVerifySt == otpVerifySt)&&(identical(other.registerSt, registerSt) || other.registerSt == registerSt)&&(identical(other.checkAuthSt, checkAuthSt) || other.checkAuthSt == checkAuthSt));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,authenticated,retryAfter,getOtpFailure,loginFailure,registerFailure,getOtpSt,loginSt,registerSt,checkAuthSt);
+int get hashCode => Object.hash(runtimeType,authenticated,retryAfter,getOtpFailure,loginFailure,registerFailure,otpVerifyFailure,getOtpSt,loginSt,otpVerifySt,registerSt,checkAuthSt);
 
 @override
 String toString() {
-  return 'AuthState(authenticated: $authenticated, retryAfter: $retryAfter, getOtpFailure: $getOtpFailure, loginFailure: $loginFailure, registerFailure: $registerFailure, getOtpSt: $getOtpSt, loginSt: $loginSt, registerSt: $registerSt, checkAuthSt: $checkAuthSt)';
+  return 'AuthState(authenticated: $authenticated, retryAfter: $retryAfter, getOtpFailure: $getOtpFailure, loginFailure: $loginFailure, registerFailure: $registerFailure, otpVerifyFailure: $otpVerifyFailure, getOtpSt: $getOtpSt, loginSt: $loginSt, otpVerifySt: $otpVerifySt, registerSt: $registerSt, checkAuthSt: $checkAuthSt)';
 }
 
 
@@ -257,7 +261,7 @@ abstract mixin class _$AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Re
   factory _$AuthStateCopyWith(_AuthState value, $Res Function(_AuthState) _then) = __$AuthStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool authenticated, int? retryAfter, Failure? getOtpFailure, Failure? loginFailure, Failure? registerFailure, Status getOtpSt, Status loginSt, Status registerSt, Status checkAuthSt
+ bool authenticated, int? retryAfter, Failure? getOtpFailure, Failure? loginFailure, Failure? registerFailure, Failure? otpVerifyFailure, Status getOtpSt, Status loginSt, Status otpVerifySt, Status registerSt, Status checkAuthSt
 });
 
 
@@ -274,15 +278,17 @@ class __$AuthStateCopyWithImpl<$Res>
 
 /// Create a copy of AuthState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? authenticated = null,Object? retryAfter = freezed,Object? getOtpFailure = freezed,Object? loginFailure = freezed,Object? registerFailure = freezed,Object? getOtpSt = null,Object? loginSt = null,Object? registerSt = null,Object? checkAuthSt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? authenticated = null,Object? retryAfter = freezed,Object? getOtpFailure = freezed,Object? loginFailure = freezed,Object? registerFailure = freezed,Object? otpVerifyFailure = freezed,Object? getOtpSt = null,Object? loginSt = null,Object? otpVerifySt = null,Object? registerSt = null,Object? checkAuthSt = null,}) {
   return _then(_AuthState(
 authenticated: null == authenticated ? _self.authenticated : authenticated // ignore: cast_nullable_to_non_nullable
 as bool,retryAfter: freezed == retryAfter ? _self.retryAfter : retryAfter // ignore: cast_nullable_to_non_nullable
 as int?,getOtpFailure: freezed == getOtpFailure ? _self.getOtpFailure : getOtpFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,loginFailure: freezed == loginFailure ? _self.loginFailure : loginFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,registerFailure: freezed == registerFailure ? _self.registerFailure : registerFailure // ignore: cast_nullable_to_non_nullable
+as Failure?,otpVerifyFailure: freezed == otpVerifyFailure ? _self.otpVerifyFailure : otpVerifyFailure // ignore: cast_nullable_to_non_nullable
 as Failure?,getOtpSt: null == getOtpSt ? _self.getOtpSt : getOtpSt // ignore: cast_nullable_to_non_nullable
 as Status,loginSt: null == loginSt ? _self.loginSt : loginSt // ignore: cast_nullable_to_non_nullable
+as Status,otpVerifySt: null == otpVerifySt ? _self.otpVerifySt : otpVerifySt // ignore: cast_nullable_to_non_nullable
 as Status,registerSt: null == registerSt ? _self.registerSt : registerSt // ignore: cast_nullable_to_non_nullable
 as Status,checkAuthSt: null == checkAuthSt ? _self.checkAuthSt : checkAuthSt // ignore: cast_nullable_to_non_nullable
 as Status,

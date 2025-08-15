@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lorry_dispatcher/core/resources/global_variables.dart';
 import 'package:lorry_dispatcher/core/routes/app_routes.dart';
@@ -38,7 +39,8 @@ class AppPages {
         name: AppRoutes.otpScreen,
         path: AppRoutes.otpScreen,
         builder: (BuildContext context, GoRouterState state) {
-          return const OtpScreen();
+          final map = state.extra as Map;
+          return OtpScreen(phone: map['phone'] as String);
         },
       ),
       GoRoute(

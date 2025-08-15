@@ -19,19 +19,12 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   late TextEditingController phoneController;
 
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
     phoneController = TextEditingController();
-  }
-
-  // Phone validation method
-  bool _isPhoneValid(String phone) {
-    // Remove all non-digit characters
-    String cleanPhone = phone.replaceAll(RegExp(r'[^\d]'), '');
-
-    // Check if phone has exactly 9 digits (without country code)
-    return cleanPhone.length == 9;
   }
 
   // Format phone for API (add country code 998)
@@ -42,18 +35,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => inject<AuthBloc>(),
-      child: Scaffold(
-        body: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            final bloc = context.read<AuthBloc>();
-            return Column(
+    return Scaffold(
+      body: BlocBuilder<AuthBloc, AuthState>(
+        builder: (context, state) {
+          final bloc = context.read<AuthBloc>();
+          return Form(
+            key: _formKey,
+            child: Column(
               children: [
                 100.verticalSpace,
                 SvgPicture.asset(AppIcons.logo),
                 30.verticalSpace,
                 CustomTextField(
+                  validator: (v) {
+                    if (v == null || v == "" || v.length <= 13) {
+                      return "Iltimos telefon raqamni kiriting";
+                    }else{
+                      return null;
+                    }
+                  },
                   textEditingController: phoneController,
                   labelText: "Telefon raqamingiz",
                   hintText: "Telefon raqamingiz",
@@ -68,35 +68,43 @@ class _LoginScreenState extends State<LoginScreen> {
                   text: "Kirish",
                   isLoading: state.getOtpSt == Status.LOADING,
                   onTap: () {
-                    String formattedPhone = _formatPhoneForApi(
-                      phoneController.text,
-                    );
+                    if (_formKey.currentState!.validate() == true) {
+                      String formattedPhone = _formatPhoneForApi(
+                        phoneController.text,
+                      );
 
-                    bloc.add(
-                      GetOtpEvent(
-                        phone: formattedPhone, // Send as: 998567705199
-                        onSuccess: () {
-                          context.pushNamed(AppRoutes.otpScreen);
-                        },
-                        onError: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                state.getOtpFailure?.messageBuilder(context) ?? '',
+                      bloc.add(
+                        GetOtpEvent(
+                          phone: formattedPhone,
+                          onSuccess: () {
+                            context.pushNamed(
+                              AppRoutes.otpScreen,
+                              extra: {"phone": formattedPhone},
+                            );
+                          },
+                          onError: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  state.getOtpFailure?.messageBuilder(
+                                        context,
+                                      ) ??
+                                      '',
+                                ),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    );
+                            );
+                          },
+                        ),
+                      );
+                    }
                   },
                 ),
                 customButtonPadding.verticalSpace,
               ],
-            );
-          },
-        ).paddingSymmetric(horizontal: 16.w),
-      ),
+            ),
+          );
+        },
+      ).paddingSymmetric(horizontal: 16.w),
     );
   }
 }

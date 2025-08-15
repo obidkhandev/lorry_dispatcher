@@ -48,7 +48,7 @@ extension PhoneFormatter2 on String {
     var h = substring(5, 8);
     var s = substring(8, 10);
     var t = substring(10);
-    return '+$codePlus ($code) $h $s $t';
+    return '+($codePlus) $code-$h-$s-$t';
   }
 }
 

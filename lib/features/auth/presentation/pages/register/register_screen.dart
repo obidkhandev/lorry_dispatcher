@@ -14,112 +14,29 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final TextEditingController _passportController = TextEditingController();
-  final TextEditingController _dobController = TextEditingController();
+  late TextEditingController _nameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _phoneController;
 
-  bool _isJshshir = true; // true for JSHSHIR, false for ID card
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _nameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _phoneController = TextEditingController();
+    super.initState();
+  }
 
   @override
   void dispose() {
-    _passportController.dispose();
-    _dobController.dispose();
+    _nameController.dispose();
+    _lastNameController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
-  void _selectDate() async {
-    DateTime initialDate = DateTime.now().subtract(
-      const Duration(days: 6570),
-    ); // 18 years ago
-
-    // Try to parse existing date if available
-    if (_dobController.text.isNotEmpty) {
-      try {
-        final parts = _dobController.text.split('.');
-        if (parts.length == 3) {
-          initialDate = DateTime(
-            int.parse(parts[2]), // year
-            int.parse(parts[1]), // month
-            int.parse(parts[0]), // day
-          );
-        }
-      } catch (e) {
-        // If parsing fails, use default initial date
-        initialDate = DateTime.now().subtract(const Duration(days: 6570));
-      }
-    }
-
-    await showModalBottomSheet(
-      context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        height: 350,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-        ),
-        child: Column(
-          children: [
-            // Header
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey[200]!, width: 1),
-                ),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      "Bekor qilish",
-                      style: TextStyle(color: Colors.red, fontSize: 16.sp),
-                    ),
-                  ),
-                  Text(
-                    "Tug'ilgan kun",
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Tayyor",
-                      style: TextStyle(
-                        color: Theme.of(context).primaryColor,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            // Date Picker
-            Expanded(
-              child: CupertinoDatePicker(
-                mode: CupertinoDatePickerMode.date,
-                initialDateTime: initialDate,
-                minimumDate: DateTime(1900),
-                maximumDate: DateTime.now(),
-                onDateTimeChanged: (DateTime newDate) {
-                  setState(() {
-                    _dobController.text =
-                        "${newDate.day.toString().padLeft(2, '0')}.${newDate.month.toString().padLeft(2, '0')}.${newDate.year}";
-                  });
-                },
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -143,106 +60,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: EdgeInsets.zero,
         children: [
           20.verticalSpace,
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.r),
-              border: Border.all(color: Colors.grey[300]!),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: InkWell(
-                    onTap: () => setState(() => _isJshshir = true),
-                    borderRadius: BorderRadius.horizontal(
-                      left: Radius.circular(8.r),
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      decoration: BoxDecoration(
-                        color: _isJshshir
-                            ? Theme.of(context).primaryColor
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(7.r),
-                        ),
-                      ),
-                      child: Text(
-                        "ID karta",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: _isJshshir ? Colors.white : Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () => setState(() => _isJshshir = false),
-                    borderRadius: BorderRadius.horizontal(
-                      right: Radius.circular(8.r),
-                    ),
-                    child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 12.h),
-                      decoration: BoxDecoration(
-                        color: !_isJshshir
-                            ? Theme.of(context).primaryColor
-                            : Colors.transparent,
-                        borderRadius: BorderRadius.horizontal(
-                          right: Radius.circular(7.r),
-                        ),
-                      ),
-                      child: Text(
-                        "JSHSHIR",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: !_isJshshir ? Colors.white : Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
 
           16.verticalSpace,
-
-          // Passport/ID Input
           CustomTextField(
-            textEditingController: _passportController,
-            labelText: _isJshshir ? "ID karta raqami" : "JSHSHIR",
-            hintText: _isJshshir ? "AA1234567" : "12345678901234",
-            textInputType: _isJshshir
-                ? TextInputType.text
-                : TextInputType.number,
-            // : _isJshshir ? TextCapitalization.characters : TextCapitalization.none,
-            formatter: _isJshshir
-                ? [
-                    FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
-                    LengthLimitingTextInputFormatter(9),
-                  ]
-                : [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(14),
-                  ],
+            textEditingController: _nameController,
+            labelText: "Ism",
+            hintText: "Ism",
           ),
 
-          16.verticalSpace,
 
-          // Date of Birth Input
+          16.verticalSpace,
           CustomTextField(
-            textEditingController: _dobController,
-            labelText: "Tug'ilgan kun",
-            hintText: "kk.oo.yyyy",
+            textEditingController: _lastNameController,
+            labelText: "Familiya",
+            hintText: "Familiya",
+          ),
+          16.verticalSpace,
+          CustomTextField(
+            labelText: "Telefon raqami",
+            hintText: "Telefon raqami",
             readOnly: true,
-            onTap: _selectDate,
-            suffixIcon: IconButton(
-              onPressed: _selectDate,
-              icon: Icon(Icons.arrow_drop_down, color: Colors.grey[600]),
-            ),
           ),
           24.verticalSpace,
           SwitchListTile(

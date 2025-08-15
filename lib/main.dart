@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lorry_dispatcher/core/routes/app_pages.dart';
 import 'package:lorry_dispatcher/core/utills/enums.dart';
 import 'package:lorry_dispatcher/core/values/app_theme.dart';
+import 'package:lorry_dispatcher/features/common/bloc/auth/auth_bloc.dart';
 import 'package:lorry_dispatcher/features/common/bloc/main_tab/main_tab_cubit.dart';
 import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(create: (context) => inject<CreateOrderBloc>()),
         BlocProvider(create: (context) => MapBloc()),
+        BlocProvider(create: (context) => inject<AuthBloc>()),
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {

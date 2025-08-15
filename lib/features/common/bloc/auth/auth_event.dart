@@ -23,8 +23,25 @@ class StartOtpTimerEvent extends AuthEvent {
 class LoginEvent extends AuthEvent {
   final String phone;
   final String otp;
+  final int role;
 
-  LoginEvent({required this.phone, required this.otp});
+  LoginEvent({required this.phone, required this.otp, required this.role});
+}
+
+class OtpVerifyEvent extends AuthEvent {
+  final String phone;
+  final String otp;
+  final int role;
+  final Function() onSuccess;
+  final Function() onError;
+
+  OtpVerifyEvent({
+    required this.phone,
+    required this.otp,
+    required this.role,
+    required this.onSuccess,
+    required this.onError,
+  });
 }
 
 class CheckAuthEvent extends AuthEvent {}

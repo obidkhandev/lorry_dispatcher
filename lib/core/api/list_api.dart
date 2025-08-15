@@ -9,6 +9,7 @@ class ListAPI {
 
 
   static const String accessToken = 'access-token';
+  static const String userId = 'user-id';
 
 
   // static String get baseUrl => dotenv.env['TASK_BASE_URL'] ?? '';
@@ -19,6 +20,7 @@ class ListAPI {
   static const String verify = 'auth/verify-registration';
   static const String login = 'users/login/employee/';
   static const String getOtp = 'auth/login';
+  static const String otpVerify = 'auth/verify';
   static const yandexApiKey = 'add463f9-4251-48c0-bc81-b50118e14589';
   static const googleDirectionApi = 'AIzaSyBkKTsCUTP3biLpL8FeHv__IsQK_nGgIyo';
 
