@@ -7,9 +7,12 @@ import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_onboard.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/save_app_onboard.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/set_app_lang.dart';
+import 'package:lorry_dispatcher/features/create_order/data/datasource/order_create_datasource.dart';
+import 'package:lorry_dispatcher/features/create_order/data/repository/order_create_repository_impl.dart';
+import 'package:lorry_dispatcher/features/create_order/domain/repository/order_create_repository.dart';
+import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_order_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_it/get_it.dart';
-
 
 final inject = GetIt.instance;
 
@@ -20,26 +23,31 @@ Future<void> initDi() async {
 
   inject.registerSingleton<DioClient>(DioClient(pref));
 
-
   _dataSources();
   _repositories();
   _useCase();
   _cubit();
-  print('Registered: ${inject.isRegistered<SettingsCubit>()}');
 }
 
 
 void _dataSources(){
-
+  inject.registerLazySingleton<OrderCreateDatasource>(
+        () => OrderCreateDatasourceImpl(inject()),
+  );
 }
 
 
 void _repositories() {
-  // AUTH
-  // inject.registerLazySingleton<AuthRepository>(
-  //   () => AuthRepositoryImpl(inject<GrpcAuthService>(), inject()),
-  // );
 
+  // Auth
+
+  // Order
+  inject.registerLazySingleton<OrderCreateRepository>(
+    () => OrderCreateRepositoryImpl(inject()),
+  );
+
+
+  // Settings
   inject.registerLazySingleton<ISettingRepository>(
     () => SettingRepository(inject()),
   );
@@ -58,7 +66,10 @@ void _useCase() {
 
 void _cubit() {
   // AUTH
+
+
   inject.registerFactory(() => MainTabCubit());
+  inject.registerFactory(() => CreateOrderBloc(inject()));
 
   // Language
   inject.registerLazySingleton(() => SettingsCubit(

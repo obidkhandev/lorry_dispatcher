@@ -1,11 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:lorry_dispatcher/features/create_order/data/models/country_region_model.dart';
+import 'package:lorry_dispatcher/features/create_order/domain/repository/order_create_repository.dart';
 
 part 'create_order_event.dart';
 part 'create_order_state.dart';
 
 class CreateOrderBloc extends Bloc<CreateOrderEvent, CreateOrderState> {
-  CreateOrderBloc() : super(const CreateOrderState()) {
+
+  final OrderCreateRepository repository;
+  CreateOrderBloc(this.repository) : super(const CreateOrderState()) {
 
     // Pickup location handlers
     on<AddPickupLocationEvent>(_onAddPickupLocation);

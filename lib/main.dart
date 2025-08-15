@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => inject<SettingsCubit>()..loadAppLang()..loadTheme(),
         ),
-        BlocProvider(create: (context) => CreateOrderBloc()),
+        BlocProvider(create: (context) => inject<CreateOrderBloc>()),
         BlocProvider(create: (context) => MapBloc()),
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
