@@ -1,7 +1,11 @@
 import 'package:lorry_dispatcher/core/api/dio_client.dart';
+import 'package:lorry_dispatcher/features/common/bloc/auth/auth_bloc.dart';
 import 'package:lorry_dispatcher/features/common/bloc/main_tab/main_tab_cubit.dart';
 import 'package:lorry_dispatcher/features/common/bloc/settings/settings_cubit.dart';
+import 'package:lorry_dispatcher/features/common/data/datasource/auth_datasource.dart';
+import 'package:lorry_dispatcher/features/common/data/repository/auth.dart';
 import 'package:lorry_dispatcher/features/common/data/repository/settings.dart';
+import 'package:lorry_dispatcher/features/common/domain/repository/auth.dart';
 import 'package:lorry_dispatcher/features/common/domain/repository/settings.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_lang.dart';
 import 'package:lorry_dispatcher/features/common/domain/uscase/settings/get_app_onboard.dart';
@@ -29,32 +33,31 @@ Future<void> initDi() async {
   _cubit();
 }
 
+void _dataSources() {
+  inject.registerLazySingleton<AuthDatasource>(
+    () => AuthDatasourceImpl(inject()),
+  );
 
-void _dataSources(){
   inject.registerLazySingleton<OrderCreateDatasource>(
-        () => OrderCreateDatasourceImpl(inject()),
+    () => OrderCreateDatasourceImpl(inject()),
   );
 }
 
-
 void _repositories() {
-
   // Auth
-
+  inject.registerLazySingleton<IAuthRepository>(
+    () => AuthRepository(inject(), inject()),
+  );
   // Order
   inject.registerLazySingleton<OrderCreateRepository>(
     () => OrderCreateRepositoryImpl(inject()),
   );
 
-
   // Settings
   inject.registerLazySingleton<ISettingRepository>(
     () => SettingRepository(inject()),
   );
-
-
 }
-
 
 void _useCase() {
   // Language
@@ -67,16 +70,13 @@ void _useCase() {
 void _cubit() {
   // AUTH
 
-
   inject.registerFactory(() => MainTabCubit());
+  inject.registerFactory(() => AuthBloc(inject()));
+
   inject.registerFactory(() => CreateOrderBloc(inject()));
 
   // Language
-  inject.registerLazySingleton(() => SettingsCubit(
-        inject(),
-        inject(),
-        inject(),
-        inject(),
-        inject(),
-      ));
+  inject.registerLazySingleton(
+    () => SettingsCubit(inject(), inject(), inject(), inject(), inject()),
+  );
 }

@@ -206,3 +206,15 @@ class UnknownFailure extends Failure {
   }
 }
 
+class BadRequestFailure extends Failure {
+  const BadRequestFailure({
+    String Function(BuildContext context)? messageBuilder,
+    super.code,
+  }) : super(messageBuilder ?? _defaultUnknownMessage);
+
+  static String _defaultUnknownMessage(BuildContext context) {
+    // Replace with your localization: S.of(context).unknownErrorMessage
+    return 'An unexpected error occurred. Please try again.';
+  }
+}
+

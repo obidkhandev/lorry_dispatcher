@@ -34,6 +34,7 @@ class _OrderInProgressPageState extends State<OrderInProgressPage>
         10.verticalSpace,
         DecoratedBox(
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16.r),
             color: context.theme.cardColor,
           ),
           child: TabBar(
@@ -50,12 +51,8 @@ class _OrderInProgressPageState extends State<OrderInProgressPage>
             overlayColor: WidgetStateProperty.all(Colors.transparent),
             indicatorColor: AppColors.primaryColor,
             labelColor: AppColors.white,
-            indicatorPadding: EdgeInsets.symmetric(
-              vertical: 6.h,
-            ),
+            indicatorPadding: EdgeInsets.all(6),
             controller: tabController,
-
-            padding: EdgeInsets.symmetric(horizontal: 16.w),
             tabs: [
               Tab(text: S.of(context).arrived),
               Tab(text: S.of(context).loaded),
@@ -63,7 +60,7 @@ class _OrderInProgressPageState extends State<OrderInProgressPage>
               Tab(text: S.of(context).unloaded),
             ],
           ),
-        ),
+        ).paddingSymmetric(horizontal: 16.w),
         Expanded(
           child: ListView.separated(
             shrinkWrap: true,

@@ -7,19 +7,13 @@ import 'package:lorry_dispatcher/core/error/failure.dart';
 class DioExceptions {
   /// Convert DioException to appropriate Failure with localized messages
   static Failure fromDioError(DioException dioException) {
-    if (kDebugMode) {
-      debugPrint("🔥 DioException: ${dioException.type}");
-      debugPrint("📝 Message: ${dioException.message}");
-      debugPrint("🔢 Status Code: ${dioException.response?.statusCode}");
-      debugPrint("📄 Response Data: ${dioException.response?.data}");
-    }
-
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return TimeoutFailure(
           messageBuilder: (context) => _getTimeoutMessage(context),
           code: 'CONNECTION_TIMEOUT',
         );
+
 
       case DioExceptionType.sendTimeout:
         return TimeoutFailure(
@@ -67,7 +61,17 @@ class DioExceptions {
 
     switch (statusCode) {
       case 400:
-        return BadResponseFailure(
+      // Extract user message first, if available use it directly
+        final userMessage = _extractUserMessage(responseData);
+        if (userMessage != null && userMessage.isNotEmpty) {
+          // For specific business logic errors in 400 responses
+          return BusinessLogicFailure(
+            messageBuilder: (context) => userMessage,
+            code: 'BAD_REQUEST_WITH_MESSAGE_400',
+          );
+        }
+        // Fall back to generic bad request
+        return BadRequestFailure(
           messageBuilder: (context) => _getBadRequestMessage(context, responseData),
           code: 'BAD_REQUEST_400',
         );
@@ -176,53 +180,61 @@ class DioExceptions {
     return null;
   }
 
-  /// Extract user-friendly message from response data
+  /// Extract user-friendly message from response data - ENHANCED VERSION
   static String? _extractUserMessage(dynamic responseData) {
     if (responseData is Map<String, dynamic>) {
-      // Common message fields
-      if (responseData.containsKey('message')) {
-        return responseData['message']?.toString();
-      }
-      if (responseData.containsKey('error_message')) {
-        return responseData['error_message']?.toString();
-      }
-      if (responseData.containsKey('user_message')) {
-        return responseData['user_message']?.toString();
+      // Common message fields - prioritizing 'detail' for your API
+      final messageKeys = [
+        'detail',        // Your API uses this field
+        'message',
+        'error_message',
+        'user_message',
+        'error',
+        'msg',
+        'description',
+      ];
+
+      for (final key in messageKeys) {
+        if (responseData.containsKey(key)) {
+          final value = responseData[key];
+          if (value != null && value.toString().trim().isNotEmpty) {
+            return value.toString();
+          }
+        }
       }
     }
+
+    // If responseData is a string, return it directly
+    if (responseData is String && responseData.trim().isNotEmpty) {
+      return responseData;
+    }
+
     return null;
   }
 
   // ==================== LOCALIZED MESSAGE METHODS ====================
-  // Replace these with your actual localization system: S.of(context).methodName
 
   static String _getTimeoutMessage(BuildContext context) {
-    // return S.of(context).connectionTimeoutMessage;
     return 'Connection timeout. Please check your internet and try again.';
   }
 
   static String _getSendTimeoutMessage(BuildContext context) {
-    // return S.of(context).sendTimeoutMessage;
     return 'Send timeout. Please try again.';
   }
 
   static String _getReceiveTimeoutMessage(BuildContext context) {
-    // return S.of(context).receiveTimeoutMessage;
     return 'Receive timeout. Please try again.';
   }
 
   static String _getConnectionErrorMessage(BuildContext context) {
-    // return S.of(context).connectionErrorMessage;
     return 'No internet connection. Please check your network settings.';
   }
 
   static String _getRequestCancelledMessage(BuildContext context) {
-    // return S.of(context).requestCancelledMessage;
     return 'Request was cancelled.';
   }
 
   static String _getBadCertificateMessage(BuildContext context) {
-    // return S.of(context).badCertificateMessage;
     return 'Security certificate error. Please try again later.';
   }
 
@@ -230,7 +242,6 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).badRequestMessage;
     return 'Invalid request. Please check your input and try again.';
   }
 
@@ -238,7 +249,6 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).unauthorizedMessage;
     return 'Session expired. Please login again.';
   }
 
@@ -246,7 +256,6 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).forbiddenMessage;
     return 'Access denied. You don\'t have permission for this action.';
   }
 
@@ -254,7 +263,6 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).notFoundMessage;
     return 'The requested resource was not found.';
   }
 
@@ -262,7 +270,6 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).conflictMessage;
     return 'Conflict occurred. The resource may have been modified.';
   }
 
@@ -270,42 +277,34 @@ class DioExceptions {
     final userMessage = _extractUserMessage(responseData);
     if (userMessage != null) return userMessage;
 
-    // return S.of(context).validationErrorMessage;
     return 'Please check your input and try again.';
   }
 
   static String _getTooManyRequestsMessage(BuildContext context) {
-    // return S.of(context).tooManyRequestsMessage;
     return 'Too many requests. Please wait a moment and try again.';
   }
 
   static String _getInternalServerErrorMessage(BuildContext context) {
-    // return S.of(context).internalServerErrorMessage;
     return 'Server error occurred. Please try again later.';
   }
 
   static String _getBadGatewayMessage(BuildContext context) {
-    // return S.of(context).badGatewayMessage;
     return 'Server temporarily unavailable. Please try again later.';
   }
 
   static String _getServiceUnavailableMessage(BuildContext context) {
-    // return S.of(context).serviceUnavailableMessage;
     return 'Service temporarily unavailable. Please try again later.';
   }
 
   static String _getGatewayTimeoutMessage(BuildContext context) {
-    // return S.of(context).gatewayTimeoutMessage;
     return 'Server timeout. Please try again later.';
   }
 
   static String _getGenericServerErrorMessage(BuildContext context, int? statusCode) {
-    // return S.of(context).genericServerErrorMessage(statusCode);
     return 'Server error occurred. Please try again later.';
   }
 
   static String _getUnknownErrorMessage(BuildContext context) {
-    // return S.of(context).unknownErrorMessage;
     return 'An unexpected error occurred. Please try again.';
   }
 }

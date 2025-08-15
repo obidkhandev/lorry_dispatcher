@@ -48,7 +48,6 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
-          print("Language: ${state.language}--");
           return ScreenUtilInit(
             minTextAdapt: true,
             designSize: Size(

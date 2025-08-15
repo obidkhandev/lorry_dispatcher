@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:lorry_dispatcher/core/api/list_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -11,17 +12,16 @@ class MySmartDioInterceptor extends Interceptor {
   // final Dio _dio;
   // String _refresh = '';
 
-  final String _token = '';
+   String _token = '';
   // String? _lang;
   List<Map<dynamic, dynamic>> _failedRequests = [];
   bool _isRefreshing = false;
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
-    debugPrint('REQUEST[${options.method}] => PATH: ${options.path}');
 
     // _refresh = StorageService.to.getRefreshToken();
-    // _token = _preferences.getString(ListAPI.ACCESS_TOKEN) ?? "";
+    _token = _preferences.getString(ListAPI.accessToken) ?? "";
     // _lang = _preferences.getString(ListAPI.LANG);
 
     options.headers['Content-Type'] = 'application/json';
@@ -31,14 +31,11 @@ class MySmartDioInterceptor extends Interceptor {
     if (_token.isNotEmpty) {
       options.headers["Authorization"] = "Bearer $_token";
     }
-    debugPrint('REQUEST::${options.data}');
     handler.next(options);
   }
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    debugPrint(
-        'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}');
     handler.next(response);
   }
 

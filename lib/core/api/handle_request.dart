@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:lorry_dispatcher/core/api/api.dart';
 import 'package:lorry_dispatcher/core/error/dio_exceptions_wrapper.dart';
 import 'package:lorry_dispatcher/core/error/failure.dart';
 
@@ -10,7 +11,7 @@ enum HttpMethod { GET, POST, PUT, PATCH, DELETE }
 
 Future<Either<Failure, T>> handleRequest<T>({
   required String endpoint,
-  required Dio dioClient,
+  required DioClient dioClient,
   required HttpMethod method,
   dynamic data,
   ResponseType? responseType,
@@ -21,12 +22,6 @@ Future<Either<Failure, T>> handleRequest<T>({
   Duration? timeout,
 }) async {
   try {
-    if (kDebugMode) {
-      debugPrint("🚀 $method $endpoint");
-      if (data != null) debugPrint("📦 Body: $data");
-      if (queryParameters != null) debugPrint("🔍 Query: $queryParameters");
-    }
-
     Response response;
 
     final options = Options(
@@ -71,7 +66,6 @@ Future<Either<Failure, T>> handleRequest<T>({
       case HttpMethod.DELETE:
         response = await dioClient.delete(
           endpoint,
-          data: data,
           queryParameters: queryParameters,
           options: options,
         );
@@ -79,15 +73,17 @@ Future<Either<Failure, T>> handleRequest<T>({
     }
 
     if (kDebugMode) {
-      debugPrint("✅ $method $endpoint: ${response.statusCode}");
-      if (response.statusCode != expectedStatusCode) {
-        debugPrint(
-            "⚠️  Expected: $expectedStatusCode, Got: ${response.statusCode}");
-      }
+      debugPrint("✅ Request successful: ${response.statusCode}");
+      debugPrint("Response data: ${response.data}");
     }
 
     // Check if response status code matches expected
     if (response.statusCode != expectedStatusCode) {
+      if (kDebugMode) {
+        debugPrint("❌ Unexpected status code: ${response.statusCode}");
+        debugPrint("Response data: ${response.data}");
+      }
+
       // Create a DioException for unexpected status codes
       throw DioException(
         requestOptions: response.requestOptions,
@@ -102,6 +98,9 @@ Future<Either<Failure, T>> handleRequest<T>({
   } on DioException catch (e) {
     if (kDebugMode) {
       debugPrint("❌ DioException caught in handleRequest");
+      debugPrint("Status Code: ${e.response?.statusCode}");
+      debugPrint("Response Text: ${e.response?.data}");
+      debugPrint("Error Message: ${e.message}");
     }
     final failure = DioExceptions.fromDioError(e);
     return Left(failure);
