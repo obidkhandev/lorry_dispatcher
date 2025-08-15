@@ -15,6 +15,10 @@ import 'package:lorry_dispatcher/features/create_order/data/datasource/order_cre
 import 'package:lorry_dispatcher/features/create_order/data/repository/order_create_repository_impl.dart';
 import 'package:lorry_dispatcher/features/create_order/domain/repository/order_create_repository.dart';
 import 'package:lorry_dispatcher/features/create_order/presentation/bloc/create_order_bloc.dart';
+import 'package:lorry_dispatcher/features/profile/data/datasource/profile_datasource.dart';
+import 'package:lorry_dispatcher/features/profile/data/repository/profile_repository_impl.dart';
+import 'package:lorry_dispatcher/features/profile/domain/profile_repository.dart';
+import 'package:lorry_dispatcher/features/profile/presentation/bloc/profile/profile_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get_it/get_it.dart';
 
@@ -41,12 +45,19 @@ void _dataSources() {
   inject.registerLazySingleton<OrderCreateDatasource>(
     () => OrderCreateDatasourceImpl(inject()),
   );
+
+  inject.registerLazySingleton<ProfileDatasource>(
+    () => ProfileDatasourceImpl(inject()),
+  );
 }
 
 void _repositories() {
   // Auth
   inject.registerLazySingleton<IAuthRepository>(
     () => AuthRepository(inject(), inject()),
+  );
+  inject.registerLazySingleton<ProfileRepository>(
+    () => ProfileRepositoryImpl(inject()),
   );
   // Order
   inject.registerLazySingleton<OrderCreateRepository>(
@@ -72,8 +83,9 @@ void _cubit() {
 
   inject.registerFactory(() => MainTabCubit());
   inject.registerFactory(() => AuthBloc(inject()));
-
   inject.registerFactory(() => CreateOrderBloc(inject()));
+
+  inject.registerFactory(() => ProfileBloc(profileRepository: inject()));
 
   // Language
   inject.registerLazySingleton(

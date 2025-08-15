@@ -1,6 +1,10 @@
 part of 'profile_bloc.dart';
 
-@immutable
-sealed class ProfileState {}
-
-final class ProfileInitial extends ProfileState {}
+@freezed
+ abstract class ProfileState with _$ProfileState {
+  const factory ProfileState({
+    @Default(Status.UNKNOWN) Status getProfileStatus,
+    ProfileResponseModel? profile,
+    @Default(UnknownFailure()) Failure? getProfileFailure,
+  }) = _ProfileState;
+}

@@ -1,1 +1,1 @@
-class ProfileRepository{}
+export 'profile_repository.dart';
